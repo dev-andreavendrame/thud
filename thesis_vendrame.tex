@@ -1,0 +1,289 @@
+%% Le lingue utilizzate, che verranno passate come opzioni al pacchetto babel. Come sempre, l'ultima indicata sar� quella primaria.
+%% Se si utilizzano una o pi� lingue diverse da "italian" o "english", leggere le istruzioni in fondo.
+\def\thudbabelopt{english,italian}
+%% Valori ammessi per target: bach (tesi triennale), mst (tesi magistrale), phd (tesi di dottorato).
+%% Valori ammessi per aauheader: '' (vuoto -> nessun header Alpen Adria Univeristat), aics (Department of Artificial Intelligence and Cybersecurity), informatics (Department of Informatics Systems). Il nome del dipartimento � allineato con la versione inglese del logo UniUD.
+\documentclass[target=mst,aauheader=]{thud}
+
+%% --- Informazioni sulla tesi ---
+%% Per tutti i tipi di tesi
+% Scommentare quello di interesse, o mettete quello che vi pare
+\course{Informatica}
+%\course{Internet of Things, Big Data e Web}
+%\course{Matematica}
+%\course{Comunicazione Multimediale e Tecnologie dell'Informazione}
+\title{A DLT-based application for certifying journalistic material}
+\author{Andrea Vendrame}
+%% Campi obbligatori: \title, \author e \course.
+%% Altri campi disponibili: \reviewer, \tutor, \chair, \date (anno accademico, calcolato in automatico), \rights
+%% Con \supervisor, \cosupervisor, \reviewer e \tutor si possono indicare pi� nomi separati da \and.
+
+%% --- Pacchetti consigliati ---
+%% pdfx: per generare il PDF/A per l'archiviazione. Necessario solo per la versione finale
+\usepackage[a-1b]{pdfx}
+%% hyperref: Regola le impostazioni della creazione del PDF... pi� tante altre cose. Ricordarsi di usare l'opzione pdfa.
+\usepackage[pdfa]{hyperref}
+%% tocbibind: Inserisce nell'indice anche la lista delle figure, la bibliografia, ecc.
+
+%% --- Stili di pagina disponibili (comando \pagestyle) ---
+%% sfbig (predefinito): Apertura delle parti e dei capitoli col numero grande; titoli delle parti e dei capitoli e intestazioni di pagina in sans serif.
+%% big: Come "sfbig", solo serif.
+%% plain: Apertura delle parti e dei capitoli tradizionali di LaTeX; intestazioni di pagina come "big".
+
+\begin{document}
+\maketitle
+
+%% Dedica (opzionale)
+\begin{dedication}
+	Al mio cane,\par per avermi ascoltato mentre ripassavo le lezioni.
+\end{dedication}
+
+%% Ringraziamenti (opzionali)
+\acknowledgements
+Sed vel lorem a arcu faucibus aliquet eu semper tortor. Aliquam dolor lacus, semper vitae ligula sed, blandit iaculis leo. Nam pharetra lobortis leo nec auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce ac risus pulvinar, congue eros non, interdum metus. Mauris tincidunt neque et aliquam imperdiet. Aenean ac tellus id nibh pellentesque pulvinar ut eu lacus. Proin tempor facilisis tortor, et hendrerit purus commodo laoreet. Quisque sed augue id ligula consectetur adipiscing. Vestibulum libero metus, lacinia ac vestibulum eu, varius non arcu. Nam et gravida velit.
+
+%% Sommario (opzionale)
+\abstract
+The Truthster project is a decentralized application (dApp) that aims to provide a secure and reliable platform for journalists to share their interviews with their interviewees. The project is built on top of the Alastria blockchain network, which is a consortium blockchain network designed for the Spanish market.
+
+One of the key features of Truthster is its ability to provide a high level of security and privacy to its users. The system uses advanced cryptographic techniques to ensure that files stored on the blockchain are tamper-proof and cannot be altered or deleted. Additionally, Truthster allows journalists to provide information about their identity, so that users can be sure that the files they are accessing are coming from a verified source.
+The Alastria blockchain network is also designed to be highly scalable and efficient, in this way it can handle a large number of transactions per second, which is essential for a system that needs to process large amounts of data.
+
+Another important aspect of the Truthster project is its user-friendly interface. The system is accessible through a web-based interface (client), which allows users to access their data from any device with an internet connection. Additionally, Truthster is designed to be intuitive and easy to navigate, making it accessible to users of all skill levels.
+
+The Truthster project also aims to empower journalists by allowing them to share their work with a wider audience, while also ensuring that their interviewees can access the information with complete confidence. By providing a secure and reliable platform for sharing interviews, Truthster aims to promote transparency and trust in the media industry, which is a very difficult task nowadays.
+
+In conclusion, the Truthster project is an innovative and valuable tool for journalism. It addresses the need for secure and reliable platforms for sharing interviews and provides a user-friendly experience. By leveraging the power of blockchain technology, the Truthster project aims to promote transparency and trust in the media industry, and empower journalists to share their work with a wider audience.
+
+%% Indice
+\tableofcontents
+
+%% Lista delle tabelle (se presenti)
+%\listoftables
+
+%% Lista delle figure (se presenti)
+%\listoffigures
+
+%% Corpo principale del documento
+\mainmatter
+
+%% Parte
+%% La suddivisione in parti � opzionale; solitamente sono sufficienti i capitoli.
+%\part{Parte}
+
+%% Capitolo
+\chapter{Introduction}
+
+The Truthster project aims at integrating an easy-to-use mobile application for certifying video interviews with a blockchain platform, thus generating proof of validity of media contents based on an innovative synergy between human trust (embodied by the interviewer) and trust- less systems (Alastria). Truthster will add to media creators an option to verify interviews, using a simple workflow combined with blockchain storage for proof of validity.\\
+
+This project is a comprehensive solution that combines traditional technologies such as databases and REST architecture with new technologies like Docker and blockchain. The goal of the Truthster project is to create a mobile app that makes it easy for journalists and media creators to certify video interviews, providing proof of validity for media contents.\\
+
+The mobile app is designed for the interviewer, who can use it to record audio or video interviews. Once the interview is recorded, the interviewer can open the mobile app, log in, enter all the related interview information, and choose the interview file to upload. The app then calculates a hash of the document (generated based on the information provided by the interviewer) and uploads it, along with interview metadata and GPS position, to a cloud-based server. In the background, the entire document and interview file are uploaded.\\
+
+Once the interview is uploaded, the app sends a link to the interviewee via SMS or email, or generates a QR code with a link. The interviewee can then open the link (or scan the QR code), and a GDPR-compliant contract will be displayed for review and agreement.\\
+After the contract is agreed upon, the GPS position of the interviewee is sent to the server, and the hash and metadata of the interview, along with the interviewee's agreement, are stored in a permissioned blockchain for later uses.\\
+
+The blockchain used in the Truthster project is Alastria, an open-source and permissioned blockchain. This type of blockchain is a hybrid between a public blockchain (such as Ethereum or Moonriver) and a completely private blockchain (such as a local blockchain created with Ganache).\\
+This allows for greater security and privacy, as only authorized individuals (such as registered journalists) have the right to write to the blockchain.\\
+
+In addition to the blockchain, all media files and information are stored in a separate database, specifically a MongoDB instance. MongoDB is a document database that is highly available and scalable, making it well-suited for internet applications like ours. Its flexible schema approach is popular among development teams that use agile methodologies.\\
+
+The Truthster project also includes a Node.js server that notifies the interviewer when the process is complete. A history of all interviews is also available to the interviewer through the mobile app, providing a convenient way to keep track of all interviews, explore past informations and handle other additional settings.\\
+
+The backend server and web app are designed to be ready for the cloud, making it easy for media creators to access the Truthster system from anywhere. To further automate the development and operations process, the back-office module is implemented using Docker containers, allowing for easy deployment and scaling of the system.\\
+
+Overall, the Truthster project is a unique and innovative solution that combines the trust of human interactions with the reliability and security of blockchain technology, providing a way for media creators to easily verify and certify video interviews. By using blockchain technology, the Truthster project ensures that the proof of validity of media contents is tamper-proof, providing a new level of trust for audiences.
+
+%% Sezione
+\section{Titolo della Sezione}
+
+%% Sottosezione
+\subsection{Sottosezione}
+
+
+
+
+
+\chapter{State of the art}
+
+There are several tools available today that can help with ensuring the authenticity and validity of digital content, particularly video interviews.\\
+Some of these include:
+\begin{itemize}
+
+\item Digital Signature: is a method for ensuring the authenticity and integrity of digital content. It uses encryption and hashing algorithms in order to create a unique digital fingerprint of the content, called a signature, which can be used to verify its authenticity.
+
+In Truthster digital signatures can be used to authenticate the identity of the interviewer and interviewee and to ensure that the content of the interview has not been tampered with.
+
+\item Hash-based Evidence Preservation (HBEP): is a method of preserving the authenticity of digital media by creating a unique hash of the content, which can be used to verify its integrity.\\
+The hash is stored on a blockchain or other tamper-proof platform, which allows for the content to be verified even if the original file is lost or destroyed.
+
+\item Timestamping: is a method of recording the date and time at which a piece of content was created or modified.\\
+This information can be used to verify the authenticity of the content and to protect the rights of the creators.
+
+\item Blockchain: is a decentralized, digital ledger technology that uses cryptography to record and validate transactions across a network of computers.\\
+It allows multiple parties to access and share the same information while maintaining security and privacy. Each block in the chain contains a record of multiple transactions, and once data is recorded in a block, it cannot be altered, ensuring the integrity of the data.
+
+The most popular and well-known implementation of blockchain technology is Bitcoin, but it has many other use cases like smart contract, supply chain management, digital identity and more.
+
+\end{itemize}
+
+All of these tools can be useful in ensuring the authenticity and validity of digital content, but they all have their own limitations.\\
+Digital Signatures, HBEP and timestamping are methods that can ensure the authenticity of the content, but they don't provide a way to authenticate the identity of the interviewer and interviewee or to manage the consent of the interviewee. Blockchain-based platforms can solve this problem by allowing for the recording of the identities and consent of the parties involved, but they may have scalability issues.\\
+
+In summary, Truthster aims to combine all of these tools in an easy-to-use, video-interview-focused, open and interoperable certification option for digital media.
+
+
+
+
+
+\chapter{Problem analysis}
+
+In today's digital age, the amount of content that is shared and distributed on the internet is staggering. From text, images, and videos, to audio recordings and more, the internet is a vast repository of information. However, with the ease of creating and sharing digital content, comes the problem of ensuring its authenticity and validity. With the amount of misinformation and fake news that is circulating online, it has become increasingly important to have a way to verify the authenticity of digital content.\\
+
+With this in mind we have defined some use cases that Truthster can help us with:
+
+\begin{itemize}
+
+    \item Verifying the identity of an interviewer and the interviewee before and after the interview.
+    \item Certifying the authenticity and integrity of the digital media (for example video interviews) through the use of blockchain technology (Alastria in our case).
+    \item Embedding authorship and legal details (e.g., portrayal and data protection consent) into the digital media.
+    \item Automating the generation of legal terms and conditions under which the content can circulate and can be used.
+    \item Providing a tool for easy-to-use certification of media content, with emphasis on video interviews in our case.
+    \item Achieving accountability in media creation by incorporating consent expressed by the interviewee and automating the generation of legal terms and conditions under which the content can circulate.
+    \item Providing an easy-to-use tool for identity verification which can be useful for a wide range of other purposes (e.g., public authority identity check, restricted areas entering, consensus revoking)
+    \item Providing a solution that is interoperable with other software and open (e.g., copyleft licenses) thus reducing lock-in effect for professionals who adopt it.
+    
+\end{itemize}
+
+From these use cases we have derived some functional and non-functional requirements necessary to design the behavior and architecture of the Truthster system.\\
+
+\section{Non-functional requirements}
+
+The Truthster system aims to provide a secure and efficient solution for the verification and certification of digital media. In order to achieve this goal, it must meet a number of non-functional requirements that ensure its reliability, scalability, and user-friendliness. The following is a list of non-functional requirements for the Truthster system:\\
+
+\begin{itemize}
+
+    \item Performance: The system must be able to handle a high volume of concurrent users and large amounts of data without experiencing significant lag or downtime.
+    \item Usability: The system must be easy to use and understand for both interviewers and interviewees, with clear instructions and intuitive navigation.
+    \item Security: The system must ensure the confidentiality and integrity of all data stored and transmitted, including personal data and media files.
+    \item Scalability: The system must be able to handle an increasing amount of data and user without experiencing significant performance degradation.
+    \item Compliance: The system must comply with relevant laws and regulations, including GDPR and copyright laws.
+    \item Interoperability: The system must be able to integrate with other software and systems.
+
+\end{itemize}
+
+\section{Functional requirements}
+
+The Truthster system has to be designed to provide a secure and efficient way for media creators to certify the validity of their digital media, specifically video interviews. In order to achieve this the system must meet a number of functional requirements to ensure that it is user-friendly, secure, and reliable. 
+Below there is a list of functional requirements for our system:
+
+\begin{itemize}
+
+    \item The system must be able to generate a unique and tamper-proof hash of the interview video and metadata content:
+    this hash value serves as a digital fingerprint of the interview, which can be used to verify the integrity of the original data. This is important for ensuring the authenticity and reliability of the interview, as it provides a secure way to prove that the content has not been altered in any way. By utilizing a blockchain like Alastria, the system can store this hash value in a decentralized and immutable manner, further increasing the security and trustworthiness of the interview content.
+    \item The system must be able to store the hash, metadata and any other relevant information in a blockchain for secure, immutable record-keeping:
+    this requirement ensures that all the information about the interview are stored in a blockchain, which is a decentralized and distributed ledger technology. This means that the information is not stored in a single location, but rather is spread across multiple nodes (called respectively Red-B and Red-T) in the network. This makes it extremely difficult for anyone to tamper with or alter the information because it would require changing the information on every node in the network. The blockchain in this way provides a secure and immutable record-keeping, meaning that once the information is recorded on the blockchain, it cannot be modified or deleted. Along with a database instance they provide a reliable and verifiable record of the interview that can be accessed at any time.
+    \item The system must be able to send a link or QR code to the interviewee for them to review and agree to the GDPR compliant contract:
+    this functional requirement ensures that the interviewee is provided with an easy and convenient way to review and agree to the GDPR compliant contract. This can be accomplished by sending a link or QR code to the interviewee via SMS or email. Once the link is opened or the QR code is scanned, the interviewee will be presented with the contract for review and agreement. This requirement is important to ensure that the interviewee is informed about their rights and responsibilities related to the interview and that their consent for the use of the interview material is obtained in a compliant and transparent manner. This is in line with the GDPR regulations, which require clear and informed consent for the processing of personal data.
+    \item The system must be able to store the GPS position of the interviewee for added proof of location:
+    the system must be able to collect and store the GPS position of the interviewee at the time of the interview for added proof of location. This information, along with the interview video and some metadata, will be stored in a MongoDB instance, providing an easily accessible record of the interview and its location. This feature adds an additional layer of security and validity to the interview, as it provides a physical reference point for the content, and allows for easy verification of the interview location. The use of MongoDB allows for a flexible schema approach, which is popular with development teams using agile methodologies.
+    \item The system must be able to notify the interviewer when the process is complete:
+    this requirement means that the system must be able to send a notification to the interviewer, through the mobile app or email, indicating that the process of uploading and storing the interview has been completed successfully. This will allow the interviewer to have real-time information about the status of the process and to access the stored interview data and metadata in the Alastria blockchain and MongoDB. This feature will also help to ensure that all steps of the process have been completed correctly and that the interviewer can proceed with the next step in the workflow.
+    \item The system must have a history of all interviews stored in a separate database that can be accessed by the interviewer via REST API:
+    this requirement means that the system must maintain a record of all interviews conducted using the Truthster app, including the relevant metadata, hash values, and other information. This history must be stored in a separate database, such as MongoDB, that can be accessed by the interviewer through a set of REST APIs. This allows the interviewer to easily view and manage their previous interviews, and provides them with a reliable and secure way to access the information stored in the database. The API's allows the interviewer to retrieve the data from the database in a structured manner, which can be used for reporting, analysis and other purposes. Additionally, the REST API's allow the interviewer to perform CRUD operations on the data, such as adding, updating and deleting. This ensures that the interviewer has full control over the data and can manage it effectively.
+    \item The system must be able to automate the generation of legal terms and conditions for the use of the interview content:
+    this requirement ensures that the legal terms and conditions for the use of the interview content are automatically generated based on predefined templates or rules. This includes terms related to data privacy and protection, as well as any other relevant legal agreements. This automation will save time and resources for the interviewer, while also ensuring that all legal requirements are met. Additionally, this will also provide a standardized process for the interviewee to review and agree to the legal terms before the interview content is shared. This will provide an added layer of protection for both parties involved.
+
+\end{itemize}
+
+\chapter{Solution design}
+
+Truthster is composed of a client-server architecture, with a front-end web/mobile application for interacting with the interviewer and interviewee, and a back-end that interacts with the front-end and services such as the Alastria Blockchain and storage service (mongoDB).\\
+The process of using Truthster includes recording the audio/video material, logging into the mobile app, entering interview information and interviewee contact details, and choosing interview media. The app then authenticates the interviewer, calculates a hash of the media and uploads it to the storage server, sends a link to the interviewee, and stores the signed hash of the file in the blockchain via a smart contract on Alastria (AlastriaID library). After the previous steps are completed the interviewer is notified of the completion of the process, and can archive past interviews on their mobile app.\\
+Basing our solution on the above description we can define the following components of the Truthster system:
+
+\begin{enumerate}
+    \item The front-end, which is a web/mobile application that interacts with the interviewer and interviewee. It uses REST APIs to exchange data with the back-end cloud.
+    
+    \item The back-end, which is a server that interacts with the front-end and with external services such as the Alastria blockchain and storage service.
+
+    \item The Alastria Blockchain, which is a decentralized platform that provides proof of validity for the media files.
+
+    \item The storage service, which stores the interview media files, metadata, and GPS positions of the interviewer and interviewee.
+    
+\end{enumerate}
+
+\chapter{Implementation}
+
+\chapter{Testing and validation}
+
+\chapter{Conclusions}
+
+%% Fine dei capitoli normali, inizio dei capitoli-appendice (opzionali)
+\appendix
+
+%\part{Appendici}
+
+\chapter{Ganache}
+Ganache is a personal blockchain for Ethereum development you can use to deploy contracts, develop your applications, and run tests. It is a tool that allows developers to create a virtual Ethereum blockchain on their local machine, which is useful for testing and developing smart contracts. Ganache creates a virtual blockchain that runs locally on your machine, which is separate from the live Ethereum network. This allows developers to test their contracts in a simulated environment, without the need for real Ether or the risk of interacting with the live network. Ganache also provides a user-friendly interface for interacting with the blockchain and managing accounts, making it easy for developers to test and debug their contracts.\\
+
+Some possible disadvantages of using Ganache include:
+
+\begin{enumerate}
+
+    \item Limited scalability: Since Ganache is a personal blockchain running on a local machine, its scalability is limited by the resources of the machine it is running on. It may not be suitable for testing large-scale or high-traffic applications.
+    \item Limited interoperability: Ganache is not connected to the live Ethereum network and therefore cannot interact with other networks or other instances of Ganache running on different machines. This can make it difficult to test and develop contracts that need to interact with other systems.
+    \item Limited security: Ganache is intended for development and testing, and should not be used in production environments. It is not as secure as a live, public blockchain network and therefore may not be suitable for testing contracts that handle sensitive information or assets.
+    \item Limited network effects: Ganache does not have the same network effects as the live Ethereum network, so it may not provide an accurate representation of how a contract will behave in a live environment.
+    \item Limited real-world conditions: Ganache is a local blockchain, so it may not be able to simulate real-world conditions such as network delays, high load, and other environmental factors that can affect a contract's performance.
+
+\end{enumerate}
+
+It is worth noting that the above points are all related to the fact that Ganache is a personal blockchain that runs on a local machine, and it is not connected to the live Ethereum network. These limitations make it less suitable for testing and developing contracts that need to interact with other systems, handle sensitive information or assets, or be scalable and secure in a production environment.
+
+    %% Parte conclusiva del documento; tipicamente per riassunto, bibliografia e/o indice analitico.
+\backmatter
+
+%% Riassunto (opzionale)
+%\summary
+%Maecenas tempor elit sed arcu commodo, dapibus sagittis leo egestas. Praesent at ultrices urna. Integer et nibh in augue mollis facilisis sit amet eget magna. Fusce at porttitor sapien. Phasellus imperdiet, felis et molestie vulputate, mauris sapien tincidunt justo, in lacinia velit nisi nec ipsum. Duis elementum pharetra lorem, ut pellentesque nulla congue et. Sed eu venenatis tellus, pharetra cursus felis. Sed et luctus nunc. Aenean commodo, neque a aliquam bibendum, mauris augue fringilla justo, et scelerisque odio mi sit amet diam. Nulla at placerat nibh, nec rutrum urna. Donec ut egestas magna. Aliquam erat volutpat. Phasellus vestibulum justo sed purus mattis, vitae lacinia magna viverra. Nulla rutrum diam dui, vel semper mi mattis ac. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec id vestibulum lectus, eget tristique est.
+
+%% Bibliografia (praticamente obbligatoria)
+\bibliographystyle{plain_\languagename}%% Carica l'omonimo file .bst, dove \languagename � la lingua attiva.
+%% Nel caso in cui si usi un file .bib (consigliato)
+\bibliography{thud}
+%% Nel caso di bibliografia manuale, usare l'environment thebibliography.
+
+%% Per l'indice analitico, usare il pacchetto makeidx (o analogo).
+
+\end{document}
+
+--- Istruzioni per l'aggiunta di nuove lingue ---
+Per ogni nuova lingua utilizzata aggiungere nel preambolo il seguente spezzone:
+    \addto\captionsitalian{%
+        \def\abstractname{Sommario}%
+        \def\acknowledgementsname{Ringraziamenti}%
+        \def\authorcontactsname{Contatti dell'autore}%
+        \def\candidatename{Candidato}%
+        \def\chairname{Direttore}%
+        \def\conclusionsname{Conclusioni}%
+        \def\cosupervisorname{Co-relatore}%
+        \def\cosupervisorsname{Co-relatori}%
+        \def\cyclename{Ciclo}%
+        \def\datename{Anno accademico}%
+        \def\indexname{Indice analitico}%
+        \def\institutecontactsname{Contatti dell'Istituto}%
+        \def\introductionname{Introduzione}%
+        \def\prefacename{Prefazione}%
+        \def\reviewername{Controrelatore}%
+        \def\reviewersname{Controrelatori}%
+        %% Anno accademico
+        \def\shortdatename{A.A.}%
+        \def\summaryname{Riassunto}%
+        \def\supervisorname{Relatore}%
+        \def\supervisorsname{Relatori}%
+        \def\thesisname{Tesi di \expandafter\ifcase\csname thud@target\endcsname Laurea\or Laurea Magistrale\or Dottorato\fi}%
+        \def\tutorname{Tutor aziendale%
+        \def\tutorsname{Tutor aziendali}%
+    }
+sostituendo a "italian" (nella 1a riga) il nome della lingua e traducendo le varie voci.
