@@ -1,6 +1,6 @@
 %% Le lingue utilizzate, che verranno passate come opzioni al pacchetto babel. Come sempre, l'ultima indicata sar� quella primaria.
 %% Se si utilizzano una o pi� lingue diverse da "italian" o "english", leggere le istruzioni in fondo.
-\def\thudbabelopt{english,italian}
+\def\thudbabelopt{italian,english}
 %% Valori ammessi per target: bach (tesi triennale), mst (tesi magistrale), phd (tesi di dottorato).
 %% Valori ammessi per aauheader: '' (vuoto -> nessun header Alpen Adria Univeristat), aics (Department of Artificial Intelligence and Cybersecurity), informatics (Department of Informatics Systems). Il nome del dipartimento � allineato con la versione inglese del logo UniUD.
 \documentclass[target=mst,aauheader=]{thud}
@@ -106,24 +106,31 @@ Overall, the Truthster project is a unique and innovative solution that combines
 
 \chapter{State of the art}
 
-There are several tools available today that can help with ensuring the authenticity and validity of digital content, particularly video interviews.\\
+The field of journalism and access to content is rapidly evolving, with new technologies and platforms emerging all the time. There is an increasing need for accurate, reliable, and verifiable information, as well as for tools that can help journalists to gather, produce, and distribute that information. At the same time, there is growing concern about the spread of misinformation and fake news, which makes it even more important to have tools that can help to verify the accuracy and authenticity of information. In response to these challenges, many new technologies and platforms have emerged that aim to improve the state of the art in journalism and content access, including tools for data journalism, fact-checking, and digital verification.\\
+Some example of these categories include:
+
+\begin{itemize} 
+
+    \item \textbf{Factmata}: is a platform that uses AI and machine learning to provide digital verification and fact-checking services for news and other forms of content. It aims to combat misinformation and promote accuracy and credibility in journalism.
+    \item \textbf{NewsWhip}: Spike: is a tool designed for journalists, media organizations, and content creators to track and analyze the spread of news and content on social media. It provides real-time insights into what stories are resonating, who is driving engagement, and how audiences are interacting with different types of content.
+    \item \textbf{Veracity.ai}: is a technology company that provides machine learning-powered solutions for verification and fact-checking in journalism and other industries. It offers a suite of tools that automate the process of verifying the authenticity of digital content and evaluating the credibility of sources. These tools use advanced algorithms to analyze large datasets and identify patterns and anomalies that can indicate the presence of false or misleading information. Veracity.ai aims to help organizations improve the accuracy and trustworthiness of their content, and enhance the efficiency and scalability of their fact-checking processes.
+    \item \textbf{Factcheck.org}: is a non-partisan, non-profit organization dedicated to promoting accuracy in public discourse. It fact-checks statements from political figures, advocacy groups, and others and provides evidence-based analysis to help people better understand the issues and inform their decisions.
+    \item \textbf{Media Bias/Fact Check}: is a website that aims to assess the bias and accuracy of news sources. It provides information about the political bias of various news sources as well as evaluating the accuracy of specific claims made by these sources.
+    \item \textbf{Google News Lab Verification Toolkit}: is a set of resources and guidelines for journalists to help verify information and fight against misinformation. It includes a range of tools such as reverse image search, video verification, and fact-checking databases.
+
+\end{itemize}
+
+As we can notice many tools for data journalism, fact-checking, and digital verification are incorporating machine learning and AI models in their operations. The use of these technologies allows for more efficient and accurate processing of large amounts of data, as well as the ability to identify patterns, recognize misinformation, and provide verifiable insights. Machine learning and AI can also assist in automating certain fact-checking tasks and in detecting fake news and other forms of misinformation. With these advancements, journalists and fact-checkers are equipped with more powerful tools to ensure the accuracy and credibility of their work, and to provide the public with reliable and trustworthy information.\\
+
+On the other side we have the users, the ones that access the contents provided by the journalism sphere. To ensure them authenticity and validity of digital contents there are several tools available today that can help with this need, particularly for video interviews.\\
 Some of these include:
+
 \begin{itemize}
 
-\item Digital Signature: is a method for ensuring the authenticity and integrity of digital content. It uses encryption and hashing algorithms in order to create a unique digital fingerprint of the content, called a signature, which can be used to verify its authenticity.
-
-In Truthster digital signatures can be used to authenticate the identity of the interviewer and interviewee and to ensure that the content of the interview has not been tampered with.
-
-\item Hash-based Evidence Preservation (HBEP): is a method of preserving the authenticity of digital media by creating a unique hash of the content, which can be used to verify its integrity.\\
-The hash is stored on a blockchain or other tamper-proof platform, which allows for the content to be verified even if the original file is lost or destroyed.
-
-\item Timestamping: is a method of recording the date and time at which a piece of content was created or modified.\\
-This information can be used to verify the authenticity of the content and to protect the rights of the creators.
-
-\item Blockchain: is a decentralized, digital ledger technology that uses cryptography to record and validate transactions across a network of computers.\\
-It allows multiple parties to access and share the same information while maintaining security and privacy. Each block in the chain contains a record of multiple transactions, and once data is recorded in a block, it cannot be altered, ensuring the integrity of the data.
-
-The most popular and well-known implementation of blockchain technology is Bitcoin, but it has many other use cases like smart contract, supply chain management, digital identity and more.
+    \item \textbf{Digital Signature}: is a method for ensuring the authenticity and integrity of digital content. It uses encryption and hashing algorithms in order to create a unique digital fingerprint of the content, called a signature, which can be used to verify its authenticity. In Truthster digital signatures can be used to authenticate the identity of the interviewer and interviewee and to ensure that the content of the interview has not been tampered with.
+    \item \textbf{Hash-based Evidence Preservation (HBEP}: is a method of preserving digital evidence using a cryptographic hash of the original content. HBEP aims to provide an immutable and tamper-proof record of digital content. The advantage of HBEP is that it provides a high level of security and immutability of digital content, as the hash of the content cannot be altered without changing the original content. However, one of the disadvantages of HBEP is that it requires the availability of the original content to verify the authenticity of the hash, making it difficult to use in some cases. Additionally, HBEP also requires a secure method of preserving the original content, as well as a secure method of distributing the hash of the content to ensure its authenticity.
+    \item \textbf{Timestamping}: it refers to the process of recording the date and time of a digital transaction or event. Some of the key benefits of timestamping include providing evidence of existence and originality, establishing a clear order of events, and enabling trust and accountability in digital systems. However, there are also some drawbacks to consider, such as the potential for timestamp manipulation, the need for a trusted third-party, and the technical complexity of the process. Timestamping is a useful tool for a variety of industries and applications, but it is important to carefully weigh the pros and cons to determine if it is the right solution for a particular use case.
+    \item \textbf{Blockchain}: is a decentralized, distributed ledger system that uses cryptography to secure its transactions and data. The most well-known application of blockchain is the cryptocurrency, Bitcoin (BTC is the token name). However, blockchain has potential applications in various industries such as finance, supply chain management, voting systems and also journalism. One of the major advantages of this technology is its high level of security, indeed it is nearly impossible to alter or manipulate the data once it is recorded on the ledger. Additionally, blockchain eliminates the need for intermediaries and increases transparency, as in general all participants in the network have access to the same information.\\However, there are also some cons associated with blockchain. For example, it is still a relatively new technology, and its scalability is limited. Additionally, the energy consumption associated with blockchain mining can be significant, and the cost of mining equipment and electricity can be high. Additionally, due to the decentralized nature of blockchain, there is no central authority to resolve disputes or correct errors, which can lead to confusion and issues.
 
 \end{itemize}
 
