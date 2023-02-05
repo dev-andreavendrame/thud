@@ -140,7 +140,41 @@ Digital Signatures, HBEP and timestamping are methods that can ensure the authen
 In summary, Truthster aims to combine all of these tools in an easy-to-use, video-interview-focused, open and interoperable certification option for digital media.
 
 
+\chapter{Blockchain}
 
+The blockchain is a decentralized, digital ledger that records transactions across a network of computers in a secure, transparent, and tamper-proof way. Transactions are grouped into blocks, which are then linked and secured using cryptography. The result is a secure, tamper-proof, and transparent ledger that can be used to store and manage digital assets, such as cryptocurrencies, digital contracts (usually called smart contracts), and other types of data. Because the ledger is decentralized, it eliminates the need for intermediaries, such as banks or other financial institutions, to verify transactions, thus increasing efficiency and reducing costs. Additionally, the transparency of the ledger ensures that all parties have access to the same information, promoting trust and security. The blockchain is an innovative technology that has the potential to transform various industries, including finance, supply chain management, and identity management.
+
+\indent In this chapter, we will delve into the intricacies of the blockchain technology by examining its various components and how it works. We will also provide implementation examples of this technology to help you understand its practical applications. In addition, we will discuss some of the advantages and disadvantages of the technology with past real use cases to give you a well-rounded understanding of the subject. Through this chapter, our aim is to provide a comprehensive overview of the blockchain and its components so that you can gain a deeper understanding of the technology and its potential impact on various industries.
+
+\section{Components}
+
+At a high level we can see the blockchain as an aggretation of the following components that exist and work together to provide a service to the end user:
+
+\begin{enumerate}
+
+    \item Blocks: A block is a collection of data in a blockchain that contains a certain number of verified transactions. Each block has a unique identifier called a "hash," which links it to the previous block in the chain, forming a secure and unalterable chain of blocks. A block typically contains the following elements:
+        
+        \begin{itemize}
+
+            \item Block header: A summary of the block's contents, including the hash of the previous block and the hash of the current block.
+            \item Timestamp: The time at which the block was created.
+            \item Transactions: A list of verified transactions that are added to the block.
+            \item Nonce: A random number used (in the proof-of-work consensus mechanism) to validate new blocks and secure the network.
+    
+        \end{itemize}
+
+    The combination of these elements ensures the integrity and security of the blockchain, as any changes to a block would result in a different hash, which would be easily detected and rejected by the network.
+
+    \item Nodes: A computer that holds a copy of the blockchain and participates in the verification and validation of new transactions.
+    \item Network: A decentralized system of nodes that maintain the blockchain.
+    \item Transaction: An exchange of value between users in the form of digital assets, such as cryptocurrencies.
+    \item Cryptographic Hash Function: A mathematical algorithm that takes input data and produces an output of a fixed length, serving as a digital fingerprint of the data.
+    \item Proof of Work/Stake: A consensus mechanism used to validate and add new blocks to the blockchain, ensuring its integrity and preventing malicious attacks.
+    \item Smart Contracts: Self-executing code that automatically executes predetermined terms of an agreement when certain conditions are met.
+    \item Public/Private Key Cryptography: A method of secure communication where each user has a public key for encryption and a private key for decryption, providing a secure way to transfer assets and information on the blockchain.
+
+    
+\end{enumerate}
 
 
 \chapter{Problem analysis}
