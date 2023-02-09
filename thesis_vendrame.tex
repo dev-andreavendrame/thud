@@ -24,6 +24,7 @@
 %% hyperref: Regola le impostazioni della creazione del PDF... pi� tante altre cose. Ricordarsi di usare l'opzione pdfa.
 \usepackage[pdfa]{hyperref}
 %% tocbibind: Inserisce nell'indice anche la lista delle figure, la bibliografia, ecc.
+\usepackage{graphicx}
 
 %% --- Stili di pagina disponibili (comando \pagestyle) ---
 %% sfbig (predefinito): Apertura delle parti e dei capitoli col numero grande; titoli delle parti e dei capitoli e intestazioni di pagina in sans serif.
@@ -106,17 +107,17 @@ Overall, the Truthster project is a unique and innovative solution that combines
 
 \chapter{State of the art}
 
-The field of journalism and access to content is rapidly evolving, with new technologies and platforms emerging all the time. There is an increasing need for accurate, reliable, and verifiable information, as well as for tools that can help journalists to gather, produce, and distribute that information. At the same time, there is growing concern about the spread of misinformation and fake news, which makes it even more important to have tools that can help to verify the accuracy and authenticity of information. In response to these challenges, many new technologies and platforms have emerged that aim to improve the state of the art in journalism and content access, including tools for data journalism, fact-checking, and digital verification.\\
+The field of journalism and access to content is rapidly evolving, with new technologies and platforms emerging all the time. There is an increasing need for accurate, reliable, and verifiable information, as well as for tools that can help journalists to gather, produce, and distribute that information. At the same time, there is growing concern about the spread of misinformation and fake news, which makes it even more important to have tools that can help to verify the accuracy and authenticity of information. In response to these challenges, many new technologies and platforms have emerged that aim to improve the state of the art in journalism and content access, including tools for data journalism, fact-checking, and digital verification.\par
 Some example of these categories include:
 
 \begin{itemize} 
 
-    \item \textbf{Factmata}: is a platform that uses AI and machine learning to provide digital verification and fact-checking services for news and other forms of content. It aims to combat misinformation and promote accuracy and credibility in journalism.
-    \item \textbf{NewsWhip}: Spike: is a tool designed for journalists, media organizations, and content creators to track and analyze the spread of news and content on social media. It provides real-time insights into what stories are resonating, who is driving engagement, and how audiences are interacting with different types of content.
-    \item \textbf{Veracity.ai}: is a technology company that provides machine learning-powered solutions for verification and fact-checking in journalism and other industries. It offers a suite of tools that automate the process of verifying the authenticity of digital content and evaluating the credibility of sources. These tools use advanced algorithms to analyze large datasets and identify patterns and anomalies that can indicate the presence of false or misleading information. Veracity.ai aims to help organizations improve the accuracy and trustworthiness of their content, and enhance the efficiency and scalability of their fact-checking processes.
-    \item \textbf{Factcheck.org}: is a non-partisan, non-profit organization dedicated to promoting accuracy in public discourse. It fact-checks statements from political figures, advocacy groups, and others and provides evidence-based analysis to help people better understand the issues and inform their decisions.
-    \item \textbf{Media Bias/Fact Check}: is a website that aims to assess the bias and accuracy of news sources. It provides information about the political bias of various news sources as well as evaluating the accuracy of specific claims made by these sources.
-    \item \textbf{Google News Lab Verification Toolkit}: is a set of resources and guidelines for journalists to help verify information and fight against misinformation. It includes a range of tools such as reverse image search, video verification, and fact-checking databases.
+    \item \textbf{Factmata}\cite{factmata}: is a platform that uses AI and machine learning to provide digital verification and fact-checking services for news and other forms of content. It aims to combat misinformation and promote accuracy and credibility in journalism.
+    \item \textbf{NewsWhip}\cite{NewsWhip}: Spike: is a tool designed for journalists, media organizations, and content creators to track and analyze the spread of news and content on social media. It provides real-time insights into what stories are resonating, who is driving engagement, and how audiences are interacting with different types of content.
+    \item \textbf{Veracity.ai}\cite{veracity.ai/}: is a technology company that provides machine learning-powered solutions for verification and fact-checking in journalism and other industries. It offers a suite of tools that automate the process of verifying the authenticity of digital content and evaluating the credibility of sources. These tools use advanced algorithms to analyze large datasets and identify patterns and anomalies that can indicate the presence of false or misleading information. Veracity.ai aims to help organizations improve the accuracy and trustworthiness of their content, and enhance the efficiency and scalability of their fact-checking processes.
+    \item \textbf{Factcheck.org}\cite{Factcheck}: is a non-partisan, non-profit organization dedicated to promoting accuracy in public discourse. It fact-checks statements from political figures, advocacy groups, and others and provides evidence-based analysis to help people better understand the issues and inform their decisions.
+    \item \textbf{Media Bias/Fact Check}\cite{mediabiasfactcheck}: is a website that aims to assess the bias and accuracy of news sources. It provides information about the political bias of various news sources as well as evaluating the accuracy of specific claims made by these sources.
+    \item \textbf{Google News Lab Verification Toolkit}\cite{googleVerificationToolkit}: is a set of resources and guidelines for journalists to help verify information and fight against misinformation. It includes a range of tools such as reverse image search, video verification, and fact-checking databases.
 
 \end{itemize}
 
@@ -264,7 +265,7 @@ At a high level we can see the blockchain as an aggretation of the following com
 
     Proof of Work (PoW) and Proof of Stake (PoS) are two of the most commonly used consensus algorithms in the world of blockchain technology. While both have their own unique features, they have been subject to various security attacks in the past.\par
 
-    In the case of PoW, one of the most notable attacks \cite{pow_not_viable} was the 51\% attack, where an attacker who controls 51\% or more of the network's hash rate could manipulate the system and carry out malicious activities such as double spending or censorship. This attack was prevalent in early cryptocurrencies like Bitcoin and Ethereum, where the network was smaller and hash rate distribution was highly centralized.
+    In the case of PoW, one of the most notable attacks was the 51\% attack, where an attacker who controls 51\% or more of the network's hash rate could manipulate the system and carry out malicious activities such as double spending or censorship. This attack was prevalent in early cryptocurrencies like Bitcoin and Ethereum, where the network was smaller and hash rate distribution was highly centralized. Some successful attacks are related also to other less known chain like Vertcoin\cite{V51Attack}, Bitcoin Gold\cite{BTCG51Attack}, Litecoin Cash\cite{LCC51Attack} and Expanse\cite{EXP51Attack}.\par
     Another type of attack that PoW systems are vulnerable to is the selfish mining attack, where a miner can manipulate the network to increase their chances of finding a block and earning rewards. In this attack, the miner conceals their blocks from the rest of the network, thus giving themselves an advantage over other miners.
     PoS, on the other hand, has been subject to attacks such as the "Nothing at Stake" problem, where validators could freely vote for multiple chains, leading to the creation of multiple versions of the blockchain. This could lead to a lack of consensus on the network, leading to potential forks and network instability.
     Another attack that PoS systems have faced is the "Long Range Attack," where an attacker can manipulate the system by creating a fork of the blockchain and manipulating the network to believe it is the correct chain. This can result in the attacker being able to double-spend their coins or carry out other malicious activities.
@@ -455,12 +456,43 @@ It is worth noting that the above points are all related to the fact that Ganach
 \begin{thebibliography}{99}
 
     \bibitem{Why Proof-of-Work Is Not Viable in the Long-Term}
-    Michael Zochowski, \href{https://medium.com/logos-network/why-proof-of-work-is-not-viable-in-the-long-term-dd96d2775e99}{EWhy Proof-of-Work Is Not Viable in the Long-Term}
+    Michael Zochowski, \href{https://medium.com/logos-network/why-proof-of-work-is-not-viable-in-the-long-term-dd96d2775e99}{Why Proof-of-Work Is Not Viable in the Long-Term}
 
-    \bibitem{Privacy Coin Verge Succumbs to 51\% Attack [Again]}
+    \bibitem{VergeAttack}
     CCN, \href{https://www.ccn.com/privacy-coin-verge-succumbs-to-51-attack-again/}{Privacy Coin Verge Succumbs to 51\% Attack [Again]}
 
+    \bibitem{factmata}
+    Factmata, \href{https://factmata.com/}{Factmata}
 
+    \bibitem{NewsWhip}
+    NewsWhip, \href{https://www.newswhip.com/}{NewsWhip}
+
+    \bibitem{veracity.ai}
+    Veracity.AI, \href{https://veracityai.com/en/}{veracity.ai}
+
+    \bibitem{Factcheck}
+    Factcheck.org, \href{https://www.factcheck.org/}{FactCheck.org}
+
+    \bibitem{mediabiasfactcheck}
+    Media Bias / Fact Check, \href{https://mediabiasfactcheck.com/}{Media Bias / Fact Check}
+
+    \bibitem{googleVerificationToolkit}
+    Google News Lab Verification Toolkit, \href{https://newsinitiative.withgoogle.com/resources/journalism/}{Journalism Resources}
+
+    \bibitem{EXP51Attack}
+    Expanse was 51\% attacked, \href{https://gist.github.com/metalicjames/01222049f95f85df8c0eb253de54848b}{Expanse (EXP) was 51\% attacked}
+
+    \bibitem{BTCG51Attack}
+    Bitcoin Gold 51\% attack, \href{https://gist.github.com/metalicjames/71321570a105940529e709651d0a9765}{Bitcoin Gold (BTG) was 51\% attacked}
+
+    \bibitem{VTC51Attack}
+    Vertcoin was 51\% attacked, \href{https://gist.github.com/metalicjames/f2acdb9ef448ec5298173b36c7c54133}{Vertcoin (VTC) was 51\% attacked}
+
+    \bibitem{LCC51Attack}
+    Litecoin Cash was 51\% attacked, \href{https://gist.github.com/metalicjames/82a49f8afa87334f929881e55ad4ffd7}{Litecoin Cash (LCC) was 51\% attacked}
+
+    \bibitem{}
+    , \href{}{}
 
 \end{thebibliography}
 
