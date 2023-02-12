@@ -418,23 +418,53 @@ Basing our solution on the above description we can define the following compone
     
 \end{enumerate}
 
-\chapter{AlastriaID}
+\chapter{Alastria}
+
+Alastria is a non-profit association that operates a nation-wide, enterprise-grade, permissioned blockchain network in Spain. Its goal is to contribute to the creation of a diverse innovation ecosystem. The network is technology agnostic and provides a user-centric digital identity model called the Alastria ID, which focuses on ensuring the legal validity of transactions on the network. The Alastria Identity Committee has recently completed the first reference implementation of the data exchange flows of the Alastria identity model, which is available for consultation and use on GitHub. The project includes the reference or pilot implementations of all the elements and actors involved in the personal information life cycle, including the credential issuer, user, service provider, and the wallet used by the user to receive the credentials.
+
+\section{AlastriaID}
 
 AlastriaID is a digital identity project by the Identity Commission of Alastria. It aims to provide a legal and technical framework for sovereign digital identity projects in the Eurozone, following the guidelines of the eIDAS Regulation and the e-Identity Workshop Report of the EU Blockchain Observatory and Forum. The AlastriaID model is designed to work with the Alastria Standards Commission to standardize processes and methodologies and is designed to be complementary with the General Data Protection Regulation (GDPR).
 
-AlastriaID can help organizations comply with the General Data Protection Regulation (GDPR) by providing a secure and privacy-preserving infrastructure for managing personal data. With AlastriaID, organizations can:
+From a more technical persective AlastriaID is a decentralized identity framework that allows users to securely store and manage their personal information in a decentralized environment. The framework is based on a set of smart contracts (available here\cite{alastriaSmartContracts} on Github), that have been written in Solidity allowing to deploy them on any EVM compatible blockchain, and JWT (JSON Web Tokens), which are compact and self-contained data structures used for transmitting information between parties. 
+
+\subsection{The roles in AlastriaID}
+
+AlastriaID has three main entities where each one play a specific role in the framework: service providers, issuers, and subjects that interect in different ways in order to provide its services:
 
 \begin{itemize}
 
-    \item Store personal data securely: AlastriaID uses blockchain technology to secure personal data, making it tamper-proof and reducing the risk of data breaches.
-    \item Control access to personal data: AlastriaID allows organizations to control who has access to personal data, ensuring that only authorized parties can access it.
-    \item Track data usage: AlastriaID provides a clear audit trail of all data usage, allowing organizations to track who has accessed personal data and when. This helps organizations meet the GDPR's requirements for data transparency and accountability.
-    \item Provide data portability: AlastriaID enables individuals to easily and securely transfer their personal data from one organization to another, helping organizations meet the GDPR's requirements for data portability.
-    \item Overall, AlastriaID can help organizations comply with the GDPR by providing a secure, privacy-preserving, and transparent infrastructure for managing personal data. By doing so, organizations can reduce the risk of data breaches, improve data security, and ensure that they are meeting their obligations under the GDPR.
+    \item \textbf{Subjects}: in the AlastriaID model they are individuals or organizations that hold a digital identity on the platform. Subjects are the central entity in the AlastriaID ecosystem and have complete control over their personal data (Self-Sovereing Identity). The digital identity of a subject is stored on the blockchain and is tied to a unique identifier, allowing the subject to prove their identity in a secure and verifiable manner.\par
+        Subjects can use their digital identity for a variety of purposes, including accessing online services, participating in online transactions, and securely sharing personal information with service providers. For example, a subject can use their digital identity to open a bank account, apply for a loan, or access government services online. The subject's digital identity can also be used to prove their identity in other possible scenarios, such as when voting in an election or accessing secure facilities (despite this hasn't been done yet, it can be a nice field to apply blockchain technology in the next future).
+        Subjects have full control over their personal data and can choose to share it with service providers as needed. They can also revoke access to their personal data at any time, ensuring that their data remains secure and under their control. This is a significant advantage over traditional identity systems, where personal data is often stored in centralized databases that are vulnerable to data breaches and other security risks.
+
+    \item \textbf{Service Providers}: in the AlastriaID model they are organizations that provide various services to subjects using the platform. They are able to request and receive specific information from subjects to provide these services, ensuring that personal data is protected and under the control of the subject at all times. Service providers can provide a wide range of services to subjects, including financial services, healthcare services, and government services. For example, a healthcare service provider may request and receive medical information from a subject to provide personalized care, while a financial service provider may request and receive financial information from a subject to provide a loan.
+        Service providers can use the AlastriaID platform to access a secure and verifiable digital identity for each subject, ensuring that personal information is protected and that the subject's identity can be trusted. This is in contrast to traditional service providers, who often rely on centralized databases that are vulnerable to data breaches and other security risks.
+        In addition to providing services to subjects, service providers can also act as verifiers, helping to ensure that digital identities are secure and can be trusted across the AlastriaID ecosystem. This helps to create a decentralized and interoperable ecosystem for digital identities that can be used across a wide range of applications and services.
+
+    \item \textbf{Issuers}: in the AlastriaID model they are organizations that are authorized to issue digital identities to individuals and organizations on the platform. They play a critical role in the AlastriaID ecosystem by verifying the identity of subjects and issuing a secure and verifiable digital identity. Issuers are responsible for verifying the identity of a subject through a process known as "know your customer" (KYC). This involves collecting and verifying personal information about the subject, such as their name, address, and government-issued identification. Once the identity of a subject has been verified, the issuer can issue a digital identity to the subject that is stored on the blockchain in some way.
+        Examples of issuers in the AlastriaID ecosystem include banks, government agencies, and telecommunications companies. For example, a bank may act as an issuer and verify the identity of a subject when they open a new bank account. The bank would then issue a digital identity to the subject that can be used for other financial services, such as applying for a loan or accessing government services. In addition to verifying the identity of subjects, issuers can also act as verifiers, providing a secure and reliable infrastructure for the storage and management of digital identities. This ensures that digital identities are secure and can be trusted across the AlastriaID ecosystem.
+        
+\end{itemize}
+
+In the AlastriaID framework, service providers can request and verify digital credentials from subjects, while issuers can issue and manage the digital credentials. The system is designed to provide a secure and decentralized environment for the management and control of personal information.
+
+\subsection{GDPR and AlastriaID}
+The General Data Protection Regulation (GDPR) is a crucial component of the AlastriaID model as it governs the protection and management of personal data, ensuring that the privacy rights of subjects are respected and upheld.
+AlastriaID can help organizations comply with the General Data Protection Regulation (GDPR) by providing a secure and privacy-preserving infrastructure for managing personal data.\par
+With AlastriaID, organizations can:
+
+\begin{itemize}
+
+    \item \textbf{Store personal data securely}: AlastriaID uses blockchain technology to secure personal data, making it tamper-proof and reducing the risk of data breaches. Specifically, the framework store the hash of the actions undertaken with this framework acting as a tracker to verify information on-demand.
+    \item \textbf{Control access to personal data}: AlastriaID allows organizations to control who has access to personal data, ensuring that only authorized parties can access it.
+    \item \textbf{Track data usage}: AlastriaID provides a clear audit trail of all data usage, allowing organizations to track who has accessed personal data and when. This helps organizations meet the GDPR's requirements for data transparency and accountability.
+    \item \textbf{Provide data portability}: AlastriaID enables individuals to easily and securely transfer their personal data from one organization to another, helping organizations meet the GDPR's requirements for data portability.
+    \item Overall, AlastriaID can \textbf{help organizations comply with the GDPR} by providing a secure, privacy-preserving, and transparent infrastructure for managing personal data (credentials can be revoked by users or expire because of a time limitation). By doing so, organizations can reduce the risk of data breaches, improve data security, and ensure that they are meeting their obligations under the GDPR.
 
 \end{itemize}
 
-In order to offer all of its features AlastriaID relies on the concept of Dicentralized IDentifier (DID\cite{DID}).
+In order to offer all of its features AlastriaID relies on the concept of \textbf{Dicentralized IDentifier (DID\cite{DID})}.
 A decentralized identifier (DID) is a new type of identifier that provides a secure and verifiable digital identity. It refers to any subject, such as a person, organization, or data model, and is designed to be decoupled from centralized registries, identity providers, and certificate authorities. The design allows the controller of the DID to prove control over it without requiring permission from other parties. A DID is a URI that associates the subject with a DID document that contains cryptographic material, verification methods, and services that enable trusted interactions with the subject.
 AlastriaID uses decentralized identifiers (DIDs) as a core component of its digital identity solution. By using DIDs, AlastriaID provides a secure and verifiable way to manage digital identity. The DIDs associated with AlastriaID allow the control of the identity to be with the user, rather than a centralized authority, enabling trustable interactions while maintaining privacy. The use of DIDs in AlastriaID helps to ensure that the user's digital identity is secure, portable, and under their control.
 
@@ -547,6 +577,9 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
 
     \bibitem{DID}
     W3C, \href{https://w3c.github.io/did-core/}{Decentralized Identifiers (DIDs) v1.0}
+
+    \bibitem{alastriaSmartContracts}
+    AlastriaID, \href{https://github.com/alastria/alastriaID-truffle-contracts}{alastriaID-truffle-contracts}
 
     \bibitem{}
     , \href{}{}
