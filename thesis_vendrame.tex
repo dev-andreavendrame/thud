@@ -265,10 +265,10 @@ At a high level we can see the blockchain as an aggretation of the following com
 
     Proof of Work (PoW) and Proof of Stake (PoS) are two of the most commonly used consensus algorithms in the world of blockchain technology. While both have their own unique features, they have been subject to various security attacks in the past.\par
 
-    In the case of PoW, one of the most notable attacks was the 51\% attack, where an attacker who controls 51\% or more of the network's hash rate could manipulate the system and carry out malicious activities such as double spending or censorship. This attack was prevalent in early cryptocurrencies like Bitcoin and Ethereum, where the network was smaller and hash rate distribution was highly centralized. Some successful attacks are related also to other less known chain like Vertcoin\cite{V51Attack}, Bitcoin Gold\cite{BTCG51Attack}, Litecoin Cash\cite{LCC51Attack} and Expanse\cite{EXP51Attack}.\par
-    Another type of attack that PoW systems are vulnerable to is the selfish mining attack, where a miner can manipulate the network to increase their chances of finding a block and earning rewards. In this attack, the miner conceals their blocks from the rest of the network, thus giving themselves an advantage over other miners.
-    PoS, on the other hand, has been subject to attacks such as the "Nothing at Stake" problem, where validators could freely vote for multiple chains, leading to the creation of multiple versions of the blockchain. This could lead to a lack of consensus on the network, leading to potential forks and network instability.
-    Another attack that PoS systems have faced is the "Long Range Attack," where an attacker can manipulate the system by creating a fork of the blockchain and manipulating the network to believe it is the correct chain. This can result in the attacker being able to double-spend their coins or carry out other malicious activities.
+    In the case of PoW, one of the most notable attacks was the 51\% attack, where an attacker who controls 51\% or more of the network's hash rate could manipulate the system and carry out malicious activities such as double spending or censorship. This attack was prevalent in early cryptocurrencies like Bitcoin and Ethereum, where the network was smaller and hash rate distribution was highly centralized. Some successful attacks are related also to other less known chain like Vertcoin\cite{VTC51Attack}, Bitcoin Gold\cite{BTCG51Attack}, Litecoin Cash\cite{LCC51Attack} and Expanse\cite{EXP51Attack}.\par
+    Another type of attack that PoW systems are vulnerable to is the selfish mining attack, where a miner can manipulate the network to increase their chances of finding a block and earning rewards. In this attack, the miner conceals their blocks from the rest of the network, thus giving themselves an advantage over other miners. This type of attack is very hard to do because the mining difficulty has to be low in order to have high chance of success and need a lot of resources\cite{SelfishMiningDefinition}.\par
+    PoS, on the other hand, has been subject to attacks such as the "Nothing at Stake" problem\cite{NothingAtStake}, where validators could freely vote for multiple chains, leading to the creation of multiple versions of the blockchain. This could lead to a lack of consensus on the network, leading to potential forks and network instability.
+    Another attack that PoS systems have faced is the "Long Range Attack,"\cite{LongRangeAttack} where an attacker can manipulate the system by creating a fork of the blockchain and manipulating the network to believe it is the correct chain. This can result in the attacker being able to double-spend their coins or carry out other malicious activities.
 
     After this brief overview we can say that both PoW and PoS have been subject to various attacks in the past, and while they each have their own strengths and weaknesses, it's important to understand these security vulnerabilities and take appropriate measures to mitigate the risks.
 
@@ -280,16 +280,16 @@ At a high level we can see the blockchain as an aggretation of the following com
 
     \subsection{Pros and Cons}
 
-    Smart contracts are self-executing computer programs that run on a blockchain network, designed to automatically enforce the terms and conditions of a contract between parties. As an alternative to traditional legal contracts, smart contracts have the potential to bring efficiency, transparency, and security to a variety of transactions. However, as with any new technology, there are both benefits and drawbacks to using smart contracts. It is important to weigh these pros and cons before deciding to use them in a given situation.
+    Smart contracts are self-executing computer programs that run on a blockchain network, designed to automatically enforce the terms and conditions of a contract between parties. As an alternative to traditional legal contracts, smart contracts have the potential to bring efficiency, transparency, and security to a variety of transactions. However, as with any new technology, there are both benefits and drawbacks to using smart contracts. It is important to weigh these pros and cons before deciding to use them in a given situation.\par
     
     Pros of Smart Contracts:
 
     \begin{itemize}    
 
-        \item Automation: Smart contracts are self-executing, reducing the need for intermediaries and the time and costs associated with manual contract execution.
-        \item Trust: Smart contracts are stored on a decentralized ledger, making them transparent and tamper-proof, increasing trust between parties.
-        \item Efficiency: Smart contracts can automate complex processes, reducing the risk of human error and increasing efficiency.
-        \item Cost-Effective: Smart contracts can reduce transaction costs as they eliminate the need for intermediaries, lawyers, and other third parties.
+        \item \textbf{Automation}: Smart contracts are self-executing, reducing the need for intermediaries and the time and costs associated with manual contract execution.
+        \item \textbf{Trust}: Smart contracts are stored on a decentralized ledger, making them transparent and tamper-proof, increasing trust between parties.
+        \item \textbf{Efficiency}: Smart contracts can automate complex processes, reducing the risk of human error and increasing efficiency.
+        \item \textbf{Cost-Effective}: Smart contracts can reduce transaction costs as they eliminate the need for intermediaries, lawyers, and other third parties.
 
     \end{itemize}
 
@@ -297,18 +297,13 @@ At a high level we can see the blockchain as an aggretation of the following com
 
     \begin{itemize}
 
-        \item Immutable: Smart contracts are often designed to be unalterable, which can limit their ability to adapt to changing circumstances and potential errors.
-        \item Lack of Flexibility: The terms of smart contracts are predetermined and set in stone, which can make them rigid and less flexible than traditional contracts.
-        \item Technical Complexity: Creating, deploying, and executing smart contracts require a certain level of technical knowledge, which can be a barrier for some users.
-        \item Lack of Legal Recognition: Smart contracts are still in the early stages of development and are not yet recognized by many courts, which can limit their enforceability in some jurisdictions.
-        \item Limited Regulation: The lack of regulation in the blockchain and smart contract space can increase the risk of fraud and other illegal activities.
+        \item \textbf{Immutable}: Smart contracts are often designed to be unalterable, which can limit their ability to adapt to changing circumstances and potential errors.
+        \item \textbf{Lack of Flexibility}: The terms of smart contracts are predetermined and set in stone, which can make them rigid and less flexible than traditional contracts.
+        \item \textbf{Technical Complexity}: Creating, deploying, and executing smart contracts require a certain level of technical knowledge, which can be a barrier for some users.
+        \item \textbf{Lack of Legal Recognition}: Smart contracts are still in the early stages of development and are not yet recognized by many courts, which can limit their enforceability in some jurisdictions.
+        \item \textbf{Limited Regulation}: The lack of regulation in the blockchain and smart contract space can increase the risk of fraud and other illegal activities.
 
     \end{itemize}
-
-
-
-
-
 
 
     \section{Public/Private Key Cryptography}
@@ -335,12 +330,24 @@ At a high level we can see the blockchain as an aggretation of the following com
 
 
 
-
 \chapter{Problem analysis}
 
 In today's digital age, the amount of content that is shared and distributed on the internet is staggering. From text, images, and videos, to audio recordings and more, the internet is a vast repository of information. However, with the ease of creating and sharing digital content, comes the problem of ensuring its authenticity and validity. With the amount of misinformation and fake news that is circulating online, it has become increasingly important to have a way to verify the authenticity of digital content.\\
 
-With this in mind we have defined some use cases that Truthster can help us with:
+With this in mind we have defined a diagram of the principal use cases that Truthster can help us with:
+
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/truthster_use_cases.png}
+    \caption{Truthster main use cases}
+\end{figure}
+
+
+
+
 
 \begin{itemize}
 
@@ -356,21 +363,6 @@ With this in mind we have defined some use cases that Truthster can help us with
 \end{itemize}
 
 From these use cases we have derived some functional and non-functional requirements necessary to design the behavior and architecture of the Truthster system.\\
-
-\section{Non-functional requirements}
-
-The Truthster system aims to provide a secure and efficient solution for the verification and certification of digital media. In order to achieve this goal, it must meet a number of non-functional requirements that ensure its reliability, scalability, and user-friendliness. The following is a list of non-functional requirements for the Truthster system:\\
-
-\begin{itemize}
-
-    \item Performance: The system must be able to handle a high volume of concurrent users and large amounts of data without experiencing significant lag or downtime.
-    \item Usability: The system must be easy to use and understand for both interviewers and interviewees, with clear instructions and intuitive navigation.
-    \item Security: The system must ensure the confidentiality and integrity of all data stored and transmitted, including personal data and media files.
-    \item Scalability: The system must be able to handle an increasing amount of data and user without experiencing significant performance degradation.
-    \item Compliance: The system must comply with relevant laws and regulations, including GDPR and copyright laws.
-    \item Interoperability: The system must be able to integrate with other software and systems.
-
-\end{itemize}
 
 \section{Functional requirements}
 
@@ -393,6 +385,21 @@ Below there is a list of functional requirements for our system:
     this requirement means that the system must maintain a record of all interviews conducted using the Truthster app, including the relevant metadata, hash values, and other information. This history must be stored in a separate database, such as MongoDB, that can be accessed by the interviewer through a set of REST APIs. This allows the interviewer to easily view and manage their previous interviews, and provides them with a reliable and secure way to access the information stored in the database. The API's allows the interviewer to retrieve the data from the database in a structured manner, which can be used for reporting, analysis and other purposes. Additionally, the REST API's allow the interviewer to perform CRUD operations on the data, such as adding, updating and deleting. This ensures that the interviewer has full control over the data and can manage it effectively.
     \item The system must be able to automate the generation of legal terms and conditions for the use of the interview content:
     this requirement ensures that the legal terms and conditions for the use of the interview content are automatically generated based on predefined templates or rules. This includes terms related to data privacy and protection, as well as any other relevant legal agreements. This automation will save time and resources for the interviewer, while also ensuring that all legal requirements are met. Additionally, this will also provide a standardized process for the interviewee to review and agree to the legal terms before the interview content is shared. This will provide an added layer of protection for both parties involved.
+
+\end{itemize}
+
+\section{Non-functional requirements}
+
+The Truthster system aims to provide a secure and efficient solution for the verification and certification of digital media. In order to achieve this goal, it must meet a number of non-functional requirements that ensure its reliability, scalability, and user-friendliness. The following is a list of non-functional requirements for the Truthster system:\\
+
+\begin{itemize}
+
+    \item Performance: The system must be able to handle a high volume of concurrent users and large amounts of data without experiencing significant lag or downtime.
+    \item Usability: The system must be easy to use and understand for both interviewers and interviewees, with clear instructions and intuitive navigation.
+    \item Security: The system must ensure the confidentiality and integrity of all data stored and transmitted, including personal data and media files.
+    \item Scalability: The system must be able to handle an increasing amount of data and user without experiencing significant performance degradation.
+    \item Compliance: The system must comply with relevant laws and regulations, including GDPR and copyright laws.
+    \item Interoperability: The system must be able to integrate with other software and systems.
 
 \end{itemize}
 
@@ -490,6 +497,16 @@ It is worth noting that the above points are all related to the fact that Ganach
 
     \bibitem{LCC51Attack}
     Litecoin Cash was 51\% attacked, \href{https://gist.github.com/metalicjames/82a49f8afa87334f929881e55ad4ffd7}{Litecoin Cash (LCC) was 51\% attacked}
+
+    \bibitem{SelfishMiningDefinition}
+    Investopedia, \href{https://www.investopedia.com/terms/s/selfish-mining.asp}{Selfish Mining Definition}
+
+    \bibitem{NothingAtStake}
+    Medium, \href{https://medium.com/coinmonks/understanding-proof-of-stake-the-nothing-at-stake-theory-1f0d71bc027}{Understanding Proof of Stake: The Nothing at Stake Theory}
+
+    \bibitem{LongRangeAttack}
+    Medium, \href{https://blog.positive.com/rewriting-history-a-brief-introduction-to-long-range-attacks-54e473acdba9}{Rewriting History: A Brief Introduction to Long Range Attacks}
+
 
     \bibitem{}
     , \href{}{}
