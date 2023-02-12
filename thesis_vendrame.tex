@@ -337,8 +337,6 @@ In today's digital age, the amount of content that is shared and distributed on 
 With this in mind we have defined a diagram of the principal use cases that Truthster can help us with:
 
 
-
-
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/truthster_use_cases.png}
@@ -420,6 +418,37 @@ Basing our solution on the above description we can define the following compone
     
 \end{enumerate}
 
+\chapter{AlastriaID}
+
+AlastriaID is a digital identity project by the Identity Commission of Alastria. It aims to provide a legal and technical framework for sovereign digital identity projects in the Eurozone, following the guidelines of the eIDAS Regulation and the e-Identity Workshop Report of the EU Blockchain Observatory and Forum. The AlastriaID model is designed to work with the Alastria Standards Commission to standardize processes and methodologies and is designed to be complementary with the General Data Protection Regulation (GDPR).
+
+AlastriaID can help organizations comply with the General Data Protection Regulation (GDPR) by providing a secure and privacy-preserving infrastructure for managing personal data. With AlastriaID, organizations can:
+
+\begin{itemize}
+
+    \item Store personal data securely: AlastriaID uses blockchain technology to secure personal data, making it tamper-proof and reducing the risk of data breaches.
+    \item Control access to personal data: AlastriaID allows organizations to control who has access to personal data, ensuring that only authorized parties can access it.
+    \item Track data usage: AlastriaID provides a clear audit trail of all data usage, allowing organizations to track who has accessed personal data and when. This helps organizations meet the GDPR's requirements for data transparency and accountability.
+    \item Provide data portability: AlastriaID enables individuals to easily and securely transfer their personal data from one organization to another, helping organizations meet the GDPR's requirements for data portability.
+    \item Overall, AlastriaID can help organizations comply with the GDPR by providing a secure, privacy-preserving, and transparent infrastructure for managing personal data. By doing so, organizations can reduce the risk of data breaches, improve data security, and ensure that they are meeting their obligations under the GDPR.
+
+\end{itemize}
+
+In order to offer all of its features AlastriaID relies on the concept of Dicentralized IDentifier (DID\cite{DID}).
+A decentralized identifier (DID) is a new type of identifier that provides a secure and verifiable digital identity. It refers to any subject, such as a person, organization, or data model, and is designed to be decoupled from centralized registries, identity providers, and certificate authorities. The design allows the controller of the DID to prove control over it without requiring permission from other parties. A DID is a URI that associates the subject with a DID document that contains cryptographic material, verification methods, and services that enable trusted interactions with the subject.
+AlastriaID uses decentralized identifiers (DIDs) as a core component of its digital identity solution. By using DIDs, AlastriaID provides a secure and verifiable way to manage digital identity. The DIDs associated with AlastriaID allow the control of the identity to be with the user, rather than a centralized authority, enabling trustable interactions while maintaining privacy. The use of DIDs in AlastriaID helps to ensure that the user's digital identity is secure, portable, and under their control.
+
+Decentralized Identifiers (DIDs) are a new type of globally unique identifier that are designed to enable individuals and organizations to generate their own identifiers using systems they trust. In contrast to traditional identifiers, DIDs are not issued by an external authority, but are instead generated and maintained by the entity that requires the identifier. This new type of identifier is becoming increasingly important in the web3 as it provides a secure, entity-controlled mechanism for establishing identity and conducting verifiable transactions online.
+In the current centralized web, our online identities are largely controlled by third-party entities such as social media platforms, email providers, and government institutions. This means that our online interactions are often tracked and monitored, and that we have limited control over the personal data we share online. DIDs provide a solution to these problems by enabling individuals and organizations to establish their own online identities that are controlled solely by them (here born the concept of Self Sovereing Identity\cite{selfSovereignIdentity}).
+The use of DIDs enables users to create multiple identities that are each scoped to a specific context or interaction. For example, an individual might have a different DID for their personal life, their work life, and their hobbies. This provides users with greater control over their personal data, as they can choose to reveal only the information that is necessary for a given interaction. Additionally, because DIDs are generated and maintained by the entity that requires the identifier, there is no central authority that can revoke or deactivate the identifier.
+In the web3, DIDs play a critical role in enabling secure, verifiable transactions and interactions indeed, a DID can be used to establish the identity of a user when conducting a secure financial transaction or when accessing a decentralized application like the one offer by the overall Truthster system for both journalists and people that uses their contents. Because the use of DIDs is built on strong cryptographic principles, users can trust that their online interactions are secure and that their personal data is protected.\par
+Because of all the reasons just listed DIDs are a critical component of the web3, as they provide individuals and organizations with a secure, entity-controlled mechanism for establishing identity and conducting verifiable transactions online. The use of DIDs enables users to have greater control over their personal data and to interact online with confidence, knowing that their online identities are secure and verifiable.
+
+With the implementation of DIDs inside the AlastriaID library, a wide range of applications and use cases become possible. The AlastriaID library provides a set of tools and APIs that enable developers to easily incorporate DIDs into their applications, making it possible to implement secure, verifiable transactions and data sharing. With DIDs, individuals and organizations can verify their identities, sign digital documents, give their consensus for contents that needs to be be published, and share personal data in a secure and controlled manner. Additionally, the AlastriaID library supports the creation of self-sovereign identities, enabling users to have full control over their personal data and the sharing of that data with others as previously described. These capabilities have the potential to revolutionize the way we interact and transact online, and the AlastriaID library is at the forefront of this change.\par
+In the next sections we will go deeper in the implementation of the AlastriaID describing the main use cases that involve the library with its smart contracts and the DID implementation mechanisms.
+
+\section{Creation of an entity}
+
 \chapter{Implementation}
 
 \chapter{Testing and validation}
@@ -447,6 +476,15 @@ Some possible disadvantages of using Ganache include:
 \end{enumerate}
 
 It is worth noting that the above points are all related to the fact that Ganache is a personal blockchain that runs on a local machine, and it is not connected to the live Ethereum network. These limitations make it less suitable for testing and developing contracts that need to interact with other systems, handle sensitive information or assets, or be scalable and secure in a production environment.
+
+\chapter{GDPR}
+
+The General Data Protection Regulation (GDPR) is a regulation of the European Union (EU) that went into effect on May 25, 2018. It replaces the 1995 EU Data Protection Directive and strengthens data protection laws for individuals within the EU. The GDPR sets out rules and regulations for the collection, processing, storage, and use of personal data of individuals within the EU, and provides individuals with more control over their personal data.
+The GDPR applies to any organization that processes personal data of individuals in the EU, regardless of where the organization is based. This means that organizations outside of the EU that process the personal data of EU individuals must also comply with the GDPR.Under the GDPR, personal data is defined as any information related to an identified or identifiable natural person. This includes, but is not limited to, names, addresses, email addresses, and IP addresses.
+Organizations must obtain the explicit consent of individuals for the collection and processing of their personal data, and must inform individuals of the specific purposes for which their data will be used. Individuals have the right to access their personal data, request that it be corrected or deleted, and request that it be transferred to another organization.
+Organizations must implement appropriate technical and organizational measures to ensure the security of personal data, and must report any data breaches to the relevant supervisory authority within 72 hours.
+The GDPR also establishes the role of a Data Protection Officer (DPO), who is responsible for ensuring that the organization is in compliance with the GDPR and for advising the organization on its data protection obligations.Penalties for non-compliance with the GDPR can be severe, with fines up to 4\% of an organization's global annual revenue or €20 million, whichever is greater.
+In summary, the GDPR is a comprehensive regulation that aims to give individuals more control over their personal data and to ensure that organizations that process personal data are accountable and transparent in their practices. Organizations must take the GDPR seriously and ensure that they are in compliance with its provisions to avoid significant fines and damage to their reputation.
 
     %% Parte conclusiva del documento; tipicamente per riassunto, bibliografia e/o indice analitico.
 \backmatter
@@ -507,6 +545,8 @@ It is worth noting that the above points are all related to the fact that Ganach
     \bibitem{LongRangeAttack}
     Medium, \href{https://blog.positive.com/rewriting-history-a-brief-introduction-to-long-range-attacks-54e473acdba9}{Rewriting History: A Brief Introduction to Long Range Attacks}
 
+    \bibitem{DID}
+    W3C, \href{https://w3c.github.io/did-core/}{Decentralized Identifiers (DIDs) v1.0}
 
     \bibitem{}
     , \href{}{}
