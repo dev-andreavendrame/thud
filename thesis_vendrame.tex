@@ -449,7 +449,7 @@ AlastriaID has three main entities where each one play a specific role in the fr
 
 In the AlastriaID framework, service providers can request and verify digital credentials from subjects, while issuers can issue and manage the digital credentials. The system is designed to provide a secure and decentralized environment for the management and control of personal information.
 
-\subsection{GDPR and AlastriaID}
+\subsection{GDPR and Dicentralized IDentifier}
 The General Data Protection Regulation (GDPR) is a crucial component of the AlastriaID model as it governs the protection and management of personal data, ensuring that the privacy rights of subjects are respected and upheld.
 AlastriaID can help organizations comply with the General Data Protection Regulation (GDPR) by providing a secure and privacy-preserving infrastructure for managing personal data.\par
 With AlastriaID, organizations can:
@@ -464,11 +464,9 @@ With AlastriaID, organizations can:
 
 \end{itemize}
 
-In order to offer all of its features AlastriaID relies on the concept of \textbf{Dicentralized IDentifier (DID\cite{DID})}.
-A decentralized identifier (DID) is a new type of identifier that provides a secure and verifiable digital identity. It refers to any subject, such as a person, organization, or data model, and is designed to be decoupled from centralized registries, identity providers, and certificate authorities. The design allows the controller of the DID to prove control over it without requiring permission from other parties. A DID is a URI that associates the subject with a DID document that contains cryptographic material, verification methods, and services that enable trusted interactions with the subject.
-AlastriaID uses decentralized identifiers (DIDs) as a core component of its digital identity solution. By using DIDs, AlastriaID provides a secure and verifiable way to manage digital identity. The DIDs associated with AlastriaID allow the control of the identity to be with the user, rather than a centralized authority, enabling trustable interactions while maintaining privacy. The use of DIDs in AlastriaID helps to ensure that the user's digital identity is secure, portable, and under their control.
+In order to offer all of its features AlastriaID leverages the concept of \textbf{Dicentralized IDentifier (DID\cite{DID})}.
 
-Decentralized Identifiers (DIDs) are a new type of globally unique identifier that are designed to enable individuals and organizations to generate their own identifiers using systems they trust. In contrast to traditional identifiers, DIDs are not issued by an external authority, but are instead generated and maintained by the entity that requires the identifier. This new type of identifier is becoming increasingly important in the web3 as it provides a secure, entity-controlled mechanism for establishing identity and conducting verifiable transactions online.
+Decentralized Identifiers (DIDs) are a new type of globally unique identifier that are designed to enable individuals and organizations to generate their own identifiers using systems they trust. In contrast to traditional identifiers, DIDs are not issued by an external authority, but are instead generated and maintained by the entity that requires the identifier. This new type of identifier is becoming increasingly important in the Web3 as it provides a secure, entity-controlled mechanism for establishing identity and conducting verifiable transactions online.
 In the current centralized web, our online identities are largely controlled by third-party entities such as social media platforms, email providers, and government institutions. This means that our online interactions are often tracked and monitored, and that we have limited control over the personal data we share online. DIDs provide a solution to these problems by enabling individuals and organizations to establish their own online identities that are controlled solely by them (here born the concept of Self Sovereing Identity\cite{selfSovereignIdentity}).
 The use of DIDs enables users to create multiple identities that are each scoped to a specific context or interaction. For example, an individual might have a different DID for their personal life, their work life, and their hobbies. This provides users with greater control over their personal data, as they can choose to reveal only the information that is necessary for a given interaction. Additionally, because DIDs are generated and maintained by the entity that requires the identifier, there is no central authority that can revoke or deactivate the identifier.
 In the web3, DIDs play a critical role in enabling secure, verifiable transactions and interactions indeed, a DID can be used to establish the identity of a user when conducting a secure financial transaction or when accessing a decentralized application like the one offer by the overall Truthster system for both journalists and people that uses their contents. Because the use of DIDs is built on strong cryptographic principles, users can trust that their online interactions are secure and that their personal data is protected.\par
@@ -477,7 +475,24 @@ Because of all the reasons just listed DIDs are a critical component of the web3
 With the implementation of DIDs inside the AlastriaID library, a wide range of applications and use cases become possible. The AlastriaID library provides a set of tools and APIs that enable developers to easily incorporate DIDs into their applications, making it possible to implement secure, verifiable transactions and data sharing. With DIDs, individuals and organizations can verify their identities, sign digital documents, give their consensus for contents that needs to be be published, and share personal data in a secure and controlled manner. Additionally, the AlastriaID library supports the creation of self-sovereign identities, enabling users to have full control over their personal data and the sharing of that data with others as previously described. These capabilities have the potential to revolutionize the way we interact and transact online, and the AlastriaID library is at the forefront of this change.\par
 In the next sections we will go deeper in the implementation of the AlastriaID describing the main use cases that involve the library with its smart contracts and the DID implementation mechanisms.
 
-\section{Creation of an entity}
+\subsection{AlastriaID composition}
+
+The AlastriaID framework is comprised of three open source libraries that provide the necessary components to develop and deploy decentralized digital identities on the AlastriaID platform.
+
+\begin{itemize}
+
+    \item The \textbf{alastria-identity-lib} library provides developers with a set of reusable components written in Typescript that can be used to build and manage digital identities from a server and mobile side. This includes functions for creating, managing, and storing digital identities, as well as managing access to personal data through JWT tokens.
+    \item The \textbf{alastriaID-truffle-contracts} library provides developers with a set of smart contracts that can be used to deploy and manage digital identities on the Alastria blockchain. These contracts provide a Solidity implementation of a secure and verifiable infrastructure for storing and managing digital identities on any EVM compatible blockchain, and can be easily integrated into other applications and services to achieve a more complete usage of the framework.
+    \item The \textbf{alastria-identity-example} library provides developers with a sample implementation of the AlastriaID framework, demonstrating how the various components of the platform can be used to build and deploy decentralized digital identities. This library can be used as a starting point for building custom solutions and integrating AlastriaID into other applications and services like what we are going to do with Truthster.
+
+\end{itemize}
+
+Together, these libraries provide a comprehensive framework for developing and deploying decentralized digital identities on the AlastriaID platform. 
+As we have just seen AlastriaID offers a range of features that allow users to securely manage and control their personal data in a decentralized manner. These features include: the ability to create and manage digital identities, control access to personal data, and provide a secure infrastructure for storing and managing digital identities. These features are designed to empower individuals and organizations to take control of their personal data and manage it in a secure and decentralized manner.\par
+The following section will provide a more in-depth look at these key features of AlastriaID and how they work to provide users with a secure and verifiable digital identity.
+
+\subsection{AlastriaID main features}
+
 
 \chapter{Implementation}
 
