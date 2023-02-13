@@ -60,10 +60,12 @@ In conclusion, the Truthster project is an innovative and valuable tool for jour
 \tableofcontents
 
 %% Lista delle tabelle (se presenti)
-%\listoftables
+\listoftables
 
 %% Lista delle figure (se presenti)
-%\listoffigures
+\listoffigures
+
+
 
 %% Corpo principale del documento
 \mainmatter
@@ -491,7 +493,99 @@ Together, these libraries provide a comprehensive framework for developing and d
 As we have just seen AlastriaID offers a range of features that allow users to securely manage and control their personal data in a decentralized manner. These features include: the ability to create and manage digital identities, control access to personal data, and provide a secure infrastructure for storing and managing digital identities. These features are designed to empower individuals and organizations to take control of their personal data and manage it in a secure and decentralized manner.\par
 The following section will provide a more in-depth look at these key features of AlastriaID and how they work to provide users with a secure and verifiable digital identity.
 
-\subsection{AlastriaID main features}
+\subsection{Alastria smart contracts structure}
+
+The smart contracts used in the AlastriaID model are structured as follows where each arrow represents a dependency:
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/alastriaSmartContractsStructure.png}
+    \caption{Alastria smart contracts structure}
+\end{figure}
+
+The smart contracts act together in this schema and the major part of the actions are done through the AlastriaIdentityManager instance.\par
+The following are lists of the key smart contracts used in the AlastriaID platform, each with its unique role and function.
+
+\begin{table}[h!]
+    \begin{tabular}{|p{6cm}|p{12cm}|}
+    \hline
+    Smart Contract & What is does\\ [0.5ex] 
+    \hline\hline
+    AlastriaIdentityManager.sol	 & It generates access tokens, creates identities, deploys an AlastriaProxy for each identity and sends transactions through the proxy of the sender\\ 
+    \hline
+    AlastriaProxy.sol & It is the Alastria ID itself. Only receives transactions from the IdentityManager and resends them to the target \\ 
+    \hline
+    AlastriaIdentityIssuer.sol & It keeps a registry of the issuers identities \\
+    \hline
+    AlastriaIdentityServiceProvider.sol & It keeps a registry of the service providers identities \\
+    \hline
+    AlastriaIdentityEntity.sol & It keeps a registry of the entities \\
+    \hline
+    \end{tabular}
+    \caption{AlastriaID Smart contracts - Identity Manager}
+
+\end{table}
+
+\begin{table}[h!]
+    \begin{tabular}{|p{6cm}|p{12cm}|}
+    \hline
+    Smart Contract & What is does\\ [0.5ex] 
+    \hline\hline
+    AlastriaCredentialRegistry.sol & It manages all the credentials and keeps the registry and the status\\ 
+    \hline
+    AlastriaPresentationRegistry.sol & It manages all the presentations and keeps the registry and the status\\
+    \hline
+    AlastriaPublicKeyRegistry.sol & It manages all the public keys and keeps the registry \\
+    \hline
+    \end{tabular}
+    \caption{AlastriaID Smart contracts - Registry}
+
+\end{table}
+
+\begin{table}[h!]
+    \begin{tabular}{|p{6cm}|p{12cm}|}
+    \hline
+    Smart Contract & What is does\\ [0.5ex] 
+    \hline\hline
+    Eidas.sol & It manages Eidas level of assurance for credentials \\ 
+    \hline
+    Owned.sol & It assures that just the account which deployed a contract can update the version \\ 
+    \hline
+    \end{tabular}
+    \caption{AlastriaID Smart contracts - Libs}
+
+\end{table}
+
+\begin{table}[h!]
+    \begin{tabular}{|p{6cm}|p{12cm}|}
+    \hline
+    Smart Contract & What is does\\ [0.5ex] 
+    \hline\hline
+    AlastriaNameService.sol	 & It creates the first entity to work with the rest of functionalities of Alastria Identity \\ 
+    \hline
+    \end{tabular}
+    \caption{AlastriaID Smart contracts - Name Service}
+
+\end{table}
+
+\section{AlastriaID tasks}
+
+In this section we will explain the main tasks that we can go through suing the AlastriaID framework.
+In particular we will explain how to:
+
+\begin{itemize}
+
+    \item Authenticate with AlastriaID
+    \item Create a new entity the will be available in the ecosystem and give them its role
+    \item Create, delete and manage credentials of an entity
+    \item Create, delete and manage presentations of an entity
+    \item Verify credentials in order to give access to a service
+
+\end{itemize}
+
+All of the above mentioned tasks are done with a c
+
+
 
 
 \chapter{Implementation}
