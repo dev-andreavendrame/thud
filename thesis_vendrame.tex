@@ -598,9 +598,7 @@ In AlastriaID, there is a first entity known as the root entity, which has the p
 When we create an entity we suppose that the entity that creates the new one has the role with the necessary privileges (for example a service provider or an issuer). Here we will see how a new user (Bob), can be register on the platform in order to start to access the available services.
 We assume that Bob has a mobile application that he can access to provide the required information when asked and that talks to the Truthster backend.
 
-At the beggining, the Truthster backend should firstly load its private key, create an AT (Alastria Token), sign it and send it to Bob.
-Then Bob loads his private key (locally stored), creates and AIC (Alastria Identity Creation), signs it and sends it to the Truthster backend.
-After that Truthster should decode it and verify the signature with the public key of Bob.
+At the beggining, the Truthster backend should firstly load its private key, create an AT (Alastria Token), sign it and sends it to Bob. Then Bob loads his private key (locally stored), creates and AIC (Alastria Identity Creation), signs it and sends it to the Truthster backend. After that Truthster should decode it and verify the signature with the public key of Bob.
 When the verification has been done Truthster can send to Alastria blockchain the signed transaction that allows the user to create his AlastriaID. This transaction is a preparation step before creating effectively the AlastriaID.
 Finally, after the confirmation of the previous transaction Truthster sends to Alastria the signed (by Bob) transaction to create the AlastriaID. 
 The result is that the AlastriaPublicKeyRegistry is updated and now the user public key is stored safely on-chain and the Truthster backend now has all the information neeeded to create a DID that is stored remotely and ready to be used for next scopes.
@@ -620,15 +618,25 @@ When Bob wants to authenticate he sends to Truthster a login request. After rece
 \end{figure}
 
 
-\subsection{Create new Alastria identity}
+\subsection{Create an AlastriaID}
+
+To create his AlastriaID, Bob contacts the Truthster backend and initiates the process. In response, the backend starts creating an Alastria Token (AT) that contains all the required information about Bob, such as his public key and Decentralized Identifier (DID). Once the AT is complete, Truthster signs it and sends it back to Bob. Bob then creates the transaction "createAlastriaID" and signs it, along with an Alastria Identity Creation (AIC) token. The AIC token contains the signed Alastria Token (sAT), Bob's public key, and the signed transaction, all of which are necessary for creating the AlastriaID. After signing the AIC, Bob sends it and the transaction bytecode to the Truthster backend for verification.\par
+The Truthster backend then validates the received signed AIC (sAIC) using Bob's public key, and proceeds to create the transaction "prepareAlastriaID" to enable the platform to create a new AlastriaID. The backend signs this transaction before sending it to the Alastria network. Once the network has successfully processed the "prepareAlastriaID" transaction, the backend waits for its receipt and then sends the "createAlastriaID" transaction. Again, it waits for the receipt to confirm that the transaction was successful. Upon receiving the receipt, the backend sends a reading transaction to Alastria requesting the identity key of Bob's newly created AlastriaID. Alastria responds with the AlastriaID, which the Truthster backend then extracts and saves the associated proxy address. The backend creates the DID for Bob and sends it to him, which he saves locally for future use. In this way, the entire process of creating an AlastriaID is completed securely and accurately, with all necessary checks and validations being performed at each step of the process.
+The process is represented in the Figure~\ref{fig:addAlastriaID}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/createNewAlastriaID.png}
-    \caption{Creation process for new Alastria identity}
+    \caption{Creation process for new AlastriaID}
+    \label{fig:addAlastriaID}
+
 \end{figure}
 
 \subsection{Create new general Entity}
+
+In order to create a new entity on the Alastria platform, the Truthster backend must first determine the role that this entity will play. By default, any new entity that is created will be classified as a Subject. However, if necessary, this entity can be upgraded to a Service Provider or Issuer through a transaction sent by another identity (it can be the first identity of the platform or an entity with a higher Eidas level).
+Once the role of the entity has been established, the Truthster backend builds the transaction "alastriaNameService.addEntity" which includes all the relevant information about the new entity. This information may include the entity's name, its AlastriaID, and any other necessary details. After assembling this information, the backend signs the transaction and sends it to the Alastria network for processing.
+Alastria then performs the necessary checks and validations to ensure that the transaction is valid and that the new entity can be added to the platform. If the transaction is successful, Alastria sends a transaction receipt back to the Truthster backend, indicating that the entity has been successfully added to the platform.
 
 \begin{figure}
     \centering
