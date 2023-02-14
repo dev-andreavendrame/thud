@@ -584,27 +584,11 @@ In particular we will explain how to:
 \end{enumerate}
 
 All of the above mentioned tasks involve a technical library that allows to store private and public key in special encrypted files: the keystores. This library called \textbf{keythereum} is available on Github here\cite{keythereum}. Since the library involves a lot of boilerplate code we will handle it at a high level. We will refer to it when we need to recover a public or private key by simply writing "load Public key" or "load Private key".
-
 For our explanations we will consider a scenario where Bob, an individual, wants to subscribe to an online newspaper. The online newspaper acts as the service provider and wants to ensure that Bob is who he claims to be before granting access to its content. To verify Bob's identity, the online newspaper turns to Truthster, an issuer that specializes in identity verification. Truthster uses AlastriaID to verify Bob's identity by issuing a digital certificate that confirms Bob's personal information. Bob, as a subject in the AlastriaID system, can use his digital identity to access the online newspaper's service and other services that use AlastriaID. In this scenario, AlastriaID provides a secure and efficient solution for the online newspaper to verify Bob's identity and maintain the privacy and security of personal information. Additionally, by using AlastriaID, Truthster can ensure the validity of the digital certificate it issues, making it a trusted issuer in the eyes of the online newspaper. This real-world scenario highlights the potential of AlastriaID in facilitating secure and efficient identity verification processes in a variety of contexts and how it can be applied to our specific use case: Truthster.
-
 
 \subsection{Create the first entity of the ecosystem}
 
 In AlastriaID, there is a first entity known as the root entity, which has the permission to create other entities within the platform. The root entity is created when the AlastriaID smart contracts are first deployed, in our framework through the AlastriaNameService contract. This root entity is responsible for creating other entities, such as subjects, service providers, and issuers, within the AlastriaID platform. The root entity is designed to provide a secure and centralized mechanism for managing entities within the platform, ensuring that only authorized entities have the ability to create and manage digital identities and personal data.
-
-
-\subsection{Create an entity}
-
-When we create an entity we suppose that the entity that creates the new one has the role with the necessary privileges (for example a service provider or an issuer). Here we will see how a new user (Bob), can be register on the platform in order to start to access the available services.
-We assume that Bob has a mobile application that he can access to provide the required information when asked and that talks to the Truthster backend.
-
-At the beggining, the Truthster backend should firstly load its private key, create an AT (Alastria Token), sign it and sends it to Bob. Then Bob loads his private key (locally stored), creates and AIC (Alastria Identity Creation), signs it and sends it to the Truthster backend. After that Truthster should decode it and verify the signature with the public key of Bob.
-When the verification has been done Truthster can send to Alastria blockchain the signed transaction that allows the user to create his AlastriaID. This transaction is a preparation step before creating effectively the AlastriaID.
-Finally, after the confirmation of the previous transaction Truthster sends to Alastria the signed (by Bob) transaction to create the AlastriaID. 
-The result is that the AlastriaPublicKeyRegistry is updated and now the user public key is stored safely on-chain and the Truthster backend now has all the information neeeded to create a DID that is stored remotely and ready to be used for next scopes.
-
-\textit{Notes}: 
-In AlastriaID we can create a new entity and once it is create it has the default role of a Subject. Bob, our new entity, has this specific role and can't issue identities or provide services to other users.
 
 \subsection{Authentication with AlastriaID}
 
@@ -632,7 +616,7 @@ The process is represented in the Figure~\ref{fig:addAlastriaID}.
 
 \end{figure}
 
-\subsection{Create new general Entity}
+\subsection{Create a new entity}
 
 In order to create a new entity on the Alastria platform, the Truthster backend must first determine the role that this entity will play. By default, any new entity that is created will be classified as a Subject. However, if necessary, this entity can be upgraded to a Service Provider or Issuer through a transaction sent by another identity (it can be the first identity of the platform or an entity with a higher Eidas level).
 Once the role of the entity has been established, the Truthster backend builds the transaction "alastriaNameService.addEntity" which includes all the relevant information about the new entity. This information may include the entity's name, its AlastriaID, and any other necessary details. After assembling this information, the backend signs the transaction and sends it to the Alastria network for processing.
