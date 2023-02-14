@@ -637,11 +637,13 @@ The process is represented in the Figure~\ref{fig:addAlastriaID}.
 In order to create a new entity on the Alastria platform, the Truthster backend must first determine the role that this entity will play. By default, any new entity that is created will be classified as a Subject. However, if necessary, this entity can be upgraded to a Service Provider or Issuer through a transaction sent by another identity (it can be the first identity of the platform or an entity with a higher Eidas level).
 Once the role of the entity has been established, the Truthster backend builds the transaction "alastriaNameService.addEntity" which includes all the relevant information about the new entity. This information may include the entity's name, its AlastriaID, and any other necessary details. After assembling this information, the backend signs the transaction and sends it to the Alastria network for processing.
 Alastria then performs the necessary checks and validations to ensure that the transaction is valid and that the new entity can be added to the platform. If the transaction is successful, Alastria sends a transaction receipt back to the Truthster backend, indicating that the entity has been successfully added to the platform.
+The process is represented in the Figure~\ref{fig:createNewGeneralEntity}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/createNewGeneralEntity.png}
     \caption{Creation process for new entities on-chain}
+    \label{fig:createNewGeneralEntity}
 \end{figure}
 
 \subsection{Add new issuer}
