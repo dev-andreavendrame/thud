@@ -636,6 +636,36 @@ When Bob wants to authenticate he sends to Truthster a login request. After rece
     \caption{Creation process for new entities on-chain}
 \end{figure}
 
+\subsection{Add new issuer}
+
+To create a new issuer on the AlastriaID platform, the Truthster backend, which is itself an issuer and has the ability to create other issuers, must perform a series of steps. First, it creates a transaction called "identityManager.addIdentityIssuer," which includes the DID of the new issuer to be created and its Eidas level as parameters. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is then executed, and the Truthster backend receives the transaction receipt as confirmation. Ultimately, this process allows the creation of a new issuer on the Alastria blockchain platform, facilitated by the Truthster backend as the initial issuer and transaction creator.
+The process is represented in the Figure~\ref{fig:addNewIssuer}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/addNewIssuer.png}
+    \caption{Addition of a new issuer to the platform}
+    \label{fig:addNewIssuer}
+\end{figure}
+
+\subsection{Delete exisiting issuer}
+
+To delete a specific issuer with a low Eidas level on the AlastriaID platform, the Truthster backend, which is an issuer with the authority to delete other issuers, must follow a series of steps. First, it creates a transaction called "identityManager.deleteIdentityIssuer," which takes the DID of the issuer to be deleted as a parameter. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is executed, and the Truthster backend receives the transaction receipt as confirmation of the deletion. However, if the issuer with the given DID does not exist, the transaction is reverted with the related error. Overall, the deletion process is facilitated by the Truthster backend, which creates and signs the transaction to remove the specified issuer on the Alastria blockchain platform.
+The process is represented in the Figure~\ref{fig:deleteIssuer}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/deleteExistingIssuer.png}
+    \caption{Deletion of an exisiting issuer from the platform}
+    \label{fig:deleteIssuer}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/createNewGeneralEntity.png}
+    \caption{Creation process for new entities on-chain}
+\end{figure}
 
 
 \chapter{Implementation}
