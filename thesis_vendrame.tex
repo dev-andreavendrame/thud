@@ -608,11 +608,23 @@ The result is that the AlastriaPublicKeyRegistry is updated and now the user pub
 \textit{Notes}: 
 In AlastriaID we can create a new entity and once it is create it has the default role of a Subject. Bob, our new entity, has this specific role and can't issue identities or provide services to other users.
 
-AlastriaNameService allows to manage data of entities, the only data that are not hashed on the blockchain. These data are: 
-
-\subsection{Authenticate with AlastriaID}
+\subsection{Authentication with AlastriaID}
 
 In Truthster, users can authenticate themselves on the system using a user-friendly app. This app allows users to easily create and manage their digital identities, as well as control access to their personal data.
+When Bob wants to authenticate he sends to Truthster a login request. After receiving the request the Truthster backend generates an Alastria Token with all the information needed (expiring date, Truthster DID, etc...), signs and sends it back to the Bob. At this point Bob verify the authenticity of the AT with the Truhster public key. If everything is ok he procedes by creating an Alastria Session Token that is then signed with its private key and sent to the Truthster backend. After receiving the signed AST the backend verifies its authenticity with Bob public key and then if everything is fine the user is authenticated and can access the services provided by Truthster.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/authenticationAlastriaID.png}
+    \caption{Authentication process with AlastriaID}
+\end{figure}
+
+\subsection{Add new credentials to Subject}
+
+
+\subsection{}
+AlastriaNameService allows to manage data of entities, the only data that are not hashed on the blockchain. These data are: 
+
 
 \chapter{Implementation}
 
