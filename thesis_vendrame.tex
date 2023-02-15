@@ -77,23 +77,19 @@ In conclusion, the Truthster project is an innovative and valuable tool for jour
 %% Capitolo
 \chapter{Introduction}
 
-The Truthster project aims at integrating an easy-to-use mobile application for certifying video interviews with a blockchain platform, thus generating proof of validity of media contents based on an innovative synergy between human trust (embodied by the interviewer) and trust- less systems (Alastria). Truthster will add to media creators an option to verify interviews, using a simple workflow combined with blockchain storage for proof of validity.\\
+The Truthster project aims at integrating an easy-to-use mobile application for certifying video interviews with a blockchain platform, thus generating proof of validity of media contents based on an innovative synergy between human trust (embodied by the interviewer) and trust- less systems (Alastria). Truthster will add to media creators an option to verify interviews, using a simple workflow combined with blockchain storage for proof of validity.
 
-This project is a comprehensive solution that combines traditional technologies such as databases and REST architecture with new technologies like Docker and blockchain. The goal of the Truthster project is to create a mobile app that makes it easy for journalists and media creators to certify video interviews, providing proof of validity for media contents.\\
+This project is a comprehensive solution that combines traditional technologies such as databases and REST architecture with new technologies like Docker and blockchain. The goal of the Truthster project is to create a mobile app that makes it easy for journalists and media creators to certify video interviews, providing proof of validity for media contents.
 
-The mobile app is designed for the interviewer, who can use it to record audio or video interviews. Once the interview is recorded, the interviewer can open the mobile app, log in, enter all the related interview information, and choose the interview file to upload. The app then calculates a hash of the document (generated based on the information provided by the interviewer) and uploads it, along with interview metadata and GPS position, to a cloud-based server. In the background, the entire document and interview file are uploaded.\\
+The mobile app is designed for the interviewer, who can use it to record audio or video interviews. Once the interview is recorded, the interviewer can open the mobile app, log in, enter all the related interview information, and choose the interview file to upload. The app then calculates a hash of the document (generated based on the information provided by the interviewer) and uploads it, along with interview metadata and GPS position, to a cloud-based server. In the background, the entire document and interview file are uploaded. Once the interview is uploaded, the app sends a link to the interviewee via SMS or email, or generates a QR code with a link. The interviewee can then open the link (or scan the QR code), and a GDPR-compliant contract will be displayed for review and agreement.\par
+After the contract is agreed upon, the GPS position of the interviewee is sent to the server, and the hash and metadata of the interview, along with the interviewee's agreement, are stored in a permissioned blockchain for later uses.
 
-Once the interview is uploaded, the app sends a link to the interviewee via SMS or email, or generates a QR code with a link. The interviewee can then open the link (or scan the QR code), and a GDPR-compliant contract will be displayed for review and agreement.\\
-After the contract is agreed upon, the GPS position of the interviewee is sent to the server, and the hash and metadata of the interview, along with the interviewee's agreement, are stored in a permissioned blockchain for later uses.\\
+The blockchain used in the Truthster project is Alastria, an open-source and permissioned blockchain. This type of blockchain is a hybrid between a public blockchain (such as Ethereum or Moonriver) and a completely private blockchain (such as a local blockchain created with Ganache).
+This allows for greater security and privacy, as only authorized individuals (such as registered journalists) have the right to write to the blockchain.
+In addition to the blockchain, all media files and information are stored in a separate database, specifically a MongoDB instance. MongoDB is a document database that is highly available and scalable, making it well-suited for internet applications like ours. Its flexible schema approach is popular among development teams that use agile methodologies.\par
 
-The blockchain used in the Truthster project is Alastria, an open-source and permissioned blockchain. This type of blockchain is a hybrid between a public blockchain (such as Ethereum or Moonriver) and a completely private blockchain (such as a local blockchain created with Ganache).\\
-This allows for greater security and privacy, as only authorized individuals (such as registered journalists) have the right to write to the blockchain.\\
-
-In addition to the blockchain, all media files and information are stored in a separate database, specifically a MongoDB instance. MongoDB is a document database that is highly available and scalable, making it well-suited for internet applications like ours. Its flexible schema approach is popular among development teams that use agile methodologies.\\
-
-The Truthster project also includes a Node.js server that notifies the interviewer when the process is complete. A history of all interviews is also available to the interviewer through the mobile app, providing a convenient way to keep track of all interviews, explore past informations and handle other additional settings.\\
-
-The backend server and web app are designed to be ready for the cloud, making it easy for media creators to access the Truthster system from anywhere. To further automate the development and operations process, the back-office module is implemented using Docker containers, allowing for easy deployment and scaling of the system.\\
+The Truthster project also includes a Node.js server that notifies the interviewer when the process is complete. A history of all interviews is also available to the interviewer through the mobile app, providing a convenient way to keep track of all interviews, explore past informations and handle other additional settings.
+The backend server and web app are designed to be ready for the cloud, making it easy for media creators to access the Truthster system from anywhere. To further automate the development and operations process, the back-office module is implemented using Docker containers, allowing for easy deployment and scaling of the system.\par
 
 Overall, the Truthster project is a unique and innovative solution that combines the trust of human interactions with the reliability and security of blockchain technology, providing a way for media creators to easily verify and certify video interviews. By using blockchain technology, the Truthster project ensures that the proof of validity of media contents is tamper-proof, providing a new level of trust for audiences.
 
@@ -109,14 +105,14 @@ Overall, the Truthster project is a unique and innovative solution that combines
 
 \chapter{State of the art}
 
-The field of journalism and access to content is rapidly evolving, with new technologies and platforms emerging all the time. There is an increasing need for accurate, reliable, and verifiable information, as well as for tools that can help journalists to gather, produce, and distribute that information. At the same time, there is growing concern about the spread of misinformation and fake news, which makes it even more important to have tools that can help to verify the accuracy and authenticity of information. In response to these challenges, many new technologies and platforms have emerged that aim to improve the state of the art in journalism and content access, including tools for data journalism, fact-checking, and digital verification.\par
+The field of journalism and access to content is rapidly evolving, with new technologies and platforms emerging all the time. There is an increasing need for accurate, reliable, and verifiable information, as well as for tools that can help journalists to gather, produce, and distribute that information. At the same time, there is growing concern about the spread of misinformation and fake news\cite{DefiningFakeNews}, which makes it even more important to have tools that can help to verify the accuracy and authenticity of information. In response to these challenges, many new technologies and platforms have emerged that aim to improve the state of the art in journalism and content access, including tools for data journalism, fact-checking, and digital verification.\par
 Some example of these categories include:
 
 \begin{itemize} 
 
     \item \textbf{Factmata}\cite{factmata}: is a platform that uses AI and machine learning to provide digital verification and fact-checking services for news and other forms of content. It aims to combat misinformation and promote accuracy and credibility in journalism.
     \item \textbf{NewsWhip}\cite{NewsWhip}: Spike: is a tool designed for journalists, media organizations, and content creators to track and analyze the spread of news and content on social media. It provides real-time insights into what stories are resonating, who is driving engagement, and how audiences are interacting with different types of content.
-    \item \textbf{Veracity.ai}\cite{veracity.ai/}: is a technology company that provides machine learning-powered solutions for verification and fact-checking in journalism and other industries. It offers a suite of tools that automate the process of verifying the authenticity of digital content and evaluating the credibility of sources. These tools use advanced algorithms to analyze large datasets and identify patterns and anomalies that can indicate the presence of false or misleading information. Veracity.ai aims to help organizations improve the accuracy and trustworthiness of their content, and enhance the efficiency and scalability of their fact-checking processes.
+    \item \textbf{Veracity.ai}\cite{veracityAi}: is a technology company that provides machine learning-powered solutions for verification and fact-checking in journalism and other industries. It offers a suite of tools that automate the process of verifying the authenticity of digital content and evaluating the credibility of sources. These tools use advanced algorithms to analyze large datasets and identify patterns and anomalies that can indicate the presence of false or misleading information. Veracity.ai aims to help organizations improve the accuracy and trustworthiness of their content, and enhance the efficiency and scalability of their fact-checking processes.
     \item \textbf{Factcheck.org}\cite{Factcheck}: is a non-partisan, non-profit organization dedicated to promoting accuracy in public discourse. It fact-checks statements from political figures, advocacy groups, and others and provides evidence-based analysis to help people better understand the issues and inform their decisions.
     \item \textbf{Media Bias/Fact Check}\cite{mediabiasfactcheck}: is a website that aims to assess the bias and accuracy of news sources. It provides information about the political bias of various news sources as well as evaluating the accuracy of specific claims made by these sources.
     \item \textbf{Google News Lab Verification Toolkit}\cite{googleVerificationToolkit}: is a set of resources and guidelines for journalists to help verify information and fight against misinformation. It includes a range of tools such as reverse image search, video verification, and fact-checking databases.
@@ -336,6 +332,9 @@ At a high level we can see the blockchain as an aggretation of the following com
 
 In today's digital age, the amount of content that is shared and distributed on the internet is staggering. From text, images, and videos, to audio recordings and more, the internet is a vast repository of information. However, with the ease of creating and sharing digital content, comes the problem of ensuring its authenticity and validity. With the amount of misinformation and fake news that is circulating online, it has become increasingly important to have a way to verify the authenticity of digital content.\\
 
+
+
+
 With this in mind we have defined a diagram of the principal use cases that Truthster can help us with:
 
 
@@ -405,8 +404,8 @@ The Truthster system aims to provide a secure and efficient solution for the ver
 
 \chapter{Solution design}
 
-Truthster is composed of a client-server architecture, with a front-end web/mobile application for interacting with the interviewer and interviewee, and a back-end that interacts with the front-end and services such as the Alastria Blockchain and storage service (mongoDB).\\
-The process of using Truthster includes recording the audio/video material, logging into the mobile app, entering interview information and interviewee contact details, and choosing interview media. The app then authenticates the interviewer, calculates a hash of the media and uploads it to the storage server, sends a link to the interviewee, and stores the signed hash of the file in the blockchain via a smart contract on Alastria (AlastriaID library). After the previous steps are completed the interviewer is notified of the completion of the process, and can archive past interviews on their mobile app.\\
+Truthster is composed of a client-server architecture, with a front-end web/mobile application for interacting with the interviewer and interviewee, and a back-end that interacts with the front-end and services such as the Alastria Blockchain and storage service (mongoDB).\par
+The process of using Truthster includes recording the audio/video material, logging into the mobile app, entering interview information and interviewee contact details, and choosing interview media. The app then authenticates the interviewer, calculates a hash of the media and uploads it to the storage server, sends a link to the interviewee, and stores the signed hash of the file in the blockchain via a smart contract on Alastria (AlastriaID library). After the previous steps are completed the interviewer is notified of the completion of the process, and can archive past interviews on their mobile app.\par
 Basing our solution on the above description we can define the following components of the Truthster system:
 
 \begin{enumerate}
@@ -483,7 +482,7 @@ The AlastriaID framework is comprised of three open source libraries that provid
 
 \begin{itemize}
 
-    \item The \textbf{alastria-identity-lib\cite{alastriaIdentityLib}} library provides developers with a set of reusable components written in Typescript that can be used to build and manage digital identities from a server and mobile side. This includes functions for creating, managing, and storing digital identities, as well as managing access to personal data through JWT tokens.
+    \item The \textbf{alastria-identity-lib\cite{alastriaIdentityLib}} library provides developers with a set of reusable components written in Typescript that can be used to build and manage digital identities from a server and mobile side (its structure is represented in the Figure~\ref{fig:alastriaSCStructure}). This includes functions for creating, managing, and storing digital identities, as well as managing access to personal data through JWT tokens.
     \item The \textbf{alastriaID-truffle-contracts\cite{alastriaSmartContracts}} library provides developers with a set of smart contracts that can be used to deploy and manage digital identities on the Alastria blockchain. These contracts provide a Solidity implementation of a secure and verifiable infrastructure for storing and managing digital identities on any EVM compatible blockchain, and can be easily integrated into other applications and services to achieve a more complete usage of the framework.
     \item The \textbf{alastria-identity-example\cite{alastriaIdentityExample}} library provides developers with a sample implementation of the AlastriaID framework, demonstrating how the various components of the platform can be used to build and deploy decentralized digital identities. This library can be used as a starting point for building custom solutions and integrating AlastriaID into other applications and services like what we are going to do with Truthster.
 
@@ -501,6 +500,7 @@ The smart contracts used in the AlastriaID model are structured as follows where
     \centering
     \includegraphics[width=0.8\textwidth]{images/alastriaSmartContractsStructure.png}
     \caption{Alastria smart contracts structure}
+    \label{fig:alastriaSCStructure}
 \end{figure}
 
 The smart contracts act together in this schema and the major part of the actions are done through the AlastriaIdentityManager instance.\par
@@ -674,7 +674,7 @@ The process is represented in the Figure~\ref{fig:deleteIssuer}.
 %\part{Appendici}
 
 \chapter{Ganache}
-Ganache is a personal blockchain for Ethereum development you can use to deploy contracts, develop your applications, and run tests. It is a tool that allows developers to create a virtual Ethereum blockchain on their local machine, which is useful for testing and developing smart contracts. Ganache creates a virtual blockchain that runs locally on your machine, which is separate from the live Ethereum network. This allows developers to test their contracts in a simulated environment, without the need for real Ether or the risk of interacting with the live network. Ganache also provides a user-friendly interface for interacting with the blockchain and managing accounts, making it easy for developers to test and debug their contracts.\\
+Ganache is a personal blockchain for Ethereum development you can use to deploy contracts, develop your applications, and run tests. It is a tool that allows developers to create a virtual Ethereum blockchain on their local machine, which is useful for testing and developing smart contracts. Ganache creates a virtual blockchain that runs locally on your machine, which is separate from the live Ethereum network. This allows developers to test their contracts in a simulated environment, without the need for real Ether or the risk of interacting with the live network. Ganache also provides a user-friendly interface for interacting with the blockchain and managing accounts, making it easy for developers to test and debug their contracts.\par
 
 Some possible disadvantages of using Ganache include:
 
@@ -713,6 +713,9 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
 %% Nel caso di bibliografia manuale, usare l'environment thebibliography.
 \begin{thebibliography}{99}
 
+    \bibitem{DefiningFakeNews}
+    Edson C. Tandoc Jr., \href{https://www.tandfonline.com/doi/abs/10.1080/21670811.2017.1360143}{Defining “Fake News”}
+
     \bibitem{Why Proof-of-Work Is Not Viable in the Long-Term}
     Michael Zochowski, \href{https://medium.com/logos-network/why-proof-of-work-is-not-viable-in-the-long-term-dd96d2775e99}{Why Proof-of-Work Is Not Viable in the Long-Term}
 
@@ -725,7 +728,7 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
     \bibitem{NewsWhip}
     NewsWhip, \href{https://www.newswhip.com/}{NewsWhip}
 
-    \bibitem{veracity.ai}
+    \bibitem{veracityAi}
     Veracity.AI, \href{https://veracityai.com/en/}{veracity.ai}
 
     \bibitem{Factcheck}
