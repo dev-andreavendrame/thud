@@ -345,7 +345,7 @@ If a user decides to revoke their consent for an interview or the use of their d
 There have been several cases where issues with handling consent for interviews have led to legal or other significant problems. For example, in 2018, the New York Times published an interview with a man who claimed to be a witness to a sexual assault by Supreme Court Justice Brett Kavanaugh\cite{accusationBrettKavanaugh}. However, it later emerged that the man had not been a direct witness to the assault, and that the Times had not adequately verified his account. This led to significant criticism of the newspaper, as well as questions around the handling of the interviewee's consent and the accuracy of the information presented.
 In another example, in 2019, a journalist from the New York Times conducted an interview with a woman who accused the musician Ryan Adams of sexual misconduct\cite{accusationRyanAdams}. However, it was later revealed that the journalist had shared a copy of the interview transcript with Adams' lawyers without the interviewee's consent. This led to concerns around privacy and journalistic ethics, as well as potential legal repercussions for the journalist and the newspaper.\par
 In both of these cases, issues with handling consent for interviews led to significant problems, including questions around journalistic ethics, legal challenges, and reputational damage.\par
-As such, ensuring that proper procedures are in place for handling consent for interviews is essential to maintaining the trust of interviewees and audiences. Journalists and other content creators must be transparent about how interview data will be used and shared, and ensure that interviewees have a clear understanding of how their data will be protected. This includes obtaining clear and informed consent from interviewees prior to conducting the interview, and following established data protection practices when handling and storing interview data.
+As such, ensuring that proper procedures are in place for handling consent for interviews is essential to maintaining the trust of interviewees and audiences. Journalists and other content creators must be transparent about how interview data will be used and shared, and ensure that interviewees have a clear understanding of how their data will be protected. This includes obtaining clear and informed consent\cite{informedConsent} from interviewees prior to conducting the interview, and following established data protection practices when handling and storing interview data.
 In addition, it's important for journalists and content creators to consider the potential legal and ethical implications of their work, including issues related to privacy, defamation, and accuracy. This means taking steps to verify the accuracy of interview data, avoiding any misrepresentations or misleading statements, and respecting the privacy rights of interviewees.
 Ultimately, the responsible handling of consent for interviews requires a commitment to upholding ethical standards and best practices, as well as ongoing education and training to stay up to date with the latest developments in data protection and privacy. By prioritizing these concerns, journalists and content creators can help to ensure that their work is accurate, reliable, and trustworthy, and that they are able to maintain the trust of their audiences and the public.
 
@@ -373,14 +373,37 @@ Similarly, in 2018, the Marriott hotel chain announced that hackers had gained a
 Given the prevalence of data breaches and other cybersecurity threats, there is a growing need for a more secure and trustworthy credential management system. One potential solution is the use of blockchain technology, which offers a highly secure and decentralized platform for managing sensitive data. With a blockchain-based credential management system, users can store their credentials and other personal information in an encrypted and tamper-proof digital ledger, where it can be accessed only by authorized parties. This would greatly reduce the risk of data breaches and other security issues, while also offering a more convenient and user-friendly experience for the end-user. Additionally, the use of blockchain technology could help to establish greater trust and transparency in online transactions and interactions, helping to build a more secure and trustworthy digital environment.
 
 \subsection{Truthster use case diagram}
-With this in mind we have defined a diagram of the principal use cases that Truthster can help us with:
 
+In the problem analysis that we have discussed above emerges that about the Truthster system, two main roles are identified: the interviewer and the interviewee. The interviewer is the person who conducts the interview and creates the content, while the interviewee is the person who is being interviewed and is the subject of the content.
+While there is a third role, the user who accesses the content, this role is less central to the system's construction and functionality. The focus is on ensuring the authenticity and accuracy of the content by establishing practices that guarantee the accuracy of the work and obtaining consent from interviewees before publishing any content related to them.
+In addition to these roles, the use of blockchain technology is also being explored as a potential solution for secure and trustworthy credential management, which would further enhance the integrity and authenticity of the content.\par
+
+Using this overview, we have identified and illustrated the primary use cases of Truthster in the Figure~\ref{fig:useCaseDiagram}.
+The use case diagram provides a comprehensive understanding of how the interviewer and the interviewee interact with the Truthster system to accomplish their goals. Each use case describes a specific functionality or action that the system can perform or that the users can undertake. These use cases outline the flow of events, preconditions, post-conditions, and alternate scenarios that can occur during the interaction between the actors and the system. In the next section we will detail a bit every use case in order to understand better the main action that the actors can accomplish witht the help of the Truthster system.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/truthster_use_cases.png}
     \caption{Truthster main use cases}
+    \label{fig:useCaseDiagram}
 \end{figure}
+
+From the interviewer perspective we have:
+\begin{itemize}
+    \item \textbf{Authentication}: to ensure secure access to the Truthster platform, the system must authenticate the interviewer's identity before allowing them to use its features. This involves verifying the interviewer's credentials and checking their validity on-chain using blockchain technology. 
+    \item \textbf{Create new project}: to create a new interview project on the Truthster platform, an interviewer must provide relevant information such as the interview date, related documents, and general project details, as well as the terms of the agreement with the interviewee. The Truthster system generates the agreement according to GDPR guidelines and ensures the privacy information is secure.
+    \item \textbf{Add interview media}: once an interview is conducted on the Truthster platform, the output can be in the form of video, audio, or another format. To add this media to an existing project, the interviewer must be able to access the project and upload the media files to the system at a later stage.
+    \item \textbf{Generate an activation link}: to ensure that the interviewee can access the interview media files and other relevant information associated with a specific project on the Truthster platform, the interviewer must be able to generate an activation link that refers to the project. This activation link is generated at the end of the interview and is sent to the interviewee to provide them with secure access to the relevant project. The interviewer can specify the project to which the activation link refers, ensuring that the interviewee can view the appropriate media files and information.
+    \item \textbf{Send embedded activation link}: to ensure the interviewee can access the activation link generated for a specific project, Truthster must be able to send the activation link to the interviewee through different channels, including email, mobile message, or a QR code. By providing different methods of sending the activation link, the platform can cater to the different preferences of the interviewees and ensure that they can access the link securely and conveniently.
+\end{itemize}
+
+From the interviewee perspective we have:
+\begin{itemize}
+    \item \textbf{Read report}: once the interviewer generates a report regarding the terms and conditions of the interview through the Truthster platform, the interviewee must have a secure and user-friendly way to access and read the report.
+    \item \textbf{Give authorization to publish the interview}: to ensure compliance with relevant regulations and protect the privacy of interviewees, Truthster must provide a secure and user-friendly way for the interviewee to give authorization for publishing the interview. The platform must enable the interviewee to provide their consent easily, while also providing them with all the necessary information and credentials to make an informed decision.
+    \item \textbf{Revoke interview consensus}: to comply with relevant regulations and ensure privacy protection, Truthster must provide a secure and user-friendly way for the interviewee to revoke their consent to publish the interview.
+\end{itemize}
+
 
 \begin{itemize}
 
@@ -817,6 +840,10 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
 
     \bibitem{marriotDataBreach}
     CSO United States, \href{https://www.csoonline.com/article/3441220/marriott-data-breach-faq-how-did-it-happen-and-what-was-the-impact.html}{Marriott data breach FAQ: How did it happen and what was the impact?}
+    
+    \bibitem{informedConsent}
+    American Cancer Society, \href{https://www.cancer.org/treatment/treatments-and-side-effects/planning-managing/informed-consent/what-is-informed-consent.html}{What Is Informed Consent?}
+    
     %% Alastria
 
     \bibitem{DID}
