@@ -249,7 +249,7 @@ At a high level we can see the blockchain as an aggretation of the following com
 
     \subsection{PoW vs PoS}
 
-    Proof of Stake (PoS) and Proof of Work (PoW) are two consensus algorithms used to secure and validate transactions on a blockchain network. Both PoS and PoW have their own advantages and disadvantages and play a critical role in maintaining the integrity of a blockchain network. In this comparison, we will examine the key differences between PoS and PoW, their pros and cons, and how they impact the overall performance and security of a blockchain network.\par
+    Proof of Stake (PoS) and Proof of Work (PoW) are two consensus algorithms used to secure and validate transactions on a blockchain network. Both PoS and PoW have their own advantages and disadvantages\cite{edChainPowvsPos} and play a critical role in maintaining the integrity of a blockchain network. In this comparison, we will examine the key differences between PoS and PoW, their pros and cons, and how they impact the overall performance and security of a blockchain network.\par
 
     Proof-of-Work (PoW) and Proof-of-Stake (PoS) are two consensus algorithms used to validate transactions on a blockchain network. They are used to secure the network against malicious attacks and ensure that every node in the network is in agreement about the state of the blockchain. The primary difference between PoW and PoS lies in the way that validators are chosen to add new blocks to the blockchain.
     PoW is used by networks such as Bitcoin and Ethereum to validate transactions. In a PoW system, nodes called miners compete to solve complex mathematical problems in order to add a new block to the blockchain. The first miner to solve the problem is rewarded with newly minted coins and fees from transactions included in the block. The computational effort required to solve the problem provides proof that the miner has put in the effort to validate the transactions, hence the name Proof-of-Work.
@@ -436,22 +436,79 @@ The Truthster system aims to provide a secure and efficient solution for the ver
 
 After outlining the various use cases for Truthster and identifying the functional and non-functional requirements necessary for the system, the next step is to dive into the solution design. In the upcoming chapter, we will delve into the technical details of the system, exploring different available tools that can be utilized to build a robust and reliable platform. The solution design will take into consideration the previously outlined requirements and use cases, ensuring that the resulting system will be able to handle the desired functionality while meeting the necessary standards for usability, performance, security, and compliance. Additionally, the chapter will cover the various pros and cons associated with each tool or technology being considered, providing an in-depth analysis of the different options available to the project team. By examining these various factors and making informed decisions about the technical design, the project team can ensure that the resulting Truthster system will be a powerful and effective tool for managing and certifying media content.
 
+
+
+
+
+
+
+
 \chapter{Solution design}
 
-Truthster is composed of a client-server architecture, with a front-end web/mobile application for interacting with the interviewer and interviewee, and a back-end that interacts with the front-end and services such as the Alastria Blockchain and storage service (mongoDB).\par
-The process of using Truthster includes recording the audio/video material, logging into the mobile app, entering interview information and interviewee contact details, and choosing interview media. The app then authenticates the interviewer, calculates a hash of the media and uploads it to the storage server, sends a link to the interviewee, and stores the signed hash of the file in the blockchain via a smart contract on Alastria (AlastriaID library). After the previous steps are completed the interviewer is notified of the completion of the process, and can archive past interviews on their mobile app.\par
-Basing our solution on the above description we can define the following components of the Truthster system:
+After conducting a thorough analysis of the current state of the art in the field, we have designed a Truthster possible system solution that includes a mobile/web app, a back-end module, a blockchain node, and a database service (Figure~\ref{fig:truthsterArchitecture}). The mobile/web app serves as the primary user interface, allowing users to manage their projects and media. The back-end module, implemented in Node.js, handles the communications between the mobile app, blockchain node, and database via REST APIs, ensuring seamless integration between these components. The blockchain node, based on Alastria technology, provides secure access to the blockchain infrastructure, ensuring data integrity and authentication. The database service, implemented using MongoDB, serves as the primary storage mechanism for all interview-related data. In a later stage of development, we plan to include an additional SQL database to store data about interviewers and interviewees.\par
+In the upcoming sections, we will provide a detailed analysis of the design choices we made for each component of the Truthster system.
+
+\begin{itemize}
+
+    \item \textbf{The front-end} of the Truthster system, a mobile/web app, is responsible for providing a user-friendly interface for the interviewer and interviewee to interact with the system. This includes functions such as recording audio and video material, inputting interview information and contact details, and selecting interview media. The front-end also handles authentication of the interviewer to ensure that only authorized personnel have access to the system.
+    \item \textbf{The back-end} of the Truthster system acts as the central hub for all data and communication between the front-end and external services such as the Alastria blockchain and storage service. It receives and processes data from the front-end, including interview media and metadata, and communicates with the external services to securely store and verify the data. The back-end also handles notifications and archiving of past interviews on the interviewer's mobile app.
+    \item \textbf{The Alastria blockchain} is a key component of the Truthster system, providing a decentralized platform for storing and verifying the authenticity and integrity of media files. The blockchain creates a tamper-proof record of the hashes of the media files, which can be used to provide proof of validity in legal proceedings. The blockchain also provides a way to securely store and manage personal data and consent agreements, in compliance with GDPR regulations.
+    \item \textbf{The storage service} is responsible for storing the interview media files, metadata, and GPS positions of the interviewer and interviewee. It ensures that all data is securely stored and encrypted, and provides a way to easily search and retrieve interview data as needed. The storage service also supports backup and disaster recovery, ensuring that interview data is not lost in the event of a system failure or data loss.
+
+\end{itemize}
+
+Overall, these four components work together to provide a secure, reliable, and user-friendly platform for conducting and verifying interviews. The combination of front-end, back-end, blockchain, and storage service provides a complete solution that meets the functional and non-functional requirements of the Truthster system.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/technicalArchitectureStructuralView.png}
+    \caption{Truthster system architecture}
+    \label{fig:truthsterArchitecture}
+\end{figure}
+
+
+\section{Front-end}
+
+The user interface (UI) of a system is a fundamental component that plays a significant role in the overall success and adoption of the software application by journalists and their audience. When designing the UI of a system, it is important to consider the available options and make an informed decision that meets the specific needs of the project.\par
+In the case of the Truthster system, the chosen UI technology is a mobile/web app that allows users to manage their projects and media with ease. This type of implementation provides several advantages and disadvantages that should be considered when making the final decision.
+
+Pros:
 
 \begin{enumerate}
-    \item The front-end, which is a web/mobile application that interacts with the interviewer and interviewee. It uses REST APIs to exchange data with the back-end cloud.
-    
-    \item The back-end, which is a server that interacts with the front-end and with external services such as the Alastria blockchain and storage service.
 
-    \item The Alastria Blockchain, which is a decentralized platform that provides proof of validity for the media files.
+    \item \textbf{Accessibility}: one of the most significant advantages of a mobile/web app UI is that it can be accessed from anywhere and at any time, making it highly convenient for users to access the platform features.
+    \item \textbf{User-friendly}: the mobile/web app UI is designed to be intuitive and easy to navigate, which makes it easy for users to use the platform features without requiring any technical knowledge.
+    \item \textbf{Easy updates}: updating a mobile/web app UI is much simpler and quicker than traditional software updates, which means that any changes or improvements can be implemented quickly and easily adopting an agile development methodology.
+    \item \textbf{Speed}: mobile/web app user interfaces (UIs) can offer a fast and responsive user experience as the processing is handled on the client-side, allowing for immediate user feedback and reducing the need for time-consuming server requests.
 
-    \item The storage service, which stores the interview media files, metadata, and GPS positions of the interviewer and interviewee.
-    
 \end{enumerate}
+
+Cons:
+
+\begin{enumerate}
+    
+    \item \textbf{Limited functionality}: a mobile/web app UI is limited by the capabilities of the devices they run on, which means they may not be able to provide the same functionality as a desktop application.
+    \item \textbf{Screen size}: the limited screen size of mobile devices can be a disadvantage for some users who may need more detailed information.
+    \item \textbf{Compatibility}: the mobile/web app UI must be compatible with a wide range of devices and operating systems, which can be challenging and time-consuming to maintain.
+    \item \textbf{Security}: mobile/web app UIs can be more susceptible to security vulnerabilities and attacks, which requires additional security measures to be implemented to ensure user data is secure.
+
+\end{enumerate}
+
+In conclusion, the mobile/web app UI is a suitable choice for the Truthster system, as it provides a convenient, user-friendly, and responsive user experience having downsides that are not much impacful on our design solution.
+
+\section{Storaging service}
+
+The classic solution for providing a storage service with a database is to use a relational database management system (RDBMS\cite{RDBMS}). An RDBMS is a type of database management system that is based on the relational model, which organizes data into one or more tables, with a unique key identifying each row. RDBMSs are popular because they provide a powerful and flexible way to store and manage data, with a wide range of features and capabilities. Some popular examples of RDBMSs include MySQL\cite{mySQL}, Oracle\cite{oracleDb}, Microsoft SQL Server\cite{microsoftSQL}, and PostgreSQL\cite{postgreSQL}. These databases are widely used in a variety of applications and industries, ranging from small-scale web applications to large-scale enterprise systems. One advantage of using an RDBMS is that they provide strong data integrity, with the ability to enforce complex relationships and constraints between tables. However, they can be complex to set up and maintain, and may not be well-suited for handling large volumes of unstructured or non-relational data.\par
+Now let's shift our focus to NoSQL databases, which provide a different approach to data storage compared to traditional relational databases. NoSQL databases are a type of non-relational database that provide a flexible and scalable alternative to traditional SQL databases. Unlike SQL databases, NoSQL databases are designed to handle large amounts of unstructured or semi-structured data, making them well-suited for use cases such as web applications, mobile applications, and big data analytics. This type of databases can store data in various formats, such as document-oriented, key-value, column-family, and graph databases and this allows for a high degree of flexibility in data modeling, making it easier to adapt to changing business requirements. Additionally, NoSQL databases can provide high availability and scalability by distributing data across multiple nodes, making them an ideal choice for applications that require high performance and reliability. Some of the most popular NoSQL databases include MongoDB\cite{mongoDB}, Cassandra\cite{cassandra}, Redis\cite{redis}, and CouchDB\cite{apacheCouch}.\par
+In designing the data storage component for the Truthster system, a decision was made to adopt a NoSQL database as the primary storage solution. MongoDB was chosen due to its scalability and flexibility in handling data with varying structures, which is a key requirement of the system given that the data collected during interviews may come in different formats. The use of a NoSQL database like MongoDB also allows for faster data retrieval and processing due to its ability to horizontally scale out to multiple nodes. While a NoSQL database is the primary choice, it is important to note that a relational database may be needed in the future to store additional data about interviewers and interviewees. As such, plans have been made to incorporate a relational option in future developments of the system to complement the NoSQL database. This hybrid approach to data storage will ensure that the system can handle both structured and unstructured data, while also maintaining scalability, flexibility, and maintainability.
+
+\section{Back-end}
+
+
+
+
+
+
 
 \chapter{Alastria}
 
@@ -459,7 +516,7 @@ Alastria is a non-profit association that operates a nation-wide, enterprise-gra
 
 \section{AlastriaID}
 
-AlastriaID is a digital identity project by the Identity Commission of Alastria. It aims to provide a legal and technical framework for sovereign digital identity projects in the Eurozone, following the guidelines of the eIDAS Regulation and the e-Identity Workshop Report of the EU Blockchain Observatory and Forum. The AlastriaID model is designed to work with the Alastria Standards Commission to standardize processes and methodologies and is designed to be complementary with the General Data Protection Regulation (GDPR).
+AlastriaID is a digital identity project by the Identity Commission of Alastria. It aims to provide a legal and technical framework for sovereign digital identity projects in the Eurozone, following the guidelines of the EIDAS Regulation and the e-Identity Workshop Report of the EU Blockchain Observatory and Forum. The AlastriaID model is designed to work with the Alastria Standards Commission to standardize processes and methodologies and is designed to be complementary with the General Data Protection Regulation (GDPR).
 
 From a more technical perspective AlastriaID is a decentralized identity framework that allows users to securely store and manage their personal information in a decentralized environment. The framework is based on a set of smart contracts, that have been written in Solidity allowing to deploy them on any EVM compatible blockchain, and JWT (JSON Web Tokens), which are compact and self-contained data structures used for transmitting information between parties. 
 
@@ -581,7 +638,7 @@ The following are lists of the key smart contracts used in the AlastriaID platfo
     \hline
     Smart Contract & What is does\\ [0.5ex] 
     \hline\hline
-    Eidas.sol & It manages Eidas level of assurance for credentials \\ 
+    EIDAS.sol & It manages EIDAS level of assurance for credentials \\ 
     \hline
     Owned.sol & It assures that just the account which deployed a contract can update the version \\ 
     \hline
@@ -602,39 +659,28 @@ The following are lists of the key smart contracts used in the AlastriaID platfo
 
 \end{table}
 
-\section{AlastriaID tasks}
+\section{AlastriaID - Primary functions}
 
-In this section we will explain the main tasks that we can go through suing the AlastriaID framework.
+In this section, we will outline the primary functions that can be performed using the AlastriaID framework.
 In particular we will explain how to:
 
 \begin{enumerate}
 
+    \item Create the first entity of the framework
+    \item Create a brand new AlastriaID
     \item Authenticate with AlastriaID
-    \item Create a new entity the will be available in the ecosystem and give them its role
-    \item Create, delete and manage credentials of an entity
-    \item Create, delete and manage presentations of an entity
-    \item Verify credentials in order to give access to a service
+    \item Create a new entity, upgrade its role (referring to the creation of a new issuer) and delete the added role
+    \item Create credentials for an entity
+    \item Create a new presentations for an entity, update and check its status
 
 \end{enumerate}
 
 All of the above mentioned tasks involve a technical library that allows to store private and public key in special encrypted files: the keystores. This library called \textbf{keythereum} is available on Github here\cite{keythereum}. Since the library involves a lot of boilerplate code we will handle it at a high level. We will refer to it when we need to recover a public or private key by simply writing "load Public key" or "load Private key".
 For our explanations we will consider a scenario where Bob, an individual, wants to subscribe to an online newspaper. The online newspaper acts as the service provider and wants to ensure that Bob is who he claims to be before granting access to its content. To verify Bob's identity, the online newspaper turns to Truthster, an issuer that specializes in identity verification. Truthster uses AlastriaID to verify Bob's identity by issuing a digital certificate that confirms Bob's personal information. Bob, as a subject in the AlastriaID system, can use his digital identity to access the online newspaper's service and other services that use AlastriaID. In this scenario, AlastriaID provides a secure and efficient solution for the online newspaper to verify Bob's identity and maintain the privacy and security of personal information. Additionally, by using AlastriaID, Truthster can ensure the validity of the digital certificate it issues, making it a trusted issuer in the eyes of the online newspaper. This real-world scenario highlights the potential of AlastriaID in facilitating secure and efficient identity verification processes in a variety of contexts and how it can be applied to our specific use case: Truthster.
 
-\subsection{Create the first entity of the ecosystem}
+\subsection{Create the first entity of the framework}
 
 In AlastriaID, there is a first entity known as the root entity, which has the permission to create other entities within the platform. The root entity is created when the AlastriaID smart contracts are first deployed, in our framework through the AlastriaNameService contract. This root entity is responsible for creating other entities, such as subjects, service providers, and issuers, within the AlastriaID platform. The root entity is designed to provide a secure and centralized mechanism for managing entities within the platform, ensuring that only authorized entities have the ability to create and manage digital identities and personal data.
-
-\subsection{Authentication with AlastriaID}
-
-In Truthster, users can authenticate themselves on the system using a user-friendly app. This app allows users to easily create and manage their digital identities, as well as control access to their personal data.
-When Bob wants to authenticate he sends to Truthster a login request. After receiving the request the Truthster backend generates an Alastria Token with all the information needed (expiring date, Truthster DID, etc...), signs and sends it back to the Bob. At this point Bob verify the authenticity of the AT with the Truhster public key. If everything is ok he procedes by creating an Alastria Session Token that is then signed with its private key and sent to the Truthster backend. After receiving the signed AST the backend verifies its authenticity with Bob public key and then if everything is fine the user is authenticated and can access the services provided by Truthster.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/authenticationAlastriaID.png}
-    \caption{Authentication process with AlastriaID}
-\end{figure}
-
 
 \subsection{Create an AlastriaID}
 
@@ -650,12 +696,25 @@ The process is represented in the Figure~\ref{fig:addAlastriaID}.
 
 \end{figure}
 
+\subsection{Authentication with AlastriaID}
+
+In Truthster, users can authenticate themselves on the system using a user-friendly app. This app allows users to easily create and manage their digital identities, as well as control access to their personal data.
+When Bob wants to authenticate he sends to Truthster a login request. After receiving the request the Truthster backend generates an Alastria Token with all the information needed (expiring date, Truthster DID, etc...), signs and sends it back to the Bob. At this point Bob verify the authenticity of the AT with the Truhster public key. If everything is ok he procedes by creating an Alastria Session Token that is then signed with its private key and sent to the Truthster backend. After receiving the signed AST the backend verifies its authenticity with Bob public key and then if everything is fine the user is authenticated and can access the services provided by Truthster.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/authenticationAlastriaID.png}
+    \caption{Authentication process with AlastriaID}
+\end{figure}
+
+
 \subsection{Create a new entity}
 
-In order to create a new entity on the Alastria platform, the Truthster backend must first determine the role that this entity will play. By default, any new entity that is created will be classified as a Subject. However, if necessary, this entity can be upgraded to a Service Provider or Issuer through a transaction sent by another identity (it can be the first identity of the platform or an entity with a higher Eidas level).
+In order to create a new entity on the Alastria platform, the Truthster backend must first determine the role that this entity will play. By default, any new entity that is created will be classified as a Subject. However, if necessary, this entity can be upgraded to a Service Provider or Issuer through a transaction sent by another identity (it can be the first identity of the platform or an entity with a higher EIDAS level).
 Once the role of the entity has been established, the Truthster backend builds the transaction "alastriaNameService.addEntity" which includes all the relevant information about the new entity. This information may include the entity's name, its AlastriaID, and any other necessary details. After assembling this information, the backend signs the transaction and sends it to the Alastria network for processing.
 Alastria then performs the necessary checks and validations to ensure that the transaction is valid and that the new entity can be added to the platform. If the transaction is successful, Alastria sends a transaction receipt back to the Truthster backend, indicating that the entity has been successfully added to the platform.
-The process is represented in the Figure~\ref{fig:createNewGeneralEntity}.
+The process is represented in the Figure~\ref{fig:createNewGeneralEntity}.\par
+\textit{Notes}: when we create a new entity the subject of this operation must already have an AlastriaID since create the entity is a further step in the platform processes.
 
 \begin{figure}
     \centering
@@ -666,7 +725,7 @@ The process is represented in the Figure~\ref{fig:createNewGeneralEntity}.
 
 \subsection{Add new issuer}
 
-To create a new issuer on the AlastriaID platform, the Truthster backend, which is itself an issuer and has the ability to create other issuers, must perform a series of steps. First, it creates a transaction called "identityManager.addIdentityIssuer," which includes the DID of the new issuer to be created and its Eidas level as parameters. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is then executed, and the Truthster backend receives the transaction receipt as confirmation. Ultimately, this process allows the creation of a new issuer on the Alastria blockchain platform, facilitated by the Truthster backend as the initial issuer and transaction creator.
+To create a new issuer on the AlastriaID platform, the Truthster backend, which is itself an issuer and has the ability to create other issuers, must perform a series of steps. First, it creates a transaction called "identityManager.addIdentityIssuer," which includes the DID of the new issuer to be created and its EIDAS level as parameters. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is then executed, and the Truthster backend receives the transaction receipt as confirmation. Ultimately, this process allows the creation of a new issuer on the Alastria blockchain platform, facilitated by the Truthster backend as the initial issuer and transaction creator.
 The process is represented in the Figure~\ref{fig:addNewIssuer}
 
 \begin{figure}
@@ -678,7 +737,7 @@ The process is represented in the Figure~\ref{fig:addNewIssuer}
 
 \subsection{Delete exisiting issuer}
 
-To delete a specific issuer with a low Eidas level on the AlastriaID platform, the Truthster backend, which is an issuer with the authority to delete other issuers, must follow a series of steps. First, it creates a transaction called "identityManager.deleteIdentityIssuer," which takes the DID of the issuer to be deleted as a parameter. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is executed, and the Truthster backend receives the transaction receipt as confirmation of the deletion. However, if the issuer with the given DID does not exist, the transaction is reverted with the related error. Overall, the deletion process is facilitated by the Truthster backend, which creates and signs the transaction to remove the specified issuer on the Alastria blockchain platform.
+To delete a specific issuer with a low EIDAS level on the AlastriaID platform, the Truthster backend, which is an issuer with the authority to delete other issuers, must follow a series of steps. First, it creates a transaction called "identityManager.deleteIdentityIssuer," which takes the DID of the issuer to be deleted as a parameter. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is executed, and the Truthster backend receives the transaction receipt as confirmation of the deletion. However, if the issuer with the given DID does not exist, the transaction is reverted with the related error. Overall, the deletion process is facilitated by the Truthster backend, which creates and signs the transaction to remove the specified issuer on the Alastria blockchain platform.
 The process is represented in the Figure~\ref{fig:deleteIssuer}.
 
 \begin{figure}
@@ -688,12 +747,59 @@ The process is represented in the Figure~\ref{fig:deleteIssuer}.
     \label{fig:deleteIssuer}
 \end{figure}
 
+\subsection{Create new credentials}
+
+Credentials are an important feature of the AlastriaID platform that allow users to access services provided by service providers. Credentials are essentially certifications issued by an authority on the AlastriaID platform that verify a user's identity or some other relevant piece of information. For example, a credential might confirm that a user is over the age of 18 or has completed a certain training program.\par
+In this example (Figure~\ref{fig:updateSubjectPresentation}), to create new credentials, the subject (Bob) requests the issuer (Truthster back-end) to generate the required credentials. The issuer creates a token with the credentials and signs it using its private key. To allow the platform to verify the approval of the credentials, the signed token is hashed along with Bob's DID. The issuer sends the hashed credentials to Bob, who builds a transaction that includes the hashed credentials and the URI to the credentials as parameters. After signing the transaction with his private key, Bob sends the transaction bytecode to the Truthster back-end, which then sends the transaction to the Alastria blockchain. Once the transaction is confirmed, the Alastria blockchain sends the transaction receipt back to the Truthster back-end. By following these steps, the subject can obtain the required credentials from the issuer and add them to the Alastria blockchain for verification by service providers.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{images/createNewGeneralEntity.png}
-    \caption{Creation process for new entities on-chain}
+    \includegraphics[width=0.8\textwidth]{images/createSubjectCredentials.png}
+    \caption{Creation of new Subject credentials}
+    \label{fig:createSubjectCredentials}
 \end{figure}
+
+\subsection{Create a new presentation}
+
+A presentation is a collection of user credentials that are required by a service provider in order for a subject to access a specific service. The Alastria network provides a way to create, manage, and update these presentations using AlastriaID. In this guide, we will walk through the process of creating a presentation, updating it, and checking its status.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/createSubjectPresentation.png}
+    \caption{Creation of a Subject presentation with AlastriaID}
+    \label{fig:createSubjectPresentation}
+\end{figure}
+
+To create a presentation (Figure~\ref{fig:createSubjectPresentation}), the subject (Bob) needs to first authenticate themselves with their AlastriaID. The service provider (Truthster back-end) sends a presentation request to Bob, specifying the credentials that are required for the presentation. Bob then creates a SubjectPresentationToken (SPT) that contains the required credentials, and signs it using his private key. Next, he creates a presentation hash by combining the signed token (sSPT) with his DID. Bob then builds a transaction to add this presentation on Alastria, specifying the presentation hash and the URI of the presentation. After signing the transaction, Bob sends the bytecode to the Truthster back-end. The Truthster back-end then forwards the transaction to Alastria for execution and receives the transaction receipt back from Alastria.
+
+\subsection{Update a presentation status}
+
+To update an invalid or revoked presentation on the Alastria network (Figure~\ref{fig:updateSubjectPresentation}), the presentation owner (Bob) must build a transaction using the presentationRegistry.updateSubjectPresentation method. This transaction specifies the presentation to update and its new status as parameters. After signing the transaction, Bob sends it to the Truthster back-end. The Truthster back-end then forwards the transaction to Alastria, which executes the transaction. Once the transaction has been executed, Alastria sends the transaction receipt back to the Truthster back-end for confirmation. By following these steps, the owner of the presentation can ensure that service providers on the Alastria network only accept valid presentations.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/updateSubjectPresentation.png}
+    \caption{Update a Subject presentation status}
+    \label{fig:updateSubjectPresentation}
+\end{figure}
+
+\subsection{Check a presentation status}
+
+To check the status of a presentation on the Alastria network (Figure~\ref{fig:checkSubjectPresentationStatus}), a service provider can build a transaction using the presentationRegistry.getSubjectPresentationStatus method, including the subject presentation hash and subject DID as parameters. The Truthster back-end then sends this transaction to Alastria to execute, and upon completion, Alastria sends the transaction receipt back to the Truthster back-end for confirmation. By following these steps, a service provider can verify the status of a presentation and ensure that the subject attempting to access the service has valid credentials.
+\textit{Notes}: in this process there is no need for signing a transaction since we are not writing on the Alastria blockchain, but just reading existing values.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/checkSubjectPresentationStatus.png}
+    \caption{Update a Subject presentation status}
+    \label{fig:checkSubjectPresentationStatus}
+\end{figure}
+
+\subsection{AlastriaID - Summary}
+
+After analyzing the most significant features offered by AlastriaID we can say that it is a powerful framework that provides a range of features for the management of identities and credentials on the Alastria blockchain network. With AlastriaID, users can create, manage, and revoke digital identities, as well as manage and share digital credentials. The framework enables the creation of decentralized applications that leverage the trust and security of the blockchain. Among the features provided by AlastriaID are the creation of a user's digital identity, the management of digital credentials issued by trusted authorities, and the presentation of those credentials to service providers in order to access their services. The framework also enables the revocation of credentials when needed and allows for the creation of presentations that can be checked for their validity. With some additional smart contracts and features, AlastriaID can be used as the backbone of a product, such as the Truthster system, that offers secure and reliable management of digital identities and credentials.
+
+
 
 
 \chapter{Implementation}
@@ -774,6 +880,14 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
     \bibitem{googleVerificationToolkit}
     Google News Lab Verification Toolkit, \href{https://newsinitiative.withgoogle.com/resources/journalism/}{Journalism Resources}
 
+    \bibitem{EIDAS}
+    Wikipedia, \href{https://en.wikipedia.org/wiki/EIDAS}{EIDAS}
+
+    %% Blockchain
+
+    \bibitem{edChainPowvsPos}
+    edChain, \href{https://medium.com/@EdChain/pow-vs-pos-a-comparison-of-two-blockchain-consensus-algorithms-f3effdae55f5}{POW vs. PoS: a comparison of two blockchain consensus algorithms}
+
     \bibitem{EXP51Attack}
     Expanse was 51\% attacked, \href{https://gist.github.com/metalicjames/01222049f95f85df8c0eb253de54848b}{Expanse (EXP) was 51\% attacked}
 
@@ -821,6 +935,35 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
     \bibitem{informedConsent}
     American Cancer Society, \href{https://www.cancer.org/treatment/treatments-and-side-effects/planning-managing/informed-consent/what-is-informed-consent.html}{What Is Informed Consent?}
     
+    %% Solution Design
+
+    \bibitem{RDBMS}
+    OCI, \href{https://www.oracle.com/database/what-is-a-relational-database/}{What is a Relational Database (RDBMS)?}
+
+    \bibitem{mySQL}
+    MySQL, \href{https://dev.mysql.com/doc/}{Documentation}
+
+    \bibitem{oracleDb}
+    Oracle, \href{https://www.oracle.com/database/}{Database}
+
+    \bibitem{microsoftSQL}
+    Microsoft, \href{https://www.microsoft.com/it-it/sql-server}{Introduction to SQL Server 2022}
+
+    \bibitem{postgreSQL}
+    PostgreSQL, \href{https://www.postgresql.org/}{PostgreSQL: The World's Most Advanced Open Source Relational Database}
+
+    \bibitem{mongoDB}
+    MongoDB, \href{https://www.mongodb.com/}{MongoDB}
+
+    \bibitem{cassandra}
+    Apache, \href{https://cassandra.apache.org/_/index.html}{Cassandra}
+
+    \bibitem{redis}
+    Redis, \href{https://redis.io/docs/}{Documentation}
+
+    \bibitem{apacheCouch}
+    CouchDB, \href{https://docs.couchdb.org/en/stable/}{Documentation}
+
     %% Alastria
 
     \bibitem{DID}
