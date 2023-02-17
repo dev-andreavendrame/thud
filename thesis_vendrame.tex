@@ -595,7 +595,7 @@ The following section will provide a more in-depth look at these key features of
 
 \subsection{Alastria smart contracts structure}
 
-The smart contracts used in the AlastriaID model are structured as follows where each arrow represents a dependency:
+The smart contracts used in the AlastriaID model are structured in Figure~\ref{fig:alastriaSCStructure}, where each arrow represents a dependency of the type "contract A uses contract B":
 
 \begin{figure}
     \centering
@@ -676,17 +676,17 @@ In particular we will explain how to:
 
 \begin{enumerate}
 
-    \item Create the first entity of the framework
-    \item Create a brand new AlastriaID
-    \item Authenticate with AlastriaID
-    \item Create a new entity, upgrade its role (referring to the creation of a new issuer) and delete the added role
-    \item Create new credentials for an entity
-    \item Create a new presentations for an entity, update and check its status
+    \item Create the \textbf{first entity} of the framework
+    \item Create a brand new \textbf{AlastriaID}
+    \item \textbf{Authenticate} with AlastriaID
+    \item Create a \textbf{new entity}, upgrade its role (referring to the creation of a new issuer) and delete the added role
+    \item Create new \textbf{credentials} for an entity
+    \item Create a new \textbf{presentations} for an entity, update and check its status
 
 \end{enumerate}
 
-All of the above mentioned tasks involve a technical library that allows to store private and public key in special encrypted files: the keystores. This library called \textbf{keythereum} is available on Github here\cite{keythereum}. Since the library involves a lot of boilerplate code we will handle it at a high level. We will refer to it when we need to recover a public or private key by simply writing "load Public key" or "load Private key".
-For our explanations we will consider a scenario where Bob, an individual, wants to subscribe to an online newspaper. The online newspaper acts as the service provider and wants to ensure that Bob is who he claims to be before granting access to its content. To verify Bob's identity, the online newspaper turns to Truthster, an issuer that specializes in identity verification. Truthster uses AlastriaID to verify Bob's identity by issuing a digital certificate that confirms Bob's personal information. Bob, as a subject in the AlastriaID system, can use his digital identity to access the online newspaper's service and other services that use AlastriaID. In this scenario, AlastriaID provides a secure and efficient solution for the online newspaper to verify Bob's identity and maintain the privacy and security of personal information. Additionally, by using AlastriaID, Truthster can ensure the validity of the digital certificate it issues, making it a trusted issuer in the eyes of the online newspaper. This real-world scenario highlights the potential of AlastriaID in facilitating secure and efficient identity verification processes in a variety of contexts and how it can be applied to our specific use case: Truthster.
+All of the above mentioned tasks involve a technical library that allows to store private and public key in special encrypted files: the keystores. This library called \textbf{keythereum} is available on Github\cite{keythereum}. Due to the large amount of boilerplate code involved in the library, we will handle it at a higher level. In some scenarios, such as when an actor signs a token or a transaction, it is essential to remember that this action demands the actor to load the keystore, decrypt it with their password, and retrieve the private/public key associated with it. Although this process will not be explicitly mentioned in the system, it is a vital step that must be undertaken by the actor to accomplish certain tasks within the framework.\par
+In the upcoming sections, we will explore various scenarios that illustrate the functionality of the AlastriaID framework and how it can be leveraged within the Truthster system to accomplish tasks such as creating a new AlastriaID, managing credentials, and deleting roles. To make these scenarios more comprehensible, we will provide hypothetical role definitions, where the Truthster back-end will serve as both a service provider and issuer. We will also introduce a user named Bob, who will create a new AlastriaID, interact with the platform, and manage credentials and presentations. By using these "concrete" examples, we aim to provide a clearer understanding of how the AlastriaID framework can be utilized within the Truthster system.
 
 \subsection{Create the first entity of the framework}
 
