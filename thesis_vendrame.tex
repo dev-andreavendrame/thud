@@ -812,7 +812,49 @@ After analyzing the most significant features offered by AlastriaID we can say t
 
 
 
-\chapter{Implementation}
+\chapter{Implementation - Initial prototype}
+
+As a collaborative project, Truthster involves various entities, including the University of Udine, the University of Perugia, a journalist, and a few IT companies. Due to its complex and long-term nature, the entire system has not yet been completed. However, we have prepared an initial prototype that provides a basic outline of the platform's functionalities and features. This prototype represents a starting point for us to structure and develop the platform further in collaboration with our partners. It will allow us to gather feedback, test different functionalities, and make necessary adjustments to enhance the platform's usability, reliability, and security. This prototype will also help us to communicate our vision effectively to potential stakeholders and investors, thereby paving the way for the further development and deployment of the system. Although the prototype is not the finished product, it serves as a solid foundation for the development of the final product, ensuring that the platform meets the needs of its users and stakeholders.\par
+After providing a brief introduction, the following sections will delve into the details of how the initial prototype of Truthster is implementing its basic functionalities. Additionally, we will identify the missing components and explain how we plan to address them in order to meet both the functional and non-functional requirements of the system. Through this process, we aim to develop a comprehensive and reliable platform that can effectively address the needs of the journalism industry and provide a trustworthy and transparent source of information to the general public.
+
+\section{Prototype structure}
+
+Our prototype structure is designed to enable loosely coupled components, and we have accomplished this by using Docker\cite{docker} on a local virtual server located in the University of Udine. The system is composed of several containers, each representing a distinct service or function. The first container is an instance of a MongoDB database, where all the interview data and other related information is saved. In the second container, we have implemented our REST APIs, which are programmed to run on a Node.js server, as we have planned for the final solution. We have also created a third container that serves as a temporary interface, allowing us to interact with the APIs and MongoDB, and perform some basic operations. The Alastria node is already online, and it is provided by the Alastria Consortium, enabling us to take advantage of the blockchain technology in the prototype. This structure helps us to maintain modularity, scalability, and flexibility, and makes it easier for us to add, remove or modify components in the future as the project evolves. In Figure~\ref{fig:prototypeSchema} you can see how the prototype is structured.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/prototypeSchema.png}
+    \caption{Design of the Truthster system prototype}
+    \label{fig:prototypeSchema}
+\end{figure}
+
+\section{Prototype explanation}
+
+In this section, we will provide an in-depth analysis of how our prototype for Truthster works.\par
+In our prototype, as previously mentioned, we have three containers that reside on our server, along with a "Files folder" located outside the containers. This folder is encrypted and contains the interview files that are also encrypted since they are large and may be lost in case of a container reset. This is because containers have temporary memory that lasts only for their entire life. By storing the interview files in an encrypted folder outside the containers, we can ensure that the files are not lost and are easily accessible by the back-end and other system services.\par
+The React app container serves as the interface for users like Bob, who want to access the functions of the Truthster platform. Bob, a journalist, accesses the web app on his PC or mobile device, creates a new project related to the interview he wishes to conduct, and enters all the necessary interview information, such as GPS position, interviewee name, project name, location, and consent agreement. The project creation can be done before the interview as it is not a locked element. After confirming the project, it is sent as a JSON to the back-end container, which stores the data on the MongoDB instance using REST APIs.\par
+After Bob has finished the interview, he can load the related media onto the web app from his PC or mobile device. The media is then passed to the back-end container, where it is encrypted and stored in the "Files folder" on the server. A link to the file is also stored in the interview project on the MongoDB instance, allowing Bob to easily access the file in the future. This ensures that the interview media is securely stored and easily accessible for future use.\par
+In this initial prototype, the Alastria blockchain is not yet directly integrated into the system, but it has been used in a separate manner. At the moment, Bob is not required to log in using AlastriaID, as we are still working on the API and mechanics to implement it in the most secure and effective way possible.
+
+\section{Blockchain implementation}
+
+Alastria is a unique permissioned blockchain platform, as it requires a whitelisted IP address to access its network. In order to gain access to the production version of Alastria, the RedB network, our server went through a simple process to be whitelisted. This allows Truthster to interact with Alastria through the REST API container, which ensures safe and controlled access to the blockchain.
+One of the key features of Alastria is that it is an EVM blockchain, which means its runtime is based on an Ethereum Virtual Machine\cite{evm}. This feature allows calls and transactions to be made on Alastria in the same way as other public chains such as Ethereum\cite{ethereum}, Polygon\cite{polygon}, or Moonbeam\cite{moonbeam}. While there are many public blockchain platforms available, Alastria stands out for its permissioned nature and its close association with the Spanish public and private sectors.\par
+Having this in mind we have leveraged the power of existing libraries such as Ethers\cite{ethers} and Web3\cite{web3}, which enable us to access blockchain data, read and send transactions that are compatible with Node.js. With this capability, we have configured the REST API server in such a way that it is easy to add REST calls that interact with the blockchain, and all of the calls can be easily filtered through the back-end for better security. By taking this approach, we can ensure that all blockchain interactions are carried out in a safe and secure manner, without any direct exposure to external factors that may compromise the integrity of the system.
+
+\subsection{Truffle and Ganache}
+
+In order to effectively connect to the Alastria RedB network and build a complete prototype for the Truthster platform, we first had to familiarize ourselves with the Ethereum Virtual Machine (EVM) model. To do this, we utilized a local blockchain called Ganache and the Truffle framework. Through this process of studying and testing the EVM model, we were able to gain a deeper understanding of how the blockchain works and how we can interact with it using our application. This knowledge allowed us to develop and test our smart contracts and other blockchain-related functionality in a safe and controlled environment before deploying it to the production network.\par
+The Truffle framework provided us with a comprehensive set of tools and utilities for developing, testing, and deploying smart contracts, making our development process more efficient and streamlined. These tools include built-in smart contract compilation, linking, deployment, and binary management, making it easier for developers to manage their code. Additionally, Truffle offers advanced debugging features, such as breakpoints, variable analysis, and step functionality, to ensure the accuracy and reliability of the smart contract. The framework also provides a deployment and transaction interface with MetaMask to protect developers' mnemonic and an interactive console for direct contract communication.\par
+To facilitate rapid development, Truffle also offers automated contract testing and a scriptable, extensible deployment and migration framework. The tool also offers network management capabilities, allowing developers to deploy their smart contracts on any number of public and private networks. Finally, Truffle includes package management with NPM, using the ERC190 standard, and a configurable build pipeline with support for tight integration. With its comprehensive set of features, Truffle is a world-class development framework for Ethereum smart contracts that enhances developer productivity and efficiency.\par
+We used the contract of the AlastriaID library and deployed our version on Ganache to test its functionalities. However, to achieve a better and more complete prototype, these contracts have to be used along with JWT tokens and the other features offered by the Alastria identity library. This is necessary in order to get a product that resembles the final Truthster platform in terms of its most important functionalities. By utilizing the Truffle framework and Alastria identity library, we aim to build a fully-functional and secure platform that can effectively combat fake news and promote truth and transparency in journalism.
+
+\section{Prototype status}
+
+The prototype that we have implemented has a limited set of functionalities. As previously mentioned, the Truthster project is a collaborative effort that involves multiple entities, and thus this prototype represents only the initial stage of the platform's development. Moving forward, we will use this prototype as a starting point to test and build upon the other functionalities required for the final product.
+The current version of the prototype serves as a proof of concept for the basic features of Truthster, such as creating new projects, managing interview data, and interacting with the Alastria blockchain. However, there are many more features and capabilities that must be added to the platform to achieve its full potential.\par
+For example, one major aspect of the project that we are currently working on is the integration of the Alastria identity library, which will allow for more secure and authenticated interactions with the blockchain. Additionally, we plan to develop more advanced functionality for managing interview data, such as adding tags and categories to make it easier to search and analyze large volumes of data.\par
+Overall, the current prototype represents a first step in the development of Truthster, and we look forward to working with our partners to build a comprehensive and robust platform that meets the needs of journalists, researchers, and other users in the field of digital media.
 
 \chapter{Testing and validation}
 
@@ -824,6 +866,7 @@ After analyzing the most significant features offered by AlastriaID we can say t
 %\part{Appendici}
 
 \chapter{Ganache}
+\label{appendixGanache}
 Ganache is a personal blockchain for Ethereum development you can use to deploy contracts, develop your applications, and run tests. It is a tool that allows developers to create a virtual Ethereum blockchain on their local machine, which is useful for testing and developing smart contracts. Ganache creates a virtual blockchain that runs locally on your machine, which is separate from the live Ethereum network. This allows developers to test their contracts in a simulated environment, without the need for real Ether or the risk of interacting with the live network. Ganache also provides a user-friendly interface for interacting with the blockchain and managing accounts, making it easy for developers to test and debug their contracts.\par
 
 Some possible disadvantages of using Ganache include:
@@ -1008,6 +1051,32 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
 
     \bibitem{keythereum}
     EthereumJS, \href{https://github.com/ethereumjs/keythereum}{keythereum}
+
+    %% Implementation
+
+    \bibitem{docker}
+    Docker, \href{https://docs.docker.com/}{Docs}
+
+    \bibitem{evm}
+    Ethereum, \href{https://ethereum.org/en/developers/docs/evm/}{ETHEREUM VIRTUAL MACHINE (EVM)}
+
+    \bibitem{ethereum}
+    Ethereum, \href{https://ethereum.org/en/developers/docs/}{ETHEREUM DEVELOPMENT DOCUMENTATION}
+
+    \bibitem{polygon}
+    Polygon, \href{https://polygon.technology/solutions/polygon-pos}{The easiest way to scale your Ethereum app}
+
+    \bibitem{moonbeam}
+    Moonbeam, \href{https://docs.moonbeam.network/}{Moonbeam Network Resources \& Documentation}
+
+    \bibitem{ethers}
+    Ethers, \href{https://docs.ethers.org/v5/}{Documentation}
+
+    \bibitem{web3}
+    Web3.js, \href{https://web3js.readthedocs.io/en/v1.8.2/#web3-js-ethereum-javascript-api}{Ethereum JavaScript API}
+
+    \bibitem{truffle}
+    Truffle, \href{https://trufflesuite.com/docs/}{Documentation}
 
     \bibitem{}
     , \href{}{}
