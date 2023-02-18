@@ -84,7 +84,7 @@ This project is a comprehensive solution that combines traditional technologies 
 The mobile app is designed for the interviewer, who can use it to record audio or video interviews. Once the interview is recorded, the interviewer can open the mobile app, log in, enter all the related interview information, and choose the interview file to upload. The app then calculates a hash of the document (generated based on the information provided by the interviewer) and uploads it, along with interview metadata and GPS position, to a cloud-based server. In the background, the entire document and interview file are uploaded. Once the interview is uploaded, the app sends a link to the interviewee via SMS or email, or generates a QR code with a link. The interviewee can then open the link (or scan the QR code), and a GDPR-compliant contract will be displayed for review and agreement.\par
 After the contract is agreed upon, the GPS position of the interviewee is sent to the server, and the hash and metadata of the interview, along with the interviewee's agreement, are stored in a permissioned blockchain for later uses.
 
-The blockchain used in the Truthster project is Alastria, an open-source and permissioned blockchain. This type of blockchain is a hybrid between a public blockchain (such as Ethereum or Moonriver) and a completely private blockchain (such as a local blockchain created with Ganache).
+The blockchain used in the Truthster project is Alastria, an open-source and permissioned blockchain. This type of blockchain is a hybrid between a public blockchain (such as Ethereum or Moonriver) and a completely private blockchain (such as a local blockchain created with \nameref{appendixGanache}).
 This allows for greater security and privacy, as only authorized individuals (such as registered journalists) have the right to write to the blockchain.
 In addition to the blockchain, all media files and information are stored in a separate database, specifically a MongoDB instance. MongoDB is a document database that is highly available and scalable, making it well-suited for internet applications like ours. Its flexible schema approach is popular among development teams that use agile methodologies.\par
 
@@ -812,10 +812,10 @@ After analyzing the most significant features offered by AlastriaID we can say t
 
 
 
-\chapter{Implementation - Initial prototype}
+\chapter{Implementation}
 
 As a collaborative project, Truthster involves various entities, including the University of Udine, the University of Perugia, a journalist, and a few IT companies. Due to its complex and long-term nature, the entire system has not yet been completed. However, we have prepared an initial prototype that provides a basic outline of the platform's functionalities and features. This prototype represents a starting point for us to structure and develop the platform further in collaboration with our partners. It will allow us to gather feedback, test different functionalities, and make necessary adjustments to enhance the platform's usability, reliability, and security. This prototype will also help us to communicate our vision effectively to potential stakeholders and investors, thereby paving the way for the further development and deployment of the system. Although the prototype is not the finished product, it serves as a solid foundation for the development of the final product, ensuring that the platform meets the needs of its users and stakeholders.\par
-After providing a brief introduction, the following sections will delve into the details of how the initial prototype of Truthster is implementing its basic functionalities. Additionally, we will identify the missing components and explain how we plan to address them in order to meet both the functional and non-functional requirements of the system. Through this process, we aim to develop a comprehensive and reliable platform that can effectively address the needs of the journalism industry and provide a trustworthy and transparent source of information to the general public.
+In this chapter, we will provide a detailed analysis of how the initial prototype of Truthster is implementing its basic functionalities. We will also discuss the missing components and how we plan to address them to meet both the functional and non-functional requirements of the system. Additionally, we will see the main scenarios of the Truthster system through a sequence diagram, discussing the implementation of the platform. We will also provide a component diagram to show how the system (final version) will be structured, along with a deployment diagram for the final version. These diagrams will provide a better understanding of how the various components of the platform interact with each other and how they are deployed on different nodes. This will help to provide a clearer picture of the overall architecture of the platform and how it can be scaled and maintained over time. Through this process, we aim to develop a comprehensive and reliable platform that can effectively address the needs of the journalism industry and provide a trustworthy and transparent source of information to the general public.
 
 \section{Prototype structure}
 
@@ -855,6 +855,94 @@ The prototype that we have implemented has a limited set of functionalities. As 
 The current version of the prototype serves as a proof of concept for the basic features of Truthster, such as creating new projects, managing interview data, and interacting with the Alastria blockchain. However, there are many more features and capabilities that must be added to the platform to achieve its full potential.\par
 For example, one major aspect of the project that we are currently working on is the integration of the Alastria identity library, which will allow for more secure and authenticated interactions with the blockchain. Additionally, we plan to develop more advanced functionality for managing interview data, such as adding tags and categories to make it easier to search and analyze large volumes of data.\par
 Overall, the current prototype represents a first step in the development of Truthster, and we look forward to working with our partners to build a comprehensive and robust platform that meets the needs of journalists, researchers, and other users in the field of digital media.
+
+\section{Truthster main scenarios}
+
+In this section, we will provide a sequence diagram that represents the implementation of the most significant scenarios of the Truthster platform. This diagram serves as a plan for our development process and will provide a clearer picture of how the platform will be structured and how its various components will interact with each other.\par
+The diagram includes the following scenarios that are represented in the Figure~\ref{fig:sequenceDiagram}.
+
+\begin{enumerate}
+
+    \item Media getting
+    \item Create new project
+    \item Save interview data and metadata
+    \item Send authorization link
+    \item Request interviews information
+
+\end{enumerate}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/sequenceDiagram.png}
+    \caption{Sequence diagram of the Truthster main scenarios}
+    \label{fig:sequenceDiagram}
+\end{figure}
+
+\subsection{Media getting}
+\label{mediaGetting}
+
+In this scenario, a journalist uses a third-party app to record an interview, and then uploads the media to the Truthster platform through the mobile app. After the media is uploaded, it is encrypted and sent to the back-end for storage in a secure database. The specific details of this process are not yet defined, but will be established in the further development of the platform. The primary objective of this scenario is to demonstrate how the platform will enable journalists to securely and easily upload media files to the Truthster system for safe and transparent storage.
+
+\subsection{Create new project}
+\label{createNewProject}
+
+In this scenario, the journalist initiates the process by logging into the platform through the mobile app. The app then sends the login information to the back-end for verification. Once the credentials are authenticated, the back-end sends the login response back to the user, allowing them to proceed. After successful login, the journalist inputs all the necessary information to create a new project, including interview information, interview media, and interviewee contact details. This information, along with the recorded media from the \nameref{mediaGetting} scenario, is sent to the back-end, where a new project is created and stored in the platform's database.
+
+\subsection{Save interview data and metadata}
+\label{saveDataAndMetadata}
+
+In this scenario, the interview information obtained in the \nameref{createNewProject} scenario is processed by the back-end. Some of this information is sent to the database, the metadata that has not been previously passed. The recorded media is fetched from the database and then the hash of the media and the interview information is registered on the Alastria blockchain using a custom transaction. This process ensures the immutability and integrity of the interview data, providing a tamper-proof solution that can be verified when needed from both journalists and interviewees.
+
+\subsection{Send authorization link}
+\label{generateAndSendLink}
+
+In this scenario, the interviewer requests the system to generate an authorization link that will be sent to the interviewee to obtain their consent. The system fetches all the necessary information from the database, generates the link, and sends it to the interviewee. The interviewee can then review the interview and add any necessary information. Once the interviewee has completed the review and provided their consent, the system is notified and the interviewer is then able to proceed with publishing the interview content. An overall hash of the information and the interviewee's consent is stored on the Alastria blockchain. This process ensures that all parties involved have provided their consent and that the information is accurate before it is published on the platform.
+
+\subsection{Request interviews information}
+\label{requestInterviewsInformation}
+
+In this scenario, the interviewer requests information about previous interviews through the mobile app. The request is sent to the back-end, which processes the request by retrieving the relevant information from both the blockchain and the database. Finally, the back-end provides the requested information to the interviewer through the mobile app. This allows the interviewer to easily access and review past interviews stored on the platform. The use of both the blockchain and the database ensures the security and accuracy of the stored information.
+
+\section{Component diagram}
+
+The component diagram in Figure~\ref{fig:componentDiagram} illustrates which are the different components of the Truthster platform. The main components include the user interface, which consists of a mobile application and a website, the back-end server, a database management system (DBMS), and a blockchain.\par
+
+The user interface is responsible for handling user authentication and querying the server, which in turn checks the user credentials in the DBMS. The UI is also responsible for project creation, which involves collecting and sending all necessary data to the back-end server for storage in the DBMS. Finally, the user interface manages permissions and sends a request to the server to write the media hashes in the blockchain. This process ensures the immutability and transparency of the stored data.\par
+The back-end server is responsible for handling communication between the user interface, the DBMS, and the blockchain. It processes user requests, retrieves and stores data from the DBMS, and sends data to the blockchain for secure storage and verification.\par
+The DBMS stores all information related to the interviews, including interviewee contact details, metadata, and media content. In the later stages of the project, an additional SQL database will be added to store data about interviewers and interviewees.\par
+The blockchain is represented as an Alastria node that provides access to the blockchain infrastructure. It stores the hashes of the media and interview information, providing a secure and tamper-proof solution for storing and verifying interview data.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/componentDiagram.png}
+    \caption{Truthster components diagram}
+    \label{fig:componentDiagram}
+\end{figure}
+
+\section{Deployment diagram}
+
+A deployment diagram is a type of UML diagram that depicts the physical components of a software system and their relationships. It shows how the software system is deployed on hardware, as well as how the hardware components interact with each other.
+
+The Truthster deployment diagram, in Figure~\ref{fig:deploymentDiagram}, illustrates the deployment of the different components of the Truthster platform.\par
+It consists of four components: 
+
+    \begin{itemize}
+
+        \item An Android app (represents the user interface)
+        \item A Back-end container
+        \item A DBMS container
+        \item A blockchain container
+
+    \end{itemize} 
+
+The Android app resides on a device and serves as the user interface for accessing the Truthster platform. The back-end container, built with Docker, handles the communication between the user interface, the DBMS container, and the blockchain container. The DBMS container stores all the information related to the interviews, while the blockchain container represents the Alastria node that the back-end connects to in order to send transactions and retrieve stored data. Together, these components create a scalable and reliable platform that can effectively address the needs of the journalism industry and provide a trustworthy and transparent source of information to the general public.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/deploymentDiagram.png}
+    \caption{Truthster deployment diagram}
+    \label{fig:deploymentDiagram}
+\end{figure}
 
 \chapter{Testing and validation}
 
