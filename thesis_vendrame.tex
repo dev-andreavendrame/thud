@@ -329,6 +329,7 @@ At a high level we can see the blockchain as an aggretation of the following com
 
 
 \chapter{Problem analysis}
+\label{problemAnalysis}
 
 The world has witnessed a significant shift in recent years towards the digital landscape. With the internet becoming an indispensable part of our lives, our daily activities and interactions have been impacted in ways we could not have imagined a few decades ago. The rise of digital platforms and social media has brought about new opportunities for people to connect, share information, and express their views. While this has undoubtedly brought about many benefits, it has also created new challenges for how we handle information and maintain trust in our online interactions.\par
 One of the key challenges in today's digital landscape is the proliferation of misinformation and fake news. With the vast amount of digital content being shared online, it has become more important than ever to ensure the authenticity and validity of this content. The spread of misinformation and fake news can have significant implications for individuals, organizations, and even societies at large. It can lead to the spread of false information, the erosion of trust in institutions, and even cause harm to individuals and communities.\par
@@ -945,6 +946,72 @@ The Android app resides on a device and serves as the user interface for accessi
 \end{figure}
 
 \chapter{Testing and validation}
+
+In this chapter, we will go through the process of testing and validation for the Truthster platform. As we have previously discussed in the \nameref{problemAnalysis} chapter, there are a set of functional and non-functional requirements that the platform must meet in order to provide an effective solution for the journalism industry. In this chapter, we will detail how we have tested the initial prototype and how we plan to further test and validate the platform in order to ensure that all requirements are met by the final product.\par
+We will begin by discussing the requirements that the prototype has already satisfied and those that still need to be addressed in the final version. We will then detail how we plan to meet these requirements through rigorous testing and validation processes, including unit testing, integration testing, and system testing. Through these processes, we aim to identify any potential issues or bugs in the platform and address them in a timely and effective manner.\par
+Ultimately, our goal is to provide a comprehensive and reliable platform that meets the needs of the journalism industry and provides a trustworthy and transparent source of information to the general public. Through thorough testing and validation, we aim to ensure that the final Truthster platform meets these goals and provides a secure and efficient solution for managing and sharing interview data in compliance with GDPR.
+
+\section{Prototype analysis}
+
+The actual prototype of the Truthster platform, despite being incomplete, already satisfies some functional and non-functional requirements. A functional requirement is a specific task or feature that a system or software must perform, while a non-functional requirement is a characteristic that the system or software must possess to ensure optimal performance, reliability, and security. In this section, we will discuss the functional and non-functional requirements that the current Truthster prototype fulfills.\par
+\subsection{Functional requirements}
+
+    \begin{enumerate}
+
+        \item \textbf{Embed authorship and legal details}: the Truthster prototype partially fulfills this requirement by enabling the storage of all necessary information and documentation related to a specific interview in the database. This ensures that authorship and legal aspects can be properly recorded and cannot be manipulated. However, the consent handling is not yet implemented in the prototype, although the system's structure enables a quick implementation of this feature.
+        \item \textbf{Secure and manage interview data}: the Truthster prototype satisfies this requirement by implementing several features to ensure the confidentiality and security of interview-related data. Firstly, the prototype stores all interview media files in an encrypted format, preventing unauthorized access to the media content. Secondly, the data is stored on a server that is only accessible to authorized users, ensuring that only authenticated users can access the information. This provides an additional layer of security for the data, protecting it from potential data breaches. Furthermore, the prototype allows for the organization of data in a way that associates it with a specific project. This feature facilitates the retrieval and management of data, ensuring that interview data is easily accessible and searchable by authorized users. The data includes not only the media content, such as video interviews, but also any relevant legal documents, user terms, and agreement conditions, ensuring that all the required information is accessible in one place.
+        \item \textbf{Certify and verify digital media with blockchain (Alastria)}: this requirement is partially satisfied by the prototype as it already integrates with the Alastria blockchain. However, the prototype lacks the capability to verify the digital media with blockchain by checking the hash of the encrypted version stored on the database server. To fully satisfy this requirement, a smart contract can be created that stores the media ID and its corresponding hash on the database server. This will enable users to verify the authenticity and integrity of the digital media by simply calling the smart contract and checking the hash value through a specific API call.
+
+    \end{enumerate}
+
+    The upcoming months will see the development of the following requirements for the Truthster platform:
+
+    \begin{enumerate}
+
+        \item Verify interviewer identity
+        \item Automate generation of legal terms
+        \item Easy certification tool for video interviews
+        \item Secure and manage interview data
+        \item Provide an identity verification tool
+
+    \end{enumerate}
+
+The implementation of the AlastriaID framework through dedicated API calls will enable the fulfillment of all the missed functional requirements mentioned above for the final Truthster platform version. The platform will have a structure similar to the current prototype, and the development team will work to integrate the framework into the system to provide features such as interviewer identity verification, automated generation of legal terms, an easy certification tool for video interviews, secure and managed interview data, and an identity verification tool.\par
+
+\subsection{Non-functional requirements}
+
+The non-functional requirements related to the actual prototype state have been evaluated, and some have been successfully met, while others will be fulfilled in the upcoming development phase. The list of the non-functional requirements and their current status are as follows:
+
+    \begin{enumerate}
+
+        \item \textbf{Usability}: the platform is designed to be user-friendly, allowing journalists to create new projects, manage their interview data, and interact with the Alastria blockchain seamlessly. This feature ensures that the platform is easy to use and accessible to journalists with varying degrees of technical expertise.
+        \item \textbf{Reliability and scalability}: The Truthster prototype is designed with both reliability and scalability in mind to ensure that interview data is always securely stored and available. The platform has a number of features that contribute to its reliability, including its ability to recover from failures and errors. The use of Docker images is a key factor in this, as it allows the different components of the platform to be easily deployed and scaled across multiple servers. By taking this approach, the platform is able to improve its fault tolerance and reduce the risk of downtime caused by hardware failures or other technical issues. In addition to being reliable, the Truthster prototype is also highly scalable. The platform is designed to support a large number of users and a significant amount of data, making it an ideal choice for projects that require a high degree of scalability. The platform's ability to scale is due to a number of factors, including its use of modern technologies and its modular architecture. With these features, the Truthster prototype is able to support a growing number of users and data with ease, making it an ideal choice for organizations of all sizes.
+        \item \textbf{Security}: the platform is secure, with all interview media files being encrypted, and all interview data being stored on the Alastria blockchain. This feature ensures the confidentiality, integrity, and availability of all interview data, making it resistant to cyber attacks and unauthorized access. In addition, the structure of the prototype allows for back-end filtering of requests directed to both the Alastria blockchain and the database instance, improving system performance and reducing potential security risks.
+        \item \textbf{Maintainability}: the platform is highly maintainable, thanks to its modular structure that enables easy addition, removal, and modification of its components. This feature ensures that the platform can be updated and maintained over time, making it more reliable and secure. In the prototype, this is achieved using an orchestration software such as Docker. By having all the components of the system as images, it becomes easy to replace an older version with a new one, simply by switching to the new implementation. Additionally, the modular structure of the system enables the filtering of requests directed to both the Alastria blockchain and the database instance in the back-end, making it more efficient and secure.
+        \item \textbf{Compliance}: this requirement has not yet been fully achieved in the current prototype due to its dependency on the integration with AlastriaID, which will be implemented in the upcoming phases of the prototype development. However, the importance of ensuring compliance with legal and regulatory frameworks is understood, and the development team is committed to fully implementing this requirement in the final version of the Truthster platform.
+    
+    \end{enumerate}
+
+
+The current state of the Truthster platform prototype demonstrates its potential as a robust and comprehensive solution. The prototype fulfills several functional and non-functional requirements, providing a solid foundation for the final product's development and deployment. The platform offers a range of functionalities that enable journalists to create new projects, manage interview data, and interact with the Alastria blockchain securely and reliably. Moreover, the platform fulfills the non-functional requirements, such as usability, scalability, security, reliability, and maintainability, making it user-friendly, secure, and easy to maintain.\par
+However, the platform is not yet perfect, and several non-functional requirements remain to be achieved. The compliance requirement, in particular, requires the integration of the Alastria identity library, which is scheduled to be implemented in the upcoming development phase. The addition of the Alastria identity library will help ensure that the platform complies with legal and regulatory frameworks. The platform's development team is dedicated to continuing the development of the platform and incorporating advanced features to ensure that the final product is comprehensive, secure, reliable, and accessible to all users.
+
+\section{Testing}
+
+An exhaustive testing of the Truthster prototype hasn't been done yet, as it is still under development. However, we are preparing the testing for the upcoming functionalities of the Truthster system and have divided them into the following high-level phases:
+
+\begin{enumerate}
+
+    \item Testing the functionalities of the \textbf{AlastriaID} with some example data (currently in progress) with the help of the Truffle framework.
+    \item Testing the \textbf{Truthster smart contracts} for handling interview media and information integrity (again with Truffle framework).
+    \item Creating unit testing for \textbf{each API} provided by the back-end.
+    \item Testing the \textbf{main functionalities} of the platform.
+    \item Testing the \textbf{platform's capacity} by generating fake traffic.
+    \item Testing any \textbf{additional features} that may be added in the future.
+
+\end{enumerate}
+
+It is important to keep in mind that this proposed testing plan is subject to change as the development of the Truthster platform progresses. The primary goal of the testing process is to identify any platform bottlenecks, possible process exploits, and other system criticalities. By conducting exhaustive testing, we can ensure that the final version of the Truthster platform is reliable, secure, and user-friendly. The testing process will provide critical insights into the platform's functionality, capacity, and scalability, and any necessary adjustments can be made to improve its overall performance.
 
 \chapter{Conclusions}
 
