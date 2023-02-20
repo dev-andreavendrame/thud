@@ -84,7 +84,7 @@ This project is a comprehensive solution that combines traditional technologies 
 The mobile app is designed for the interviewer, who can use it to record audio or video interviews. Once the interview is recorded, the interviewer can open the mobile app, log in, enter all the related interview information, and choose the interview file to upload. The app then calculates a hash of the document (generated based on the information provided by the interviewer) and uploads it, along with interview metadata and GPS position, to a cloud-based server. In the background, the entire document and interview file are uploaded. Once the interview is uploaded, the app sends a link to the interviewee via SMS or email, or generates a QR code with a link. The interviewee can then open the link (or scan the QR code), and a GDPR-compliant contract will be displayed for review and agreement.\par
 After the contract is agreed upon, the GPS position of the interviewee is sent to the server, and the hash and metadata of the interview, along with the interviewee's agreement, are stored in a permissioned blockchain for later uses.
 
-The blockchain used in the Truthster project is Alastria, an open-source and permissioned blockchain. This type of blockchain is a hybrid between a public blockchain (such as Ethereum or Moonriver) and a completely private blockchain (such as a local blockchain created with Ganache).
+The blockchain used in the Truthster project is Alastria, an open-source and permissioned blockchain. This type of blockchain is a hybrid between a public blockchain (such as Ethereum or Moonriver) and a completely private blockchain (such as a local blockchain created with \nameref{appendixGanache}).
 This allows for greater security and privacy, as only authorized individuals (such as registered journalists) have the right to write to the blockchain.
 In addition to the blockchain, all media files and information are stored in a separate database, specifically a MongoDB instance. MongoDB is a document database that is highly available and scalable, making it well-suited for internet applications like ours. Its flexible schema approach is popular among development teams that use agile methodologies.\par
 
@@ -249,7 +249,7 @@ At a high level we can see the blockchain as an aggretation of the following com
 
     \subsection{PoW vs PoS}
 
-    Proof of Stake (PoS) and Proof of Work (PoW) are two consensus algorithms used to secure and validate transactions on a blockchain network. Both PoS and PoW have their own advantages and disadvantages and play a critical role in maintaining the integrity of a blockchain network. In this comparison, we will examine the key differences between PoS and PoW, their pros and cons, and how they impact the overall performance and security of a blockchain network.\par
+    Proof of Stake (PoS) and Proof of Work (PoW) are two consensus algorithms used to secure and validate transactions on a blockchain network. Both PoS and PoW have their own advantages and disadvantages\cite{edChainPowvsPos} and play a critical role in maintaining the integrity of a blockchain network. In this comparison, we will examine the key differences between PoS and PoW, their pros and cons, and how they impact the overall performance and security of a blockchain network.\par
 
     Proof-of-Work (PoW) and Proof-of-Stake (PoS) are two consensus algorithms used to validate transactions on a blockchain network. They are used to secure the network against malicious attacks and ensure that every node in the network is in agreement about the state of the blockchain. The primary difference between PoW and PoS lies in the way that validators are chosen to add new blocks to the blockchain.
     PoW is used by networks such as Bitcoin and Ethereum to validate transactions. In a PoW system, nodes called miners compete to solve complex mathematical problems in order to add a new block to the blockchain. The first miner to solve the problem is rewarded with newly minted coins and fees from transactions included in the block. The computational effort required to solve the problem provides proof that the miner has put in the effort to validate the transactions, hence the name Proof-of-Work.
@@ -320,7 +320,7 @@ At a high level we can see the blockchain as an aggretation of the following com
     \end{enumerate}
 
     It's important to note that while public/private key cryptography is not unbreakable, it is still considered to be a highly secure method of encryption. Additionally, many techniques can be used to make it even more secure, such as using long keys and proper key management practices.
-
+    
 
 
 
@@ -329,62 +329,96 @@ At a high level we can see the blockchain as an aggretation of the following com
 
 
 \chapter{Problem analysis}
+\label{problemAnalysis}
 
-In today's digital age, the amount of content that is shared and distributed on the internet is staggering. From text, images, and videos, to audio recordings and more, the internet is a vast repository of information. However, with the ease of creating and sharing digital content, comes the problem of ensuring its authenticity and validity. With the amount of misinformation and fake news that is circulating online, it has become increasingly important to have a way to verify the authenticity of digital content.\\
+The world has witnessed a significant shift in recent years towards the digital landscape. With the internet becoming an indispensable part of our lives, our daily activities and interactions have been impacted in ways we could not have imagined a few decades ago. The rise of digital platforms and social media has brought about new opportunities for people to connect, share information, and express their views. While this has undoubtedly brought about many benefits, it has also created new challenges for how we handle information and maintain trust in our online interactions.\par
+One of the key challenges in today's digital landscape is the proliferation of misinformation and fake news. With the vast amount of digital content being shared online, it has become more important than ever to ensure the authenticity and validity of this content. The spread of misinformation and fake news can have significant implications for individuals, organizations, and even societies at large. It can lead to the spread of false information, the erosion of trust in institutions, and even cause harm to individuals and communities.\par
+Another critical issue is the management of personal data and privacy. In recent years, there have been numerous examples of data breaches and the misuse of personal information, which have caused significant harm to individuals and organizations. With more and more of our personal information being shared online, it is essential to have effective measures in place to protect the privacy and security of this data.\par
+In the field of journalism, these issues are of particular concern. Journalists have a critical role to play in informing the public and shaping public opinion. As such, it is essential for journalists to maintain the highest standards of accuracy, authenticity, and integrity in their work. The handling of interviews, the verification of information, and the protection of personal data are all critical areas that need to be addressed in modern journalism.\par
+To address these challenges, new technologies and practices are being developed. Blockchain technology, for example, offers a decentralized and immutable ledger that can be used to securely store and verify data. Similarly, new techniques are being developed to ensure the authenticity and validity of digital content, such as fact-checking and the use of reputable sources. Additionally, the handling of interviews and the management of personal data require new approaches to protect the privacy and security of individuals.\par
+In the following sections, we will explore some of these issues in more detail. Specifically, we will discuss the importance of handling consent for interviews, ensuring authenticity in online journalism, and the potential use of blockchain technology for secure and trustworthy credential management. Through these discussions, we hope to shed light on the challenges and opportunities that exist in today's digital landscape and provide insights into how we can ensure a more secure, trustworthy, and authentic online environment.
 
+\subsection{The importance of handling consent for interviews}
 
+When conducting an interview, it's important for the interviewer to obtain the interviewee's consent and make sure that the consent is well-defined and documented. This can help to ensure that the interviewee's rights are protected and that the information obtained during the interview is used appropriately. However, in some cases, the process of obtaining and handling consent may not be well-defined, which can lead to issues around data protection and privacy. For example, if an interviewee signs an agreement giving consent for the interview, but the terms of that agreement are not clearly defined, there may be confusion or disagreements around how the interviewee's data is used or shared. Additionally, if the interviewee's consent is not handled securely or in accordance with data protection regulations, there may be risks around data breaches or other privacy violations. Furthermore, it's important to consider the issue of revocation of consent.
+If a user decides to revoke their consent for an interview or the use of their data, it's important for the process to be clear and well-defined, so that the user's rights can be respected. However, in many cases, the process for revoking consent may be unclear or missing entirely, which can lead to issues around data privacy and legal compliance. As such, it's important for journalists and other content creators to establish clear, well-defined processes for handling consent and protecting user data in the digital age.\par
 
+There have been several cases where issues with handling consent for interviews have led to legal or other significant problems. For example, in 2018, the New York Times published an interview with a man who claimed to be a witness to a sexual assault by Supreme Court Justice Brett Kavanaugh\cite{accusationBrettKavanaugh}. However, it later emerged that the man had not been a direct witness to the assault, and that the Times had not adequately verified his account. This led to significant criticism of the newspaper, as well as questions around the handling of the interviewee's consent and the accuracy of the information presented.
+In another example, in 2019, a journalist from the New York Times conducted an interview with a woman who accused the musician Ryan Adams of sexual misconduct\cite{accusationRyanAdams}. However, it was later revealed that the journalist had shared a copy of the interview transcript with Adams' lawyers without the interviewee's consent. This led to concerns around privacy and journalistic ethics, as well as potential legal repercussions for the journalist and the newspaper.\par
+In both of these cases, issues with handling consent for interviews led to significant problems, including questions around journalistic ethics, legal challenges, and reputational damage.\par
+As such, ensuring that proper procedures are in place for handling consent for interviews is essential to maintaining the trust of interviewees and audiences. Journalists and other content creators must be transparent about how interview data will be used and shared, and ensure that interviewees have a clear understanding of how their data will be protected. This includes obtaining clear and informed consent\cite{informedConsent} from interviewees prior to conducting the interview, and following established data protection practices when handling and storing interview data.
+In addition, it's important for journalists and content creators to consider the potential legal and ethical implications of their work, including issues related to privacy, defamation, and accuracy. This means taking steps to verify the accuracy of interview data, avoiding any misrepresentations or misleading statements, and respecting the privacy rights of interviewees.
+Ultimately, the responsible handling of consent for interviews requires a commitment to upholding ethical standards and best practices, as well as ongoing education and training to stay up to date with the latest developments in data protection and privacy. By prioritizing these concerns, journalists and content creators can help to ensure that their work is accurate, reliable, and trustworthy, and that they are able to maintain the trust of their audiences and the public.
 
-With this in mind we have defined a diagram of the principal use cases that Truthster can help us with:
+\subsection{Ensuring authenticity in online journalism}
+The emergence of the internet and digital media has transformed the way journalists publish and disseminate their interviews and other media content. Unlike traditional media, digital media enables journalists to upload and share their content online instantaneously, thereby increasing the reach of their work. However, this convenience comes with some significant challenges, one of which is the increased risk of the content being modified or manipulated for malicious purposes. For instance, a journalist's interview, once uploaded online, can be easily accessed and edited by anyone with the requisite skills and tools. Such modifications could take various forms, including cuts, splices, or other manipulations that could alter the original message, resulting in confusion and misinformation for the audience. In some cases, the content could also be completely fabricated, leading to even greater harm and potential legal consequences.\par
+Here are three examples of situations where online content has been manipulated or falsified:
 
+\begin{itemize}
+
+    \item In 2017, a video of a Syrian boy who was allegedly pulled from the rubble of a bombed-out building went viral online\cite{2017FakeVideo}. However, subsequent investigations revealed that the video had been staged, and the boy was not a victim of the conflict but had been used as a prop for propaganda purposes. This false information had significant consequences for the media and those involved in its dissemination.
+    \item In 2018, a video of a high school student appearing to confront a Native American elder at a protest in Washington D.C. went viral online\cite{2018fakeVideo}. However, subsequent investigations revealed that the original video had been selectively edited to misrepresent the events that had taken place, resulting in significant harm to the reputations of both individuals.
+    \item In 2020, a viral video purporting to show evidence of voter fraud during the US presidential election was widely shared online\cite{2020fakeVideo}. However, it was later discovered that the video had been edited and manipulated to misrepresent the facts, leading to widespread confusion and misinformation.
+
+\end{itemize}
+
+In this context, the need for a reliable and secure tool that allows journalists and other content creators to verify the authenticity and integrity of their media content is paramount. Such a tool should help users ensure that their content has not been tampered with, either deliberately or accidentally, and that it is genuinely attributable to them. This way, they can avoid the legal and reputational damage that could result from the dissemination of altered or false information.
+
+\subsection{Blockchain: a potential solution for secure and trustworthy credential management}
+
+While public-private key authentication is a widely used method for secure login and data transfer, it has some limitations in terms of handling personal credentials and privacy data. The main issue with this method is that the private key must be stored on a device, which could potentially be breached by a malicious actor. Additionally, this method does not provide a way to verify the authenticity or integrity of the data being transmitted. Blockchain technology, on the other hand, offers a decentralized and immutable ledger that can be used to securely store and verify data.\par
+One potential use case for blockchain in authentication is the creation of a decentralized identity system that would allow users to control their personal data and provide secure access to online services. Such a system would provide greater privacy and security for users, as well as a more transparent and trustworthy authentication process. However, widespread adoption of blockchain-based authentication systems will require significant technological advancements and regulatory frameworks to ensure the protection of user data and privacy.\par
+
+There have been numerous examples in recent years of private data leaks and stolen credentials being used to impersonate other entities. One high-profile case was the 2017 Equifax data breach\cite{equifaxDataBreachSettlement}, which exposed the personal information, including names, social security numbers, birthdates, and addresses, of about 147 million individuals. The stolen data was later used in identity theft and other fraudulent activities, causing significant harm to the affected individuals.\par
+Similarly, in 2018, the Marriott hotel chain announced that hackers had gained access to its Starwood guest reservation system\cite{marriotDataBreach}, exposing the personal information of up to 500 million guests. The stolen data included names, addresses, phone numbers, email addresses, passport numbers, and other sensitive information. The stolen data could be used for identity theft and other fraudulent activities, causing significant harm to the affected individuals. These cases highlight the importance of secure handling of personal data and the need for effective authentication methods to prevent unauthorized access to sensitive information.\par
+Given the prevalence of data breaches and other cybersecurity threats, there is a growing need for a more secure and trustworthy credential management system. One potential solution is the use of blockchain technology, which offers a highly secure and decentralized platform for managing sensitive data. With a blockchain-based credential management system, users can store their credentials and other personal information in an encrypted and tamper-proof digital ledger, where it can be accessed only by authorized parties. This would greatly reduce the risk of data breaches and other security issues, while also offering a more convenient and user-friendly experience for the end-user. Additionally, the use of blockchain technology could help to establish greater trust and transparency in online transactions and interactions, helping to build a more secure and trustworthy digital environment.
+
+\subsection{Truthster use case diagram}
+
+In the problem analysis that we have discussed above emerges that about the Truthster system, two main roles are identified: the interviewer and the interviewee. The interviewer is the person who conducts the interview and creates the content, while the interviewee is the person who is being interviewed and is the subject of the content.
+While there is a third role, the user who accesses the content, this role is less central to the system's construction and functionality. The focus is on ensuring the authenticity and accuracy of the content by establishing practices that guarantee the accuracy of the work and obtaining consent from interviewees before publishing any content related to them.
+In addition to these roles, the use of blockchain technology is also being explored as a potential solution for secure and trustworthy credential management, which would further enhance the integrity and authenticity of the content.\par
+
+Using this overview, we have identified and illustrated the primary use cases of Truthster in the Figure~\ref{fig:useCaseDiagram}.
+The use case diagram provides a comprehensive understanding of how the interviewer and the interviewee interact with the Truthster system to accomplish their goals. Each use case describes a specific functionality or action that the system can perform or that the users can undertake. These use cases outline the flow of events, preconditions, post-conditions, and alternate scenarios that can occur during the interaction between the actors and the system. In the next section we will detail a bit every use case in order to understand better the main action that the actors can accomplish witht the help of the Truthster system.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/truthster_use_cases.png}
     \caption{Truthster main use cases}
+    \label{fig:useCaseDiagram}
 \end{figure}
 
-
-
-
-
+From the interviewer perspective we have:
 \begin{itemize}
-
-    \item Verifying the identity of an interviewer and the interviewee before and after the interview.
-    \item Certifying the authenticity and integrity of the digital media (for example video interviews) through the use of blockchain technology (Alastria in our case).
-    \item Embedding authorship and legal details (e.g., portrayal and data protection consent) into the digital media.
-    \item Automating the generation of legal terms and conditions under which the content can circulate and can be used.
-    \item Providing a tool for easy-to-use certification of media content, with emphasis on video interviews in our case.
-    \item Achieving accountability in media creation by incorporating consent expressed by the interviewee and automating the generation of legal terms and conditions under which the content can circulate.
-    \item Providing an easy-to-use tool for identity verification which can be useful for a wide range of other purposes (e.g., public authority identity check, restricted areas entering, consensus revoking)
-    \item Providing a solution that is interoperable with other software and open (e.g., copyleft licenses) thus reducing lock-in effect for professionals who adopt it.
-    
+    \item \textbf{Authentication}: to ensure secure access to the Truthster platform, the system must authenticate the interviewer's identity before allowing them to use its features. This involves verifying the interviewer's credentials and checking their validity on-chain using blockchain technology. 
+    \item \textbf{Create new project}: to create a new interview project on the Truthster platform, an interviewer must provide relevant information such as the interview date, related documents, and general project details, as well as the terms of the agreement with the interviewee. The Truthster system generates the agreement according to GDPR guidelines and ensures the privacy information is secure.
+    \item \textbf{Add interview media}: once an interview is conducted on the Truthster platform, the output can be in the form of video, audio, or another format. To add this media to an existing project, the interviewer must be able to access the project and upload the media files to the system at a later stage.
+    \item \textbf{Generate an activation link}: to ensure that the interviewee can access the interview media files and other relevant information associated with a specific project on the Truthster platform, the interviewer must be able to generate an activation link that refers to the project. This activation link is generated at the end of the interview and is sent to the interviewee to provide them with secure access to the relevant project. The interviewer can specify the project to which the activation link refers, ensuring that the interviewee can view the appropriate media files and information.
+    \item \textbf{Send embedded activation link}: to ensure the interviewee can access the activation link generated for a specific project, Truthster must be able to send the activation link to the interviewee through different channels, including email, mobile message, or a QR code. By providing different methods of sending the activation link, the platform can cater to the different preferences of the interviewees and ensure that they can access the link securely and conveniently.
 \end{itemize}
 
-From these use cases we have derived some functional and non-functional requirements necessary to design the behavior and architecture of the Truthster system.\\
+From the interviewee perspective we have:
+\begin{itemize}
+    \item \textbf{Read report}: once the interviewer generates a report regarding the terms and conditions of the interview through the Truthster platform, the interviewee must have a secure and user-friendly way to access and read the report.
+    \item \textbf{Give authorization to publish the interview}: to ensure compliance with relevant regulations and protect the privacy of interviewees, Truthster must provide a secure and user-friendly way for the interviewee to give authorization for publishing the interview. The platform must enable the interviewee to provide their consent easily, while also providing them with all the necessary information and credentials to make an informed decision.
+    \item \textbf{Revoke interview consensus}: to comply with relevant regulations and ensure privacy protection, Truthster must provide a secure and user-friendly way for the interviewee to revoke their consent to publish the interview.
+\end{itemize}
 
 \section{Functional requirements}
 
-The Truthster system has to be designed to provide a secure and efficient way for media creators to certify the validity of their digital media, specifically video interviews. In order to achieve this the system must meet a number of functional requirements to ensure that it is user-friendly, secure, and reliable. 
-Below there is a list of functional requirements for our system:
+After conducting a thorough analysis of the existing challenges, we are now able to compile a comprehensive list of functional requirements that must be met by the Truthster system, in order to facilitate effective collaboration between interviewers and interviewees, while ensuring strict compliance with all relevant regulations and security protocols. These functional requirements are essential to address the identified issues and ensure the successful implementation of the Truthster system, providing a secure and reliable platform for all parties involved in the interview process.
 
 \begin{itemize}
 
-    \item The system must be able to generate a unique and tamper-proof hash of the interview video and metadata content:
-    this hash value serves as a digital fingerprint of the interview, which can be used to verify the integrity of the original data. This is important for ensuring the authenticity and reliability of the interview, as it provides a secure way to prove that the content has not been altered in any way. By utilizing a blockchain like Alastria, the system can store this hash value in a decentralized and immutable manner, further increasing the security and trustworthiness of the interview content.
-    \item The system must be able to store the hash, metadata and any other relevant information in a blockchain for secure, immutable record-keeping:
-    this requirement ensures that all the information about the interview are stored in a blockchain, which is a decentralized and distributed ledger technology. This means that the information is not stored in a single location, but rather is spread across multiple nodes (called respectively Red-B and Red-T) in the network. This makes it extremely difficult for anyone to tamper with or alter the information because it would require changing the information on every node in the network. The blockchain in this way provides a secure and immutable record-keeping, meaning that once the information is recorded on the blockchain, it cannot be modified or deleted. Along with a database instance they provide a reliable and verifiable record of the interview that can be accessed at any time.
-    \item The system must be able to send a link or QR code to the interviewee for them to review and agree to the GDPR compliant contract:
-    this functional requirement ensures that the interviewee is provided with an easy and convenient way to review and agree to the GDPR compliant contract. This can be accomplished by sending a link or QR code to the interviewee via SMS or email. Once the link is opened or the QR code is scanned, the interviewee will be presented with the contract for review and agreement. This requirement is important to ensure that the interviewee is informed about their rights and responsibilities related to the interview and that their consent for the use of the interview material is obtained in a compliant and transparent manner. This is in line with the GDPR regulations, which require clear and informed consent for the processing of personal data.
-    \item The system must be able to store the GPS position of the interviewee for added proof of location:
-    the system must be able to collect and store the GPS position of the interviewee at the time of the interview for added proof of location. This information, along with the interview video and some metadata, will be stored in a MongoDB instance, providing an easily accessible record of the interview and its location. This feature adds an additional layer of security and validity to the interview, as it provides a physical reference point for the content, and allows for easy verification of the interview location. The use of MongoDB allows for a flexible schema approach, which is popular with development teams using agile methodologies.
-    \item The system must be able to notify the interviewer when the process is complete:
-    this requirement means that the system must be able to send a notification to the interviewer, through the mobile app or email, indicating that the process of uploading and storing the interview has been completed successfully. This will allow the interviewer to have real-time information about the status of the process and to access the stored interview data and metadata in the Alastria blockchain and MongoDB. This feature will also help to ensure that all steps of the process have been completed correctly and that the interviewer can proceed with the next step in the workflow.
-    \item The system must have a history of all interviews stored in a separate database that can be accessed by the interviewer via REST API:
-    this requirement means that the system must maintain a record of all interviews conducted using the Truthster app, including the relevant metadata, hash values, and other information. This history must be stored in a separate database, such as MongoDB, that can be accessed by the interviewer through a set of REST APIs. This allows the interviewer to easily view and manage their previous interviews, and provides them with a reliable and secure way to access the information stored in the database. The API's allows the interviewer to retrieve the data from the database in a structured manner, which can be used for reporting, analysis and other purposes. Additionally, the REST API's allow the interviewer to perform CRUD operations on the data, such as adding, updating and deleting. This ensures that the interviewer has full control over the data and can manage it effectively.
-    \item The system must be able to automate the generation of legal terms and conditions for the use of the interview content:
-    this requirement ensures that the legal terms and conditions for the use of the interview content are automatically generated based on predefined templates or rules. This includes terms related to data privacy and protection, as well as any other relevant legal agreements. This automation will save time and resources for the interviewer, while also ensuring that all legal requirements are met. Additionally, this will also provide a standardized process for the interviewee to review and agree to the legal terms before the interview content is shared. This will provide an added layer of protection for both parties involved.
-
+    \item \textbf{Verify interviewer identity}: ensuring the verification of an interviewer's identity before and after the interview is a crucial requirement for the Truthster system. Prior to the interview, it is important to authenticate the interviewer's credentials in order to ensure that only authorized personnel are granted access to the interviewee and any sensitive information involved in the interview process. This can help prevent unauthorized access or security breaches, and ensure that all parties can trust the integrity and authenticity of the system. Additionally, verifying the identity of the interviewer after the interview can help with any potential legal disputes or issues that may arise.
+    \item \textbf{Certify and verify digital media with blockchain (Alastria)}: in order to ensure the authenticity and integrity of the digital media used in the Truthster system, it is important for the system to provide a way to certify and verify the media through the use of blockchain technology. This is where the Alastria blockchain platform comes into play. By leveraging the features of Alastria, Truthster can provide a secure and tamper-proof way of storing and verifying digital media, such as video interviews and user terms and agreement conditions documents. This not only helps to protect the privacy and security of the data, but also provides a way to build trust between the parties involved in the interview process.
+    \item \textbf{Embed authorship and legal details}: embedding authorship and legal details into the digital media is an important functional requirement for the Truthster system. This ensures that authorship and legal aspects, such as portrayal and data protection consent, are properly recorded and cannot be manipulated. By embedding such details into the digital media, Truthster can help ensure the authenticity and integrity of the media and protect the rights of both the interviewer and interviewee. Additionally, embedding legal details into the digital media can aid in resolving potential legal issues by providing a clear record of consent and authorization. Thus, this requirement is critical in ensuring the reliability and legal compliance of the Truthster system.
+    \item \textbf{Automate generation of legal terms}: in order to ensure compliance with legal regulations, Truthster must automate the generation of legal terms and conditions under which the content can circulate and be used. This functionality will help interviewers to create the required legal documentation and provide interviewees with the necessary information about how their content will be used. The system must be able to generate legally compliant documents that are specific to each project, taking into account the applicable regulations in each jurisdiction.
+    \item \textbf{Easy certification tool for video interviews}: in order to facilitate the certification process for media content, Truthster should provide an easy-to-use tool that is focused on video interviews. The tool should be intuitive and accessible for all users, regardless of technical expertise, to ensure that the certification process can be completed efficiently and effectively. Additionally, the tool should be designed with the user in mind, providing clear guidance and feedback throughout the certification process to ensure that the resulting certification accurately reflects the authenticity and integrity of the media content.
+    \item \textbf{Secure and manage interview data}: to ensure the confidentiality and security of all interview-related data, Truthster must store this information in a server that is encrypted and accessible only to authorized users. In addition, the data must be organized in a way that associates it with a specific project to facilitate its retrieval and management. This includes all media content, such as video interviews, and any relevant legal documents, user terms, and agreement conditions. To optimize data management and accessibility, the information should be stored in a database or server archive that can be easily searched, sorted, and updated. By implementing these measures, Truthster can ensure that its users' information is protected and easily accessible as needed.
+    \item \textbf{Provide an identity verification tool}: Truthster must provide an easy-to-use tool for identity verification that can be used for a wide range of purposes beyond the interview process. This tool can be used for public authority identity checks, restricted area entry, or for revoking interviewee consent, among other applications. The system must be able to verify the identity of the user to ensure the security and privacy of all parties involved.
+    
 \end{itemize}
 
 \section{Non-functional requirements}
@@ -393,31 +427,99 @@ The Truthster system aims to provide a secure and efficient solution for the ver
 
 \begin{itemize}
 
-    \item Performance: The system must be able to handle a high volume of concurrent users and large amounts of data without experiencing significant lag or downtime.
-    \item Usability: The system must be easy to use and understand for both interviewers and interviewees, with clear instructions and intuitive navigation.
-    \item Security: The system must ensure the confidentiality and integrity of all data stored and transmitted, including personal data and media files.
-    \item Scalability: The system must be able to handle an increasing amount of data and user without experiencing significant performance degradation.
-    \item Compliance: The system must comply with relevant laws and regulations, including GDPR and copyright laws.
-    \item Interoperability: The system must be able to integrate with other software and systems.
+    \item \textbf{High performance and scalability}: in order for the Truthster system to be effective and efficient, it is very important that it is designed to handle a high volume of concurrent users and large amounts of data without experiencing significant lag or downtime. This is especially important given the sensitive nature of the data that will be stored and managed by the system. To ensure optimal performance, the system must be designed with scalability in mind. This means that it should be able to adapt to changing user demands and accommodate increased traffic and data volume without impacting performance. In addition, the system should be able to distribute the load of data processing and storage across multiple servers or nodes, to avoid overloading any one component of the system. It is also important that the system is designed with robust error-handling and fault-tolerance mechanisms, to ensure that any potential failures or issues are quickly identified and addressed. Finally, regular performance testing and monitoring should be conducted to identify any potential bottlenecks or areas for improvement, to ensure that the system is always operating at peak efficiency. By focusing on performance and scalability, Truthster can ensure that its users have a seamless and reliable experience, while also maintaining the integrity and security of the data managed by the system.
+    \item \textbf{Usability}: is a critical aspect of the Truthster system, as it must be accessible and easy to use for both interviewers and interviewees. The system should be designed with a user-centric approach, placing the user at the center of the design process to ensure that their needs and preferences are taken into consideration. Clear and concise instructions should be provided to guide users through the various processes and tasks required to use the system, and the interface should be intuitive and easy to navigate. This means that the system should be designed with a logical and consistent layout, with familiar and recognizable symbols and icons, and a clear hierarchy of information. To enhance usability, the system should also offer a range of options for customization and personalization, allowing users to tailor the interface to their individual preferences. Additionally, the system should be responsive and adaptable, able to adjust to the needs of different users and situations, and should provide clear and immediate feedback to users throughout the process. Usability testing should be conducted regularly to identify any potential issues or areas for improvement, and user feedback should be actively solicited and incorporated into the design process.
+    \item \textbf{Security}: ensuring the security of the data managed by the Truthster system is fundamental to protecting the privacy and rights of both the interviewers and interviewees. To achieve this, the system must employ a range of security measures to ensure the confidentiality and integrity of all data stored and transmitted. This includes the use of encryption to protect all data in transit and at rest, as well as multi-factor authentication to verify the identity of all users. The system must also be designed with access controls and permissions to ensure that only authorized individuals have access to the data, and that access is restricted based on the specific roles and responsibilities of each user. In addition, regular security audits and testing should be conducted to identify and address any potential vulnerabilities or threats to the system. The system must also have measures in place to ensure the integrity of the media files, including the use of digital signatures and hashes to verify that the media has not been tampered with or altered in any way.
+    \item \textbf{Compliance}: is a key factor for any system that handles sensitive data, and Truthster is no exception. The system must comply with all relevant laws and regulations, including the General Data Protection Regulation (GDPR) and copyright laws, to ensure that the privacy and rights of all parties involved are respected and protected. This means that the system must be designed to collect, store, and manage data in a way that meets GDPR requirements, such as obtaining consent from interviewees for the collection and processing of their personal data. Additionally, the system must comply with copyright laws to ensure that all media content used and stored by the system is legally obtained and used with proper authorization. To ensure ongoing compliance, the system must be regularly reviewed and updated to reflect any changes in relevant laws or regulations. The compliance team should work closely with legal experts to ensure that the system is designed and operated in accordance with all applicable laws and regulations, and to identify any potential risks or issues.
+    \item \textbf{Interoperability} is a crucial aspect of modern software solutions, and Truthster is no exception. The system must be designed in a way that allows it to seamlessly integrate with other software solutions, platforms, and technologies. This will not only lead to a wider adoption of the Truthster system, but also allow other companies to easily become part of the platform and use its various services, such as authentication, verification, certification, and more.
 
 \end{itemize}
 
+After outlining the various use cases for Truthster and identifying the functional and non-functional requirements necessary for the system, the next step is to dive into the solution design. In the upcoming chapter, we will delve into the technical details of the system, exploring different available tools that can be utilized to build a robust and reliable platform. The solution design will take into consideration the previously outlined requirements and use cases, ensuring that the resulting system will be able to handle the desired functionality while meeting the necessary standards for usability, performance, security, and compliance. Additionally, the chapter will cover the various pros and cons associated with each tool or technology being considered, providing an in-depth analysis of the different options available to the project team. By examining these various factors and making informed decisions about the technical design, the project team can ensure that the resulting Truthster system will be a powerful and effective tool for managing and certifying media content.
+
+
+
+
+
+
+
+
 \chapter{Solution design}
 
-Truthster is composed of a client-server architecture, with a front-end web/mobile application for interacting with the interviewer and interviewee, and a back-end that interacts with the front-end and services such as the Alastria Blockchain and storage service (mongoDB).\par
-The process of using Truthster includes recording the audio/video material, logging into the mobile app, entering interview information and interviewee contact details, and choosing interview media. The app then authenticates the interviewer, calculates a hash of the media and uploads it to the storage server, sends a link to the interviewee, and stores the signed hash of the file in the blockchain via a smart contract on Alastria (AlastriaID library). After the previous steps are completed the interviewer is notified of the completion of the process, and can archive past interviews on their mobile app.\par
-Basing our solution on the above description we can define the following components of the Truthster system:
+After conducting a thorough analysis of the current state of the art in the field, we have designed a Truthster possible system solution that includes a mobile/web app, a back-end module, a blockchain node, and a database service (Figure~\ref{fig:truthsterArchitecture}). The mobile/web app serves as the primary user interface, allowing users to manage their projects and media. The back-end module, implemented in Node.js, handles the communications between the mobile app, blockchain node, and database via REST APIs, ensuring seamless integration between these components. The blockchain node, based on Alastria technology, provides secure access to the blockchain infrastructure, ensuring data integrity and authentication. The database service, implemented using MongoDB, serves as the primary storage mechanism for all interview-related data. In a later stage of development, we plan to include an additional SQL database to store data about interviewers and interviewees.\par
+In the upcoming sections, we will provide a detailed analysis of the design choices we made for each component of the Truthster system.
+
+\begin{itemize}
+
+    \item \textbf{The front-end} of the Truthster system, a mobile/web app, is responsible for providing a user-friendly interface for the interviewer and interviewee to interact with the system. This includes functions such as recording audio and video material, inputting interview information and contact details, and selecting interview media. The front-end also handles authentication of the interviewer to ensure that only authorized personnel have access to the system.
+    \item \textbf{The back-end} of the Truthster system acts as the central hub for all data and communication between the front-end and external services such as the Alastria blockchain and storage service. It receives and processes data from the front-end, including interview media and metadata, and communicates with the external services to securely store and verify the data. The back-end also handles notifications and archiving of past interviews on the interviewer's mobile app.
+    \item \textbf{The Alastria blockchain} is a key component of the Truthster system, providing a decentralized platform for storing and verifying the authenticity and integrity of media files. The blockchain creates a tamper-proof record of the hashes of the media files, which can be used to provide proof of validity in legal proceedings. The blockchain also provides a way to securely store and manage personal data and consent agreements, in compliance with GDPR regulations.
+    \item \textbf{The storage service} is responsible for storing the interview media files, metadata, and GPS positions of the interviewer and interviewee. It ensures that all data is securely stored and encrypted, and provides a way to easily search and retrieve interview data as needed. The storage service also supports backup and disaster recovery, ensuring that interview data is not lost in the event of a system failure or data loss.
+
+\end{itemize}
+
+Overall, these four components work together to provide a secure, reliable, and user-friendly platform for conducting and verifying interviews. The combination of front-end, back-end, blockchain, and storage service provides a complete solution that meets the functional and non-functional requirements of the Truthster system.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/technicalArchitectureStructuralView.png}
+    \caption{Truthster system architecture}
+    \label{fig:truthsterArchitecture}
+\end{figure}
+
+
+\section{Front-end}
+
+The user interface (UI) of a system is a fundamental component that plays a significant role in the overall success and adoption of the software application by journalists and their audience. When designing the UI of a system, it is important to consider the available options and make an informed decision that meets the specific needs of the project.\par
+In the case of the Truthster system, the chosen UI technology is a mobile/web app that allows users to manage their projects and media with ease. This type of implementation provides several advantages and disadvantages that should be considered when making the final decision.
+
+Pros:
 
 \begin{enumerate}
-    \item The front-end, which is a web/mobile application that interacts with the interviewer and interviewee. It uses REST APIs to exchange data with the back-end cloud.
-    
-    \item The back-end, which is a server that interacts with the front-end and with external services such as the Alastria blockchain and storage service.
 
-    \item The Alastria Blockchain, which is a decentralized platform that provides proof of validity for the media files.
+    \item \textbf{Accessibility}: one of the most significant advantages of a mobile/web app UI is that it can be accessed from anywhere and at any time, making it highly convenient for users to access the platform features.
+    \item \textbf{User-friendly}: the mobile/web app UI is designed to be intuitive and easy to navigate, which makes it easy for users to use the platform features without requiring any technical knowledge.
+    \item \textbf{Easy updates}: updating a mobile/web app UI is much simpler and quicker than traditional software updates, which means that any changes or improvements can be implemented quickly and easily adopting an agile development methodology.
+    \item \textbf{Speed}: mobile/web app user interfaces (UIs) can offer a fast and responsive user experience as the processing is handled on the client-side, allowing for immediate user feedback and reducing the need for time-consuming server requests.
 
-    \item The storage service, which stores the interview media files, metadata, and GPS positions of the interviewer and interviewee.
-    
 \end{enumerate}
+
+Cons:
+
+\begin{enumerate}
+    
+    \item \textbf{Limited functionality}: a mobile/web app UI is limited by the capabilities of the devices they run on, which means they may not be able to provide the same functionality as a desktop application.
+    \item \textbf{Screen size}: the limited screen size of mobile devices can be a disadvantage for some users who may need more detailed information.
+    \item \textbf{Compatibility}: the mobile/web app UI must be compatible with a wide range of devices and operating systems, which can be challenging and time-consuming to maintain.
+    \item \textbf{Security}: mobile/web app UIs can be more susceptible to security vulnerabilities and attacks, which requires additional security measures to be implemented to ensure user data is secure.
+
+\end{enumerate}
+
+In conclusion, the mobile/web app UI is a suitable choice for the Truthster system, as it provides a convenient, user-friendly, and responsive user experience having downsides that are not much impacful on our design solution.
+
+\section{Storaging service}
+
+The classic solution for providing a storage service with a database is to use a relational database management system (RDBMS\cite{RDBMS}). An RDBMS is a type of database management system that is based on the relational model, which organizes data into one or more tables, with a unique key identifying each row. RDBMSs are popular because they provide a powerful and flexible way to store and manage data, with a wide range of features and capabilities. Some popular examples of RDBMSs include MySQL\cite{mySQL}, Oracle\cite{oracleDb}, Microsoft SQL Server\cite{microsoftSQL}, and PostgreSQL\cite{postgreSQL}. These databases are widely used in a variety of applications and industries, ranging from small-scale web applications to large-scale enterprise systems. One advantage of using an RDBMS is that they provide strong data integrity, with the ability to enforce complex relationships and constraints between tables. However, they can be complex to set up and maintain, and may not be well-suited for handling large volumes of unstructured or non-relational data.\par
+Now let's shift our focus to NoSQL databases, which provide a different approach to data storage compared to traditional relational databases. NoSQL databases are a type of non-relational database that provide a flexible and scalable alternative to traditional SQL databases. Unlike SQL databases, NoSQL databases are designed to handle large amounts of unstructured or semi-structured data, making them well-suited for use cases such as web applications, mobile applications, and big data analytics. This type of databases can store data in various formats, such as document-oriented, key-value, column-family, and graph databases and this allows for a high degree of flexibility in data modeling, making it easier to adapt to changing business requirements. Additionally, NoSQL databases can provide high availability and scalability by distributing data across multiple nodes, making them an ideal choice for applications that require high performance and reliability. Some of the most popular NoSQL databases include MongoDB\cite{mongoDB}, Cassandra\cite{cassandra}, Redis\cite{redis}, and CouchDB\cite{apacheCouch}.\par
+In designing the data storage component for the Truthster system, a decision was made to adopt a NoSQL database as the primary storage solution. MongoDB was chosen due to its scalability and flexibility in handling data with varying structures, which is a key requirement of the system given that the data collected during interviews may come in different formats. The use of a NoSQL database like MongoDB also allows for faster data retrieval and processing due to its ability to horizontally scale out to multiple nodes. While a NoSQL database is the primary choice, it is important to note that a relational database may be needed in the future to store additional data about interviewers and interviewees. As such, plans have been made to incorporate a relational option in future developments of the system to complement the NoSQL database. This hybrid approach to data storage will ensure that the system can handle both structured and unstructured data, while also maintaining scalability, flexibility, and maintainability.
+
+\section{Back-end}
+
+The Truthster system is a comprehensive platform that has been thoughtfully designed with a classic three-tier architecture\cite{3tierArchitecture} solution in mind. This architecture utilizes a server-side application that processes requests from the client-side and interacts with the database to provide centralized control and management of the application. The back-end of the system is the central actor in this architecture, managing communication between the front-end, the database (MongoDB), and Alastria blockchain. By using RESTful APIs\cite{restAPI}, the Truthster system can facilitate communication between the different components of the architecture in a secure and efficient manner. The use of JWT tokens\cite{jwtTokens} and AlastriaID further ensures that only authorized users can access sensitive data and services within the system.\par
+In any software application, the back-end system plays a crucial role in determining its reliability, scalability, and performance. For the Truthster system, the decision was made to implement the back-end using a Node.js server\cite{nodeJs}. Node.js is an open-source platform that has gained immense popularity for its ability to build scalable, high-performance applications. Its ability to handle a large number of connections with low overhead makes it an ideal choice for applications that require high scalability. Additionally, Node.js has a large and active developer community, providing a wealth of support and resources for future feature additions and updates.\par
+The use of Node.js for the back-end of the Truthster system ensures a robust and scalable system for managing data, communication, and authentication. Node.js is scalable, reliable, and offers a wide range of libraries that can be easily integrated into the Truthster system. By leveraging these libraries, the development team can quickly add new features and functionality to the system without the need to write code from scratch. The focus on building the core functionality of the system allows the Truthster team to deliver a reliable and feature-rich user experience in a timely manner. Node.js and its vast library ecosystem make the Truthster back-end system well-positioned to adapt and grow with the needs of the platform and its users.\par
+In conclusion, the use of Node.js and its libraries makes the Truthster system more scalable, reliable, and feature-rich. By utilizing a classic three-tier architecture, RESTful APIs, JWT tokens, and AlastriaID, the Truthster system ensures secure and efficient communication between different components of the architecture. The use of Node.js for the back-end of the system provides the necessary scalability and performance for a successful platform. With the wide range of libraries available, the Truthster team can quickly add new features and functionality to the system in response to the needs of the platform and its users. Overall, the choice of technologies and architecture for the Truthster system provides a robust and scalable platform that can adapt and grow with the needs of its users.
+
+\section{Alastria blockchain}
+
+Blockchain technology has become increasingly popular in recent years due to its security, immutability, and decentralized nature. For the Truthster system, we have chosen to connect our back-end to a node of the Alastria blockchain\cite{alastriaBlockchain}. By connecting to an Alastria node, we gain access to the entire blockchain ecosystem, including smart contracts that are already deployed on the network.\par
+Alastria is a permissioned blockchain that provides a range of services to its users, including identity and access management, decentralized storage, and smart contract functionality. In the context of Truthster, we plan to leverage the benefits of Alastria blockchain to provide secure and immutable data storage, as well as ensure the confidentiality and integrity of user data. In the upcoming Alastria chapter, we will explore the benefits and potential of Alastria blockchain in more detail and how it can be leveraged to build a secure and scalable system for Truthster.
+
+
+
+
+
+
 
 \chapter{Alastria}
 
@@ -425,9 +527,9 @@ Alastria is a non-profit association that operates a nation-wide, enterprise-gra
 
 \section{AlastriaID}
 
-AlastriaID is a digital identity project by the Identity Commission of Alastria. It aims to provide a legal and technical framework for sovereign digital identity projects in the Eurozone, following the guidelines of the eIDAS Regulation and the e-Identity Workshop Report of the EU Blockchain Observatory and Forum. The AlastriaID model is designed to work with the Alastria Standards Commission to standardize processes and methodologies and is designed to be complementary with the General Data Protection Regulation (GDPR).
+AlastriaID is a digital identity project by the Identity Commission of Alastria. It aims to provide a legal and technical framework for sovereign digital identity projects in the Eurozone, following the guidelines of the EIDAS Regulation and the e-Identity Workshop Report of the EU Blockchain Observatory and Forum. The AlastriaID model is designed to work with the Alastria Standards Commission to standardize processes and methodologies and is designed to be complementary with the General Data Protection Regulation (GDPR).
 
-From a more technical persective AlastriaID is a decentralized identity framework that allows users to securely store and manage their personal information in a decentralized environment. The framework is based on a set of smart contracts, that have been written in Solidity allowing to deploy them on any EVM compatible blockchain, and JWT (JSON Web Tokens), which are compact and self-contained data structures used for transmitting information between parties. 
+From a more technical perspective AlastriaID is a decentralized identity framework that allows users to securely store and manage their personal information in a decentralized environment. The framework is based on a set of smart contracts, that have been written in Solidity allowing to deploy them on any EVM compatible blockchain, and JWT (JSON Web Tokens), which are compact and self-contained data structures used for transmitting information between parties. 
 
 \subsection{The roles in AlastriaID}
 
@@ -494,7 +596,7 @@ The following section will provide a more in-depth look at these key features of
 
 \subsection{Alastria smart contracts structure}
 
-The smart contracts used in the AlastriaID model are structured as follows where each arrow represents a dependency:
+The smart contracts used in the AlastriaID model are structured in Figure~\ref{fig:alastriaSCStructure}, where each arrow represents a dependency of the type "contract A uses contract B":
 
 \begin{figure}
     \centering
@@ -547,7 +649,7 @@ The following are lists of the key smart contracts used in the AlastriaID platfo
     \hline
     Smart Contract & What is does\\ [0.5ex] 
     \hline\hline
-    Eidas.sol & It manages Eidas level of assurance for credentials \\ 
+    EIDAS.sol & It manages EIDAS level of assurance for credentials \\ 
     \hline
     Owned.sol & It assures that just the account which deployed a contract can update the version \\ 
     \hline
@@ -568,39 +670,28 @@ The following are lists of the key smart contracts used in the AlastriaID platfo
 
 \end{table}
 
-\section{AlastriaID tasks}
+\section{AlastriaID - Primary functions}
 
-In this section we will explain the main tasks that we can go through suing the AlastriaID framework.
+In this section, we will outline the primary functions that can be performed using the AlastriaID framework.
 In particular we will explain how to:
 
 \begin{enumerate}
 
-    \item Authenticate with AlastriaID
-    \item Create a new entity the will be available in the ecosystem and give them its role
-    \item Create, delete and manage credentials of an entity
-    \item Create, delete and manage presentations of an entity
-    \item Verify credentials in order to give access to a service
+    \item Create the \textbf{first entity} of the framework
+    \item Create a brand new \textbf{AlastriaID}
+    \item \textbf{Authenticate} with AlastriaID
+    \item Create a \textbf{new entity}, upgrade its role (referring to the creation of a new issuer) and delete the added role
+    \item Create new \textbf{credentials} for an entity
+    \item Create a new \textbf{presentations} for an entity, update and check its status
 
 \end{enumerate}
 
-All of the above mentioned tasks involve a technical library that allows to store private and public key in special encrypted files: the keystores. This library called \textbf{keythereum} is available on Github here\cite{keythereum}. Since the library involves a lot of boilerplate code we will handle it at a high level. We will refer to it when we need to recover a public or private key by simply writing "load Public key" or "load Private key".
-For our explanations we will consider a scenario where Bob, an individual, wants to subscribe to an online newspaper. The online newspaper acts as the service provider and wants to ensure that Bob is who he claims to be before granting access to its content. To verify Bob's identity, the online newspaper turns to Truthster, an issuer that specializes in identity verification. Truthster uses AlastriaID to verify Bob's identity by issuing a digital certificate that confirms Bob's personal information. Bob, as a subject in the AlastriaID system, can use his digital identity to access the online newspaper's service and other services that use AlastriaID. In this scenario, AlastriaID provides a secure and efficient solution for the online newspaper to verify Bob's identity and maintain the privacy and security of personal information. Additionally, by using AlastriaID, Truthster can ensure the validity of the digital certificate it issues, making it a trusted issuer in the eyes of the online newspaper. This real-world scenario highlights the potential of AlastriaID in facilitating secure and efficient identity verification processes in a variety of contexts and how it can be applied to our specific use case: Truthster.
+All of the above mentioned tasks involve a technical library that allows to store private and public key in special encrypted files: the keystores. This library called \textbf{keythereum} is available on Github\cite{keythereum}. Due to the large amount of boilerplate code involved in the library, we will handle it at a higher level. In some scenarios, such as when an actor signs a token or a transaction, it is essential to remember that this action demands the actor to load the keystore, decrypt it with their password, and retrieve the private/public key associated with it. Although this process will not be explicitly mentioned in the system, it is a vital step that must be undertaken by the actor to accomplish certain tasks within the framework.\par
+In the upcoming sections, we will explore various scenarios that illustrate the functionality of the AlastriaID framework and how it can be leveraged within the Truthster system to accomplish tasks such as creating a new AlastriaID, managing credentials, and deleting roles. To make these scenarios more comprehensible, we will provide hypothetical role definitions, where the Truthster back-end will serve as both a service provider and issuer. We will also introduce a user named Bob, who will create a new AlastriaID, interact with the platform, and manage credentials and presentations. By using these "concrete" examples, we aim to provide a clearer understanding of how the AlastriaID framework can be utilized within the Truthster system.
 
-\subsection{Create the first entity of the ecosystem}
+\subsection{Create the first entity of the framework}
 
 In AlastriaID, there is a first entity known as the root entity, which has the permission to create other entities within the platform. The root entity is created when the AlastriaID smart contracts are first deployed, in our framework through the AlastriaNameService contract. This root entity is responsible for creating other entities, such as subjects, service providers, and issuers, within the AlastriaID platform. The root entity is designed to provide a secure and centralized mechanism for managing entities within the platform, ensuring that only authorized entities have the ability to create and manage digital identities and personal data.
-
-\subsection{Authentication with AlastriaID}
-
-In Truthster, users can authenticate themselves on the system using a user-friendly app. This app allows users to easily create and manage their digital identities, as well as control access to their personal data.
-When Bob wants to authenticate he sends to Truthster a login request. After receiving the request the Truthster backend generates an Alastria Token with all the information needed (expiring date, Truthster DID, etc...), signs and sends it back to the Bob. At this point Bob verify the authenticity of the AT with the Truhster public key. If everything is ok he procedes by creating an Alastria Session Token that is then signed with its private key and sent to the Truthster backend. After receiving the signed AST the backend verifies its authenticity with Bob public key and then if everything is fine the user is authenticated and can access the services provided by Truthster.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/authenticationAlastriaID.png}
-    \caption{Authentication process with AlastriaID}
-\end{figure}
-
 
 \subsection{Create an AlastriaID}
 
@@ -616,12 +707,25 @@ The process is represented in the Figure~\ref{fig:addAlastriaID}.
 
 \end{figure}
 
+\subsection{Authentication with AlastriaID}
+
+In Truthster, users can authenticate themselves on the system using a user-friendly app. This app allows users to easily create and manage their digital identities, as well as control access to their personal data.
+When Bob wants to authenticate he sends to Truthster a login request. After receiving the request the Truthster backend generates an Alastria Token with all the information needed (expiring date, Truthster DID, etc...), signs and sends it back to the Bob. At this point Bob verify the authenticity of the AT with the Truhster public key. If everything is ok he procedes by creating an Alastria Session Token that is then signed with its private key and sent to the Truthster backend. After receiving the signed AST the backend verifies its authenticity with Bob public key and then if everything is fine the user is authenticated and can access the services provided by Truthster.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/authenticationAlastriaID.png}
+    \caption{Authentication process with AlastriaID}
+\end{figure}
+
+
 \subsection{Create a new entity}
 
-In order to create a new entity on the Alastria platform, the Truthster backend must first determine the role that this entity will play. By default, any new entity that is created will be classified as a Subject. However, if necessary, this entity can be upgraded to a Service Provider or Issuer through a transaction sent by another identity (it can be the first identity of the platform or an entity with a higher Eidas level).
+In order to create a new entity on the Alastria platform, the Truthster backend must first determine the role that this entity will play. By default, any new entity that is created will be classified as a Subject. However, if necessary, this entity can be upgraded to a Service Provider or Issuer through a transaction sent by another identity (it can be the first identity of the platform or an entity with a higher EIDAS level).
 Once the role of the entity has been established, the Truthster backend builds the transaction "alastriaNameService.addEntity" which includes all the relevant information about the new entity. This information may include the entity's name, its AlastriaID, and any other necessary details. After assembling this information, the backend signs the transaction and sends it to the Alastria network for processing.
 Alastria then performs the necessary checks and validations to ensure that the transaction is valid and that the new entity can be added to the platform. If the transaction is successful, Alastria sends a transaction receipt back to the Truthster backend, indicating that the entity has been successfully added to the platform.
-The process is represented in the Figure~\ref{fig:createNewGeneralEntity}.
+The process is represented in the Figure~\ref{fig:createNewGeneralEntity}.\par
+\textit{Notes}: when we create a new entity the subject of this operation must already have an AlastriaID since create the entity is a further step in the platform processes.
 
 \begin{figure}
     \centering
@@ -632,7 +736,7 @@ The process is represented in the Figure~\ref{fig:createNewGeneralEntity}.
 
 \subsection{Add new issuer}
 
-To create a new issuer on the AlastriaID platform, the Truthster backend, which is itself an issuer and has the ability to create other issuers, must perform a series of steps. First, it creates a transaction called "identityManager.addIdentityIssuer," which includes the DID of the new issuer to be created and its Eidas level as parameters. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is then executed, and the Truthster backend receives the transaction receipt as confirmation. Ultimately, this process allows the creation of a new issuer on the Alastria blockchain platform, facilitated by the Truthster backend as the initial issuer and transaction creator.
+To create a new issuer on the AlastriaID platform, the Truthster backend, which is itself an issuer and has the ability to create other issuers, must perform a series of steps. First, it creates a transaction called "identityManager.addIdentityIssuer," which includes the DID of the new issuer to be created and its EIDAS level as parameters. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is then executed, and the Truthster backend receives the transaction receipt as confirmation. Ultimately, this process allows the creation of a new issuer on the Alastria blockchain platform, facilitated by the Truthster backend as the initial issuer and transaction creator.
 The process is represented in the Figure~\ref{fig:addNewIssuer}
 
 \begin{figure}
@@ -644,7 +748,7 @@ The process is represented in the Figure~\ref{fig:addNewIssuer}
 
 \subsection{Delete exisiting issuer}
 
-To delete a specific issuer with a low Eidas level on the AlastriaID platform, the Truthster backend, which is an issuer with the authority to delete other issuers, must follow a series of steps. First, it creates a transaction called "identityManager.deleteIdentityIssuer," which takes the DID of the issuer to be deleted as a parameter. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is executed, and the Truthster backend receives the transaction receipt as confirmation of the deletion. However, if the issuer with the given DID does not exist, the transaction is reverted with the related error. Overall, the deletion process is facilitated by the Truthster backend, which creates and signs the transaction to remove the specified issuer on the Alastria blockchain platform.
+To delete a specific issuer with a low EIDAS level on the AlastriaID platform, the Truthster backend, which is an issuer with the authority to delete other issuers, must follow a series of steps. First, it creates a transaction called "identityManager.deleteIdentityIssuer," which takes the DID of the issuer to be deleted as a parameter. Next, the Truthster backend signs the transaction and sends it to Alastria. The transaction is executed, and the Truthster backend receives the transaction receipt as confirmation of the deletion. However, if the issuer with the given DID does not exist, the transaction is reverted with the related error. Overall, the deletion process is facilitated by the Truthster backend, which creates and signs the transaction to remove the specified issuer on the Alastria blockchain platform.
 The process is represented in the Figure~\ref{fig:deleteIssuer}.
 
 \begin{figure}
@@ -654,17 +758,260 @@ The process is represented in the Figure~\ref{fig:deleteIssuer}.
     \label{fig:deleteIssuer}
 \end{figure}
 
+\subsection{Create new credentials}
+
+Credentials are an important feature of the AlastriaID platform that allow users to access services provided by service providers. Credentials are essentially certifications issued by an authority on the AlastriaID platform that verify a user's identity or some other relevant piece of information. For example, a credential might confirm that a user is over the age of 18 or has completed a certain training program.\par
+In this example (Figure~\ref{fig:updateSubjectPresentation}), to create new credentials, the subject (Bob) requests the issuer (Truthster back-end) to generate the required credentials. The issuer creates a token with the credentials and signs it using its private key. To allow the platform to verify the approval of the credentials, the signed token is hashed along with Bob's DID. The issuer sends the hashed credentials to Bob, who builds a transaction that includes the hashed credentials and the URI to the credentials as parameters. After signing the transaction with his private key, Bob sends the transaction bytecode to the Truthster back-end, which then sends the transaction to the Alastria blockchain. Once the transaction is confirmed, the Alastria blockchain sends the transaction receipt back to the Truthster back-end. By following these steps, the subject can obtain the required credentials from the issuer and add them to the Alastria blockchain for verification by service providers.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{images/createNewGeneralEntity.png}
-    \caption{Creation process for new entities on-chain}
+    \includegraphics[width=0.8\textwidth]{images/createSubjectCredentials.png}
+    \caption{Creation of new Subject credentials}
+    \label{fig:createSubjectCredentials}
 \end{figure}
+
+\subsection{Create a new presentation}
+
+A presentation is a collection of user credentials that are required by a service provider in order for a subject to access a specific service. The Alastria network provides a way to create, manage, and update these presentations using AlastriaID. In this guide, we will walk through the process of creating a presentation, updating it, and checking its status.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/createSubjectPresentation.png}
+    \caption{Creation of a Subject presentation with AlastriaID}
+    \label{fig:createSubjectPresentation}
+\end{figure}
+
+To create a presentation (Figure~\ref{fig:createSubjectPresentation}), the subject (Bob) needs to first authenticate themselves with their AlastriaID. The service provider (Truthster back-end) sends a presentation request to Bob, specifying the credentials that are required for the presentation. Bob then creates a SubjectPresentationToken (SPT) that contains the required credentials, and signs it using his private key. Next, he creates a presentation hash by combining the signed token (sSPT) with his DID. Bob then builds a transaction to add this presentation on Alastria, specifying the presentation hash and the URI of the presentation. After signing the transaction, Bob sends the bytecode to the Truthster back-end. The Truthster back-end then forwards the transaction to Alastria for execution and receives the transaction receipt back from Alastria.
+
+\subsection{Update a presentation status}
+
+To update an invalid or revoked presentation on the Alastria network (Figure~\ref{fig:updateSubjectPresentation}), the presentation owner (Bob) must build a transaction using the presentationRegistry.updateSubjectPresentation method. This transaction specifies the presentation to update and its new status as parameters. After signing the transaction, Bob sends it to the Truthster back-end. The Truthster back-end then forwards the transaction to Alastria, which executes the transaction. Once the transaction has been executed, Alastria sends the transaction receipt back to the Truthster back-end for confirmation. By following these steps, the owner of the presentation can ensure that service providers on the Alastria network only accept valid presentations.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/updateSubjectPresentation.png}
+    \caption{Update a Subject presentation status}
+    \label{fig:updateSubjectPresentation}
+\end{figure}
+
+\subsection{Check a presentation status}
+
+To check the status of a presentation on the Alastria network (Figure~\ref{fig:checkSubjectPresentationStatus}), a service provider can build a transaction using the presentationRegistry.getSubjectPresentationStatus method, including the subject presentation hash and subject DID as parameters. The Truthster back-end then sends this transaction to Alastria to execute, and upon completion, Alastria sends the transaction receipt back to the Truthster back-end for confirmation. By following these steps, a service provider can verify the status of a presentation and ensure that the subject attempting to access the service has valid credentials.
+\textit{Notes}: in this process there is no need for signing a transaction since we are not writing on the Alastria blockchain, but just reading existing values.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/checkSubjectPresentationStatus.png}
+    \caption{Update a Subject presentation status}
+    \label{fig:checkSubjectPresentationStatus}
+\end{figure}
+
+\subsection{AlastriaID - Summary}
+
+After analyzing the most significant features offered by AlastriaID we can say that it is a powerful framework that provides a range of features for the management of identities and credentials on the Alastria blockchain network. With AlastriaID, users can create, manage, and revoke digital identities, as well as manage and share digital credentials. The framework enables the creation of decentralized applications that leverage the trust and security of the blockchain. Among the features provided by AlastriaID are the creation of a user's digital identity, the management of digital credentials issued by trusted authorities, and the presentation of those credentials to service providers in order to access their services. The framework also enables the revocation of credentials when needed and allows for the creation of presentations that can be checked for their validity. With some additional smart contracts and features, AlastriaID can be used as the backbone of a product, such as the Truthster system, that offers secure and reliable management of digital identities and credentials.
+
+
 
 
 \chapter{Implementation}
 
+As a collaborative project, Truthster involves various entities, including the University of Udine, the University of Perugia, a journalist, and a few IT companies. Due to its complex and long-term nature, the entire system has not yet been completed. However, we have prepared an initial prototype that provides a basic outline of the platform's functionalities and features. This prototype represents a starting point for us to structure and develop the platform further in collaboration with our partners. It will allow us to gather feedback, test different functionalities, and make necessary adjustments to enhance the platform's usability, reliability, and security. This prototype will also help us to communicate our vision effectively to potential stakeholders and investors, thereby paving the way for the further development and deployment of the system. Although the prototype is not the finished product, it serves as a solid foundation for the development of the final product, ensuring that the platform meets the needs of its users and stakeholders.\par
+In this chapter, we will provide a detailed analysis of how the initial prototype of Truthster is implementing its basic functionalities. We will also discuss the missing components and how we plan to address them to meet both the functional and non-functional requirements of the system. Additionally, we will see the main scenarios of the Truthster system through a sequence diagram, discussing the implementation of the platform. We will also provide a component diagram to show how the system (final version) will be structured, along with a deployment diagram for the final version. These diagrams will provide a better understanding of how the various components of the platform interact with each other and how they are deployed on different nodes. This will help to provide a clearer picture of the overall architecture of the platform and how it can be scaled and maintained over time. Through this process, we aim to develop a comprehensive and reliable platform that can effectively address the needs of the journalism industry and provide a trustworthy and transparent source of information to the general public.
+
+\section{Prototype structure}
+
+Our prototype structure is designed to enable loosely coupled components, and we have accomplished this by using Docker\cite{docker} on a local virtual server located in the University of Udine. The system is composed of several containers, each representing a distinct service or function. The first container is an instance of a MongoDB database, where all the interview data and other related information is saved. In the second container, we have implemented our REST APIs, which are programmed to run on a Node.js server, as we have planned for the final solution. We have also created a third container that serves as a temporary interface, allowing us to interact with the APIs and MongoDB, and perform some basic operations. The Alastria node is already online, and it is provided by the Alastria Consortium, enabling us to take advantage of the blockchain technology in the prototype. This structure helps us to maintain modularity, scalability, and flexibility, and makes it easier for us to add, remove or modify components in the future as the project evolves. In Figure~\ref{fig:prototypeSchema} you can see how the prototype is structured.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/prototypeSchema.png}
+    \caption{Design of the Truthster system prototype}
+    \label{fig:prototypeSchema}
+\end{figure}
+
+\section{Prototype explanation}
+
+In this section, we will provide an in-depth analysis of how our prototype for Truthster works.\par
+In our prototype, as previously mentioned, we have three containers that reside on our server, along with a "Files folder" located outside the containers. This folder is encrypted and contains the interview files that are also encrypted since they are large and may be lost in case of a container reset. This is because containers have temporary memory that lasts only for their entire life. By storing the interview files in an encrypted folder outside the containers, we can ensure that the files are not lost and are easily accessible by the back-end and other system services.\par
+The React app container serves as the interface for users like Bob, who want to access the functions of the Truthster platform. Bob, a journalist, accesses the web app on his PC or mobile device, creates a new project related to the interview he wishes to conduct, and enters all the necessary interview information, such as GPS position, interviewee name, project name, location, and consent agreement. The project creation can be done before the interview as it is not a locked element. After confirming the project, it is sent as a JSON to the back-end container, which stores the data on the MongoDB instance using REST APIs.\par
+After Bob has finished the interview, he can load the related media onto the web app from his PC or mobile device. The media is then passed to the back-end container, where it is encrypted and stored in the "Files folder" on the server. A link to the file is also stored in the interview project on the MongoDB instance, allowing Bob to easily access the file in the future. This ensures that the interview media is securely stored and easily accessible for future use.\par
+In this initial prototype, the Alastria blockchain is not yet directly integrated into the system, but it has been used in a separate manner. At the moment, Bob is not required to log in using AlastriaID, as we are still working on the API and mechanics to implement it in the most secure and effective way possible.
+
+\section{Blockchain implementation}
+
+Alastria is a unique permissioned blockchain platform, as it requires a whitelisted IP address to access its network. In order to gain access to the production version of Alastria, the RedB network, our server went through a simple process to be whitelisted. This allows Truthster to interact with Alastria through the REST API container, which ensures safe and controlled access to the blockchain.
+One of the key features of Alastria is that it is an EVM blockchain, which means its runtime is based on an Ethereum Virtual Machine\cite{evm}. This feature allows calls and transactions to be made on Alastria in the same way as other public chains such as Ethereum\cite{ethereum}, Polygon\cite{polygon}, or Moonbeam\cite{moonbeam}. While there are many public blockchain platforms available, Alastria stands out for its permissioned nature and its close association with the Spanish public and private sectors.\par
+Having this in mind we have leveraged the power of existing libraries such as Ethers\cite{ethers} and Web3\cite{web3}, which enable us to access blockchain data, read and send transactions that are compatible with Node.js. With this capability, we have configured the REST API server in such a way that it is easy to add REST calls that interact with the blockchain, and all of the calls can be easily filtered through the back-end for better security. By taking this approach, we can ensure that all blockchain interactions are carried out in a safe and secure manner, without any direct exposure to external factors that may compromise the integrity of the system.
+
+\subsection{Truffle and Ganache}
+
+In order to effectively connect to the Alastria RedB network and build a complete prototype for the Truthster platform, we first had to familiarize ourselves with the Ethereum Virtual Machine (EVM) model. To do this, we utilized a local blockchain called Ganache and the Truffle framework. Through this process of studying and testing the EVM model, we were able to gain a deeper understanding of how the blockchain works and how we can interact with it using our application. This knowledge allowed us to develop and test our smart contracts and other blockchain-related functionality in a safe and controlled environment before deploying it to the production network.\par
+The Truffle framework provided us with a comprehensive set of tools and utilities for developing, testing, and deploying smart contracts, making our development process more efficient and streamlined. These tools include built-in smart contract compilation, linking, deployment, and binary management, making it easier for developers to manage their code. Additionally, Truffle offers advanced debugging features, such as breakpoints, variable analysis, and step functionality, to ensure the accuracy and reliability of the smart contract. The framework also provides a deployment and transaction interface with MetaMask to protect developers' mnemonic and an interactive console for direct contract communication.\par
+To facilitate rapid development, Truffle also offers automated contract testing and a scriptable, extensible deployment and migration framework. The tool also offers network management capabilities, allowing developers to deploy their smart contracts on any number of public and private networks. Finally, Truffle includes package management with NPM, using the ERC190 standard, and a configurable build pipeline with support for tight integration. With its comprehensive set of features, Truffle is a world-class development framework for Ethereum smart contracts that enhances developer productivity and efficiency.\par
+We used the contract of the AlastriaID library and deployed our version on Ganache to test its functionalities. However, to achieve a better and more complete prototype, these contracts have to be used along with JWT tokens and the other features offered by the Alastria identity library. This is necessary in order to get a product that resembles the final Truthster platform in terms of its most important functionalities. By utilizing the Truffle framework and Alastria identity library, we aim to build a fully-functional and secure platform that can effectively combat fake news and promote truth and transparency in journalism.
+
+\section{Prototype status}
+
+The prototype that we have implemented has a limited set of functionalities. As previously mentioned, the Truthster project is a collaborative effort that involves multiple entities, and thus this prototype represents only the initial stage of the platform's development. Moving forward, we will use this prototype as a starting point to test and build upon the other functionalities required for the final product.
+The current version of the prototype serves as a proof of concept for the basic features of Truthster, such as creating new projects, managing interview data, and interacting with the Alastria blockchain. However, there are many more features and capabilities that must be added to the platform to achieve its full potential.\par
+For example, one major aspect of the project that we are currently working on is the integration of the Alastria identity library, which will allow for more secure and authenticated interactions with the blockchain. Additionally, we plan to develop more advanced functionality for managing interview data, such as adding tags and categories to make it easier to search and analyze large volumes of data.\par
+Overall, the current prototype represents a first step in the development of Truthster, and we look forward to working with our partners to build a comprehensive and robust platform that meets the needs of journalists, researchers, and other users in the field of digital media.
+
+\section{Truthster main scenarios}
+
+In this section, we will provide a sequence diagram that represents the implementation of the most significant scenarios of the Truthster platform. This diagram serves as a plan for our development process and will provide a clearer picture of how the platform will be structured and how its various components will interact with each other.\par
+The diagram includes the following scenarios that are represented in the Figure~\ref{fig:sequenceDiagram}.
+
+\begin{enumerate}
+
+    \item Media getting
+    \item Create new project
+    \item Save interview data and metadata
+    \item Send authorization link
+    \item Request interviews information
+
+\end{enumerate}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/sequenceDiagram.png}
+    \caption{Sequence diagram of the Truthster main scenarios}
+    \label{fig:sequenceDiagram}
+\end{figure}
+
+\subsection{Media getting}
+\label{mediaGetting}
+
+In this scenario, a journalist uses a third-party app to record an interview, and then uploads the media to the Truthster platform through the mobile app. After the media is uploaded, it is encrypted and sent to the back-end for storage in a secure database. The specific details of this process are not yet defined, but will be established in the further development of the platform. The primary objective of this scenario is to demonstrate how the platform will enable journalists to securely and easily upload media files to the Truthster system for safe and transparent storage.
+
+\subsection{Create new project}
+\label{createNewProject}
+
+In this scenario, the journalist initiates the process by logging into the platform through the mobile app. The app then sends the login information to the back-end for verification. Once the credentials are authenticated, the back-end sends the login response back to the user, allowing them to proceed. After successful login, the journalist inputs all the necessary information to create a new project, including interview information, interview media, and interviewee contact details. This information, along with the recorded media from the \nameref{mediaGetting} scenario, is sent to the back-end, where a new project is created and stored in the platform's database.
+
+\subsection{Save interview data and metadata}
+\label{saveDataAndMetadata}
+
+In this scenario, the interview information obtained in the \nameref{createNewProject} scenario is processed by the back-end. Some of this information is sent to the database, the metadata that has not been previously passed. The recorded media is fetched from the database and then the hash of the media and the interview information is registered on the Alastria blockchain using a custom transaction. This process ensures the immutability and integrity of the interview data, providing a tamper-proof solution that can be verified when needed from both journalists and interviewees.
+
+\subsection{Send authorization link}
+\label{generateAndSendLink}
+
+In this scenario, the interviewer requests the system to generate an authorization link that will be sent to the interviewee to obtain their consent. The system fetches all the necessary information from the database, generates the link, and sends it to the interviewee. The interviewee can then review the interview and add any necessary information. Once the interviewee has completed the review and provided their consent, the system is notified and the interviewer is then able to proceed with publishing the interview content. An overall hash of the information and the interviewee's consent is stored on the Alastria blockchain. This process ensures that all parties involved have provided their consent and that the information is accurate before it is published on the platform.
+
+\subsection{Request interviews information}
+\label{requestInterviewsInformation}
+
+In this scenario, the interviewer requests information about previous interviews through the mobile app. The request is sent to the back-end, which processes the request by retrieving the relevant information from both the blockchain and the database. Finally, the back-end provides the requested information to the interviewer through the mobile app. This allows the interviewer to easily access and review past interviews stored on the platform. The use of both the blockchain and the database ensures the security and accuracy of the stored information.
+
+\section{Component diagram}
+
+The component diagram in Figure~\ref{fig:componentDiagram} illustrates which are the different components of the Truthster platform. The main components include the user interface, which consists of a mobile application and a website, the back-end server, a database management system (DBMS), and a blockchain.\par
+
+The user interface is responsible for handling user authentication and querying the server, which in turn checks the user credentials in the DBMS. The UI is also responsible for project creation, which involves collecting and sending all necessary data to the back-end server for storage in the DBMS. Finally, the user interface manages permissions and sends a request to the server to write the media hashes in the blockchain. This process ensures the immutability and transparency of the stored data.\par
+The back-end server is responsible for handling communication between the user interface, the DBMS, and the blockchain. It processes user requests, retrieves and stores data from the DBMS, and sends data to the blockchain for secure storage and verification.\par
+The DBMS stores all information related to the interviews, including interviewee contact details, metadata, and media content. In the later stages of the project, an additional SQL database will be added to store data about interviewers and interviewees.\par
+The blockchain is represented as an Alastria node that provides access to the blockchain infrastructure. It stores the hashes of the media and interview information, providing a secure and tamper-proof solution for storing and verifying interview data.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/componentDiagram.png}
+    \caption{Truthster components diagram}
+    \label{fig:componentDiagram}
+\end{figure}
+
+\section{Deployment diagram}
+
+A deployment diagram is a type of UML diagram that depicts the physical components of a software system and their relationships. It shows how the software system is deployed on hardware, as well as how the hardware components interact with each other.
+
+The Truthster deployment diagram, in Figure~\ref{fig:deploymentDiagram}, illustrates the deployment of the different components of the Truthster platform.\par
+It consists of four components: 
+
+    \begin{itemize}
+
+        \item An Android app (represents the user interface)
+        \item A Back-end container
+        \item A DBMS container
+        \item A blockchain container
+
+    \end{itemize} 
+
+The Android app resides on a device and serves as the user interface for accessing the Truthster platform. The back-end container, built with Docker, handles the communication between the user interface, the DBMS container, and the blockchain container. The DBMS container stores all the information related to the interviews, while the blockchain container represents the Alastria node that the back-end connects to in order to send transactions and retrieve stored data. Together, these components create a scalable and reliable platform that can effectively address the needs of the journalism industry and provide a trustworthy and transparent source of information to the general public.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/deploymentDiagram.png}
+    \caption{Truthster deployment diagram}
+    \label{fig:deploymentDiagram}
+\end{figure}
+
 \chapter{Testing and validation}
+
+In this chapter, we will go through the process of testing and validation for the Truthster platform. As we have previously discussed in the \nameref{problemAnalysis} chapter, there are a set of functional and non-functional requirements that the platform must meet in order to provide an effective solution for the journalism industry. In this chapter, we will detail how we have tested the initial prototype and how we plan to further test and validate the platform in order to ensure that all requirements are met by the final product.\par
+We will begin by discussing the requirements that the prototype has already satisfied and those that still need to be addressed in the final version. We will then detail how we plan to meet these requirements through rigorous testing and validation processes, including unit testing, integration testing, and system testing. Through these processes, we aim to identify any potential issues or bugs in the platform and address them in a timely and effective manner.\par
+Ultimately, our goal is to provide a comprehensive and reliable platform that meets the needs of the journalism industry and provides a trustworthy and transparent source of information to the general public. Through thorough testing and validation, we aim to ensure that the final Truthster platform meets these goals and provides a secure and efficient solution for managing and sharing interview data in compliance with GDPR.
+
+\section{Prototype analysis}
+
+The actual prototype of the Truthster platform, despite being incomplete, already satisfies some functional and non-functional requirements. A functional requirement is a specific task or feature that a system or software must perform, while a non-functional requirement is a characteristic that the system or software must possess to ensure optimal performance, reliability, and security. In this section, we will discuss the functional and non-functional requirements that the current Truthster prototype fulfills.\par
+\subsection{Functional requirements}
+
+    \begin{enumerate}
+
+        \item \textbf{Embed authorship and legal details}: the Truthster prototype partially fulfills this requirement by enabling the storage of all necessary information and documentation related to a specific interview in the database. This ensures that authorship and legal aspects can be properly recorded and cannot be manipulated. However, the consent handling is not yet implemented in the prototype, although the system's structure enables a quick implementation of this feature.
+        \item \textbf{Secure and manage interview data}: the Truthster prototype satisfies this requirement by implementing several features to ensure the confidentiality and security of interview-related data. Firstly, the prototype stores all interview media files in an encrypted format, preventing unauthorized access to the media content. Secondly, the data is stored on a server that is only accessible to authorized users, ensuring that only authenticated users can access the information. This provides an additional layer of security for the data, protecting it from potential data breaches. Furthermore, the prototype allows for the organization of data in a way that associates it with a specific project. This feature facilitates the retrieval and management of data, ensuring that interview data is easily accessible and searchable by authorized users. The data includes not only the media content, such as video interviews, but also any relevant legal documents, user terms, and agreement conditions, ensuring that all the required information is accessible in one place.
+        \item \textbf{Certify and verify digital media with blockchain (Alastria)}: this requirement is partially satisfied by the prototype as it already integrates with the Alastria blockchain. However, the prototype lacks the capability to verify the digital media with blockchain by checking the hash of the encrypted version stored on the database server. To fully satisfy this requirement, a smart contract can be created that stores the media ID and its corresponding hash on the database server. This will enable users to verify the authenticity and integrity of the digital media by simply calling the smart contract and checking the hash value through a specific API call.
+
+    \end{enumerate}
+
+    The upcoming months will see the development of the following requirements for the Truthster platform:
+
+    \begin{enumerate}
+
+        \item Verify interviewer identity
+        \item Automate generation of legal terms
+        \item Easy certification tool for video interviews
+        \item Secure and manage interview data
+        \item Provide an identity verification tool
+
+    \end{enumerate}
+
+The implementation of the AlastriaID framework through dedicated API calls will enable the fulfillment of all the missed functional requirements mentioned above for the final Truthster platform version. The platform will have a structure similar to the current prototype, and the development team will work to integrate the framework into the system to provide features such as interviewer identity verification, automated generation of legal terms, an easy certification tool for video interviews, secure and managed interview data, and an identity verification tool.\par
+
+\subsection{Non-functional requirements}
+
+The non-functional requirements related to the actual prototype state have been evaluated, and some have been successfully met, while others will be fulfilled in the upcoming development phase. The list of the non-functional requirements and their current status are as follows:
+
+    \begin{enumerate}
+
+        \item \textbf{Usability}: the platform is designed to be user-friendly, allowing journalists to create new projects, manage their interview data, and interact with the Alastria blockchain seamlessly. This feature ensures that the platform is easy to use and accessible to journalists with varying degrees of technical expertise.
+        \item \textbf{Reliability and scalability}: The Truthster prototype is designed with both reliability and scalability in mind to ensure that interview data is always securely stored and available. The platform has a number of features that contribute to its reliability, including its ability to recover from failures and errors. The use of Docker images is a key factor in this, as it allows the different components of the platform to be easily deployed and scaled across multiple servers. By taking this approach, the platform is able to improve its fault tolerance and reduce the risk of downtime caused by hardware failures or other technical issues. In addition to being reliable, the Truthster prototype is also highly scalable. The platform is designed to support a large number of users and a significant amount of data, making it an ideal choice for projects that require a high degree of scalability. The platform's ability to scale is due to a number of factors, including its use of modern technologies and its modular architecture. With these features, the Truthster prototype is able to support a growing number of users and data with ease, making it an ideal choice for organizations of all sizes.
+        \item \textbf{Security}: the platform is secure, with all interview media files being encrypted, and all interview data being stored on the Alastria blockchain. This feature ensures the confidentiality, integrity, and availability of all interview data, making it resistant to cyber attacks and unauthorized access. In addition, the structure of the prototype allows for back-end filtering of requests directed to both the Alastria blockchain and the database instance, improving system performance and reducing potential security risks.
+        \item \textbf{Maintainability}: the platform is highly maintainable, thanks to its modular structure that enables easy addition, removal, and modification of its components. This feature ensures that the platform can be updated and maintained over time, making it more reliable and secure. In the prototype, this is achieved using an orchestration software such as Docker. By having all the components of the system as images, it becomes easy to replace an older version with a new one, simply by switching to the new implementation. Additionally, the modular structure of the system enables the filtering of requests directed to both the Alastria blockchain and the database instance in the back-end, making it more efficient and secure.
+        \item \textbf{Compliance}: this requirement has not yet been fully achieved in the current prototype due to its dependency on the integration with AlastriaID, which will be implemented in the upcoming phases of the prototype development. However, the importance of ensuring compliance with legal and regulatory frameworks is understood, and the development team is committed to fully implementing this requirement in the final version of the Truthster platform.
+    
+    \end{enumerate}
+
+
+The current state of the Truthster platform prototype demonstrates its potential as a robust and comprehensive solution. The prototype fulfills several functional and non-functional requirements, providing a solid foundation for the final product's development and deployment. The platform offers a range of functionalities that enable journalists to create new projects, manage interview data, and interact with the Alastria blockchain securely and reliably. Moreover, the platform fulfills the non-functional requirements, such as usability, scalability, security, reliability, and maintainability, making it user-friendly, secure, and easy to maintain.\par
+However, the platform is not yet perfect, and several non-functional requirements remain to be achieved. The compliance requirement, in particular, requires the integration of the Alastria identity library, which is scheduled to be implemented in the upcoming development phase. The addition of the Alastria identity library will help ensure that the platform complies with legal and regulatory frameworks. The platform's development team is dedicated to continuing the development of the platform and incorporating advanced features to ensure that the final product is comprehensive, secure, reliable, and accessible to all users.
+
+\section{Testing}
+
+An exhaustive testing of the Truthster prototype hasn't been done yet, as it is still under development. However, we are preparing the testing for the upcoming functionalities of the Truthster system and have divided them into the following high-level phases:
+
+\begin{enumerate}
+
+    \item Testing the functionalities of the \textbf{AlastriaID} with some example data (currently in progress) with the help of the Truffle framework.
+    \item Testing the \textbf{Truthster smart contracts} for handling interview media and information integrity (again with Truffle framework).
+    \item Creating unit testing for \textbf{each API} provided by the back-end.
+    \item Testing the \textbf{main functionalities} of the platform.
+    \item Testing the \textbf{platform's capacity} by generating fake traffic.
+    \item Testing any \textbf{additional features} that may be added in the future.
+
+\end{enumerate}
+
+It is important to keep in mind that this proposed testing plan is subject to change as the development of the Truthster platform progresses. The primary goal of the testing process is to identify any platform bottlenecks, possible process exploits, and other system criticalities. By conducting exhaustive testing, we can ensure that the final version of the Truthster platform is reliable, secure, and user-friendly. The testing process will provide critical insights into the platform's functionality, capacity, and scalability, and any necessary adjustments can be made to improve its overall performance.
 
 \chapter{Conclusions}
 
@@ -674,6 +1021,7 @@ The process is represented in the Figure~\ref{fig:deleteIssuer}.
 %\part{Appendici}
 
 \chapter{Ganache}
+\label{appendixGanache}
 Ganache is a personal blockchain for Ethereum development you can use to deploy contracts, develop your applications, and run tests. It is a tool that allows developers to create a virtual Ethereum blockchain on their local machine, which is useful for testing and developing smart contracts. Ganache creates a virtual blockchain that runs locally on your machine, which is separate from the live Ethereum network. This allows developers to test their contracts in a simulated environment, without the need for real Ether or the risk of interacting with the live network. Ganache also provides a user-friendly interface for interacting with the blockchain and managing accounts, making it easy for developers to test and debug their contracts.\par
 
 Some possible disadvantages of using Ganache include:
@@ -740,6 +1088,14 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
     \bibitem{googleVerificationToolkit}
     Google News Lab Verification Toolkit, \href{https://newsinitiative.withgoogle.com/resources/journalism/}{Journalism Resources}
 
+    \bibitem{EIDAS}
+    Wikipedia, \href{https://en.wikipedia.org/wiki/EIDAS}{EIDAS}
+
+    %% Blockchain
+
+    \bibitem{edChainPowvsPos}
+    edChain, \href{https://medium.com/@EdChain/pow-vs-pos-a-comparison-of-two-blockchain-consensus-algorithms-f3effdae55f5}{POW vs. PoS: a comparison of two blockchain consensus algorithms}
+
     \bibitem{EXP51Attack}
     Expanse was 51\% attacked, \href{https://gist.github.com/metalicjames/01222049f95f85df8c0eb253de54848b}{Expanse (EXP) was 51\% attacked}
 
@@ -761,6 +1117,78 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
     \bibitem{LongRangeAttack}
     Medium, \href{https://blog.positive.com/rewriting-history-a-brief-introduction-to-long-range-attacks-54e473acdba9}{Rewriting History: A Brief Introduction to Long Range Attacks}
 
+    %% Problem Analysis
+
+    \bibitem{2017FakeVideo}
+    CNN, \href{https://edition.cnn.com/2016/08/17/world/syria-little-boy-airstrike-victim/index.html}{Little boy in Aleppo a vivid reminder of war’s horror}
+
+    \bibitem{2018fakeVideo}
+    DW.com, \href{https://www.dw.com/en/outrage-as-teens-mock-native-american-at-washington-rally/a-47156592}{Viral video of teens taunting Native American}
+
+    \bibitem{2020fakeVideo}
+    abcNews, \href{https://abcnews.go.com/Politics/election-2020-debunking-false-misleading-videos-claiming-show/story?id=74148233}{Election 2020: Debunking false and misleading videos claiming to show voter fraud}
+
+    \bibitem{accusationBrettKavanaugh}
+    The New York Times, \href{https://www.nytimes.com/2018/09/26/us/politics/brett-kavanaugh-accusers-women.html}{The Women Who Have Accused Brett Kavanaugh}
+
+    \bibitem{accusationRyanAdams}
+    The New York Times, \href{2019, a journalist from the New York Times conducted an interview with a woman who accused the musician Ryan Adams of sexual misconduct}{Ryan Adams Dangled Success. Women Say They Paid a Price.}
+
+    \bibitem{equifaxDataBreachSettlement}
+    JND Legal Administration, \href{https://www.equifaxbreachsettlement.com/}{Equifax Data Breach Settlement Website}
+
+    \bibitem{marriotDataBreach}
+    CSO United States, \href{https://www.csoonline.com/article/3441220/marriott-data-breach-faq-how-did-it-happen-and-what-was-the-impact.html}{Marriott data breach FAQ: How did it happen and what was the impact?}
+    
+    \bibitem{informedConsent}
+    American Cancer Society, \href{https://www.cancer.org/treatment/treatments-and-side-effects/planning-managing/informed-consent/what-is-informed-consent.html}{What Is Informed Consent?}
+    
+    %% Solution Design
+
+    \bibitem{RDBMS}
+    OCI, \href{https://www.oracle.com/database/what-is-a-relational-database/}{What is a Relational Database (RDBMS)?}
+
+    \bibitem{mySQL}
+    MySQL, \href{https://dev.mysql.com/doc/}{Documentation}
+
+    \bibitem{oracleDb}
+    Oracle, \href{https://www.oracle.com/database/}{Database}
+
+    \bibitem{microsoftSQL}
+    Microsoft, \href{https://www.microsoft.com/it-it/sql-server}{Introduction to SQL Server 2022}
+
+    \bibitem{postgreSQL}
+    PostgreSQL, \href{https://www.postgresql.org/}{PostgreSQL: The World's Most Advanced Open Source Relational Database}
+
+    \bibitem{mongoDB}
+    MongoDB, \href{https://www.mongodb.com/}{MongoDB}
+
+    \bibitem{cassandra}
+    Apache, \href{https://cassandra.apache.org/_/index.html}{Cassandra}
+
+    \bibitem{redis}
+    Redis, \href{https://redis.io/docs/}{Documentation}
+
+    \bibitem{apacheCouch}
+    CouchDB, \href{https://docs.couchdb.org/en/stable/}{Documentation}
+
+    \bibitem{3tierArchitecture}
+    IBM, \href{https://www.ibm.com/topics/three-tier-architecture}{What is Three-Tier Architecture}
+
+    \bibitem{restAPI}
+    Red Hat, \href{https://www.redhat.com/en/topics/api/what-is-a-rest-api}{What is a REST API?}
+
+    \bibitem{jwtTokens}
+    JWT, \href{https://jwt.io/introduction}{Introduction to JSON Web Tokens}
+
+    \bibitem{nodeJs}
+    Node, \href{https://nodejs.org/en/docs/}{Docs}
+
+    \bibitem{alastriaBlockchain}
+    Alastria, \href{https://alastria.io/en/what-is-alastria/}{What is Alastria}
+
+    %% Alastria
+
     \bibitem{DID}
     W3C, \href{https://w3c.github.io/did-core/}{Decentralized Identifiers (DIDs) v1.0}
 
@@ -778,6 +1206,32 @@ In summary, the GDPR is a comprehensive regulation that aims to give individuals
 
     \bibitem{keythereum}
     EthereumJS, \href{https://github.com/ethereumjs/keythereum}{keythereum}
+
+    %% Implementation
+
+    \bibitem{docker}
+    Docker, \href{https://docs.docker.com/}{Docs}
+
+    \bibitem{evm}
+    Ethereum, \href{https://ethereum.org/en/developers/docs/evm/}{ETHEREUM VIRTUAL MACHINE (EVM)}
+
+    \bibitem{ethereum}
+    Ethereum, \href{https://ethereum.org/en/developers/docs/}{ETHEREUM DEVELOPMENT DOCUMENTATION}
+
+    \bibitem{polygon}
+    Polygon, \href{https://polygon.technology/solutions/polygon-pos}{The easiest way to scale your Ethereum app}
+
+    \bibitem{moonbeam}
+    Moonbeam, \href{https://docs.moonbeam.network/}{Moonbeam Network Resources \& Documentation}
+
+    \bibitem{ethers}
+    Ethers, \href{https://docs.ethers.org/v5/}{Documentation}
+
+    \bibitem{web3}
+    Web3.js, \href{https://web3js.readthedocs.io/en/v1.8.2/#web3-js-ethereum-javascript-api}{Ethereum JavaScript API}
+
+    \bibitem{truffle}
+    Truffle, \href{https://trufflesuite.com/docs/}{Documentation}
 
     \bibitem{}
     , \href{}{}
